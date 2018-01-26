@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { Injectable, Optional }                              from '@angular/core';
-import { CookieService }                                     from 'angular2-cookie/services/cookies.service';
+import { CookieService }                                     from 'ngx-cookie';
 import { Configuration }                                     from '../configuration';
 
 

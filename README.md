@@ -16,7 +16,7 @@ Dependencies for this SDK are defined as peer-dependencies. For the uninitiated 
 they must be installed separately. This ensures that those packages will continue working should you use them independent of the SDK.
 
 Not to worry though, as long as you have installed at least Angular 4.3 the only other dependency you should have to worry about is 
-angular2-cookie(^1.2.6) which is used by the TokenService to store auth tokens.
+ngx-cookie(^2.0.0) which is used by the TokenService to store auth tokens.
 
 
 ### Installation
