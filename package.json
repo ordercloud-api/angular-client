@@ -3,6 +3,10 @@
   "version": "0.0.0-alpha",
   "description": "angular 4.3+ sdk for building on top of the ordercloud platform",
   "author": "ordercloud.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ordercloud-api/angular-client"
+  },
   "keywords": [
     "ordercloud",
     "four51",
@@ -40,8 +44,5 @@
     "zone.js": "^0.7.6",
     "typescript": "^2.1.5",
     "angular2-cookie": "^1.2.6"
-  },
-  "publishConfig": {
-    "registry": "https://github.com/ordercloud-api/angular-client"
   }
 }
