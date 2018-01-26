@@ -1,6 +1,6 @@
 {
   "name": "@ordercloud/angular-sdk",
-  "version": "0.0.0",
+  "version": "0.0.0-alpha",
   "description": "angular 4.3+ sdk for building on top of the ordercloud platform",
   "author": "ordercloud.io",
   "keywords": [
@@ -42,6 +42,6 @@
     "angular2-cookie": "^1.2.6"
   },
   "publishConfig": {
-    "registry": "UPDATE_NPM_REPO"
+    "registry": "https://github.com/ordercloud-api/angular-client"
   }
 }

@@ -1,4 +1,4 @@
-## OrderCloud Angular SDK v0.0.0
+## OrderCloud Angular SDK v0.0.0-alpha
 
 [OrderCloud](https://developer.ordercloud.io/documentation/) is a cloud-hosted B2B eCommerce platform exposed entirely via a RESTful API.
 
