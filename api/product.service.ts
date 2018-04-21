@@ -456,7 +456,7 @@ export class ProductService {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
         if (opts.filters !== undefined) {
-            queryParameters = queryParameters.set('filters', <any>opts.filters);
+            queryParameters = queryParameters.set('filters', JSON.stringify(<any>opts.filters));
         }
 
         let headers = this.defaultHeaders;
@@ -620,7 +620,7 @@ export class ProductService {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
         if (opts.filters !== undefined) {
-            queryParameters = queryParameters.set('filters', <any>opts.filters);
+            queryParameters = queryParameters.set('filters', JSON.stringify(<any>opts.filters));
         }
 
         let headers = this.defaultHeaders;
@@ -700,7 +700,7 @@ export class ProductService {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
         if (opts.filters !== undefined) {
-            queryParameters = queryParameters.set('filters', <any>opts.filters);
+            queryParameters = queryParameters.set('filters', JSON.stringify(<any>opts.filters));
         }
 
         let headers = this.defaultHeaders;

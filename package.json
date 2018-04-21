@@ -1,48 +1,50 @@
 {
-    "name": "@ordercloud/angular-sdk",
-    "version": "0.0.1-0",
-    "description": "angular 4.3+ sdk for building on top of the ordercloud platform",
-    "author": "ordercloud.io",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ordercloud-api/angular-client"
-    },
-    "keywords": [
-        "ordercloud",
-        "four51",
-        "b2b",
-        "angular",
-        "angular2",
-        "ecommerce"
-    ],
-    "license": "MIT",
-    "main": "dist/index.js",
-    "typings": "dist/index.d.ts",
-    "scripts": {
-        "build": "tsc --outDir dist/",
-        "postinstall": "npm run build"
-    },
-    "peerDependencies": {
-        "@angular/core": ">=4.3.0 || >=5.0.0",
-        "@angular/http": ">=4.3.0 || >=5.0.0",
-        "@angular/common": ">=4.3.0 || >=5.0.0",
-        "@angular/compiler": ">=4.3.0 || >=5.0.0",
-        "core-js": "^2.4.0",
-        "reflect-metadata": "^0.1.3",
-        "rxjs": "^5.4.0",
-        "zone.js": "^0.7.6",
-        "ngx-cookie": "^2.0.0"
-    },
-    "devDependencies": {
-        "@angular/core": ">=4.3.0 || >=5.0.0",
-        "@angular/http": ">=4.3.0 || >=5.0.0",
-        "@angular/common": ">=4.3.0 || >=5.0.0",
-        "@angular/compiler": ">=4.3.0 || >=5.0.0",
-        "@angular/platform-browser": ">=4.3.0 || >=5.0.0",
-        "reflect-metadata": "^0.1.3",
-        "rxjs": "^5.4.0",
-        "zone.js": "^0.7.6",
-        "typescript": "^2.1.5",
-        "ngx-cookie": "^2.0.0"
-    }
+  "name": "@ordercloud/angular-sdk",
+  "version": "0.0.1-2",
+  "description": "angular 4.3+ typescript sdk for building on top of the ordercloud platform",
+  "author": "ordercloud.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ordercloud-api/angular-client"
+  },
+  "keywords": [
+    "ordercloud",
+    "four51",
+    "b2b",
+    "angular",
+    "angular2",
+    "ecommerce"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --outDir dist/",
+    "postinstall": "npm run build"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=4.3.0 || >=5.0.0",
+    "@angular/http": ">=4.3.0 || >=5.0.0",
+    "@angular/common": ">=4.3.0 || >=5.0.0",
+    "@angular/compiler": ">=4.3.0 || >=5.0.0",
+    "core-js": "^2.4.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "^5.4.0",
+    "zone.js": "^0.7.6",
+    "ngx-cookie": "^2.0.0"
+  },
+  "devDependencies": {
+    "@angular/core": ">=4.3.0 || >=5.0.0",
+    "@angular/http": ">=4.3.0 || >=5.0.0",
+    "@angular/common": ">=4.3.0 || >=5.0.0",
+    "@angular/compiler": ">=4.3.0 || >=5.0.0",
+    "@angular/platform-browser": ">=4.3.0 || >=5.0.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "^5.4.0",
+    "zone.js": "<1",
+    "typescript": "^2.1.5"
+  },
+  "dependencies": {
+    "ngx-cookie": "^3.0.1"
+  }
 }
