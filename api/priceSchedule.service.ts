@@ -165,10 +165,10 @@ export class PriceScheduleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { quantity?: number, observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { quantity?: number, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { quantity?: number, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public DeletePriceBreak(priceScheduleID: string, quantity: number, options?: { quantity?: number, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -284,10 +284,10 @@ export class PriceScheduleService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPriceSchedule>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPriceSchedule>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPriceSchedule>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPriceSchedule>;
+    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPriceSchedule>>;
+    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPriceSchedule>>;
+    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';

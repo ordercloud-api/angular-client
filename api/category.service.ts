@@ -180,10 +180,10 @@ export class CategoryService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { userID?: string, userGroupID?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { userID?: string, userGroupID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { userID?: string, userGroupID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { userID?: string, userGroupID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public DeleteAssignment(catalogID: string, categoryID: string, buyerID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -374,10 +374,10 @@ export class CategoryService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
