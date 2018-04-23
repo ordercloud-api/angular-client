@@ -48,8 +48,9 @@ export class Configuration {
             var filterVal = filters[filterKey];
               if (filters.hasOwnProperty(filterKey) && filterVal != undefined && filterVal != null) {
                 if (filterVal instanceof Array) {
-                    filterVal.forEach(arrayVal => {
-                        queryParameters = queryParameters.set(filterKey, <any>arrayVal);
+                    filterVal.forEach((arrayVal, index) => {
+                        let action = index === 0 ? 'set' : 'append';
+                        queryParameters = queryParameters[action](filterKey, <any>arrayVal);
                     })
                 } else {
                     queryParameters = queryParameters.set(filterKey, filterVal);
