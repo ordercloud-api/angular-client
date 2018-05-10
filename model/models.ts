@@ -138,4 +138,3 @@ export * from './user';
 export * from './userGroup';
 export * from './userGroupAssignment';
 export * from './variant';
-export * from './auth';

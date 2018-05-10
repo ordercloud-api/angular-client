@@ -11,9 +11,10 @@ import { LineItemSpec } from './lineItemSpec';
 
 
 export interface PartialLineItem {
+    Quantity?: number;
+    xp?: any;
     ID?: string;
     ProductID?: string;
-    Quantity?: number;
     DateAdded?: string;
     QuantityShipped?: number;
     UnitPrice?: number;
@@ -27,5 +28,4 @@ export interface PartialLineItem {
     ShippingAddress?: Address;
     ShipFromAddress?: Address;
     Specs?: Array<LineItemSpec>;
-    xp?: any;
 }

@@ -86,7 +86,7 @@ export class AuthService {
             scope = scope.join(' ');
         }
         let authRequest = `grant_type=password&scope=${scope}&client_id=${clientID}&username=${username}&password=${password}`;
-        return this.httpClient.post<Auth>(this.authPath,
+        return this.httpClient.post<AccessToken>(this.authPath,
             authRequest,
             {
                 headers: headers,
@@ -152,7 +152,7 @@ export class AuthService {
             scope = scope.join(' ');
         }
         let authRequest = `grant_type=client_credentials&scope=${scope}&client_id=${clientID}&username=${username}&password=${password}&client_secret=${clientSecret}`;
-        return this.httpClient.post<Auth>(this.authPath,
+        return this.httpClient.post<AccessToken>(this.authPath,
             authRequest,
             {
                 headers: headers,
@@ -210,7 +210,7 @@ export class AuthService {
             scope = scope.join(' ');
         }
         let authRequest = `grant_type=password&scope=${scope}&client_id=${clientID}&client_secret=${clientSecret}`;
-        return this.httpClient.post<Auth>(this.authPath,
+        return this.httpClient.post<AccessToken>(this.authPath,
             authRequest,
             {
                 headers: headers,
@@ -260,7 +260,7 @@ export class AuthService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
         let authRequest = `grant_type=refresh_token&client_id=${clientID}&refresh_token=${refreshToken}`;
-        return this.httpClient.post<Auth>(this.authPath,
+        return this.httpClient.post<AccessToken>(this.authPath,
             authRequest,
             {
                 headers: headers,
@@ -313,7 +313,7 @@ export class AuthService {
             scope = scope.join(' ');
         }
         let authRequest = `grant_type=client_credentials&client_id=${clientID}&scope=${scope}`;
-        return this.httpClient.post<Auth>(this.authPath,
+        return this.httpClient.post<AccessToken>(this.authPath,
             authRequest,
             {
                 headers: headers,
