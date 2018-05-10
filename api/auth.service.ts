@@ -16,7 +16,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
-import { Auth }                                              from '../model/auth';
+import { AccessToken }                                       from '../model/accessToken';
 
 
 
@@ -43,9 +43,9 @@ export class AuthService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public Login(username: string, password: string, clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public Login(username: string, password: string, clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public Login(username: string, password: string, clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public Login(username: string, password: string, clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
+    public Login(username: string, password: string, clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
+    public Login(username: string, password: string, clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
     public Login(username: string, password: string, clientID: string, scope: string | string[], observe: any = 'body', reportProgress: boolean = false): Observable<any> {
         if (username === null || username === undefined) {
             throw new Error('Required parameter username was null or undefined when calling _login.');
@@ -107,9 +107,9 @@ export class AuthService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ElevatedLogin(clientSecret: string, username: string, password: string, clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ElevatedLogin(clientSecret: string, username: string, password: string, clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ElevatedLogin(clientSecret: string, username: string, password: string, clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public ElevatedLogin(clientSecret: string, username: string, password: string, clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
+    public ElevatedLogin(clientSecret: string, username: string, password: string, clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
+    public ElevatedLogin(clientSecret: string, username: string, password: string, clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
     public ElevatedLogin(clientSecret: string, username: string, password: string, clientID: string, scope: string | string[], observe: any = 'body', reportProgress: boolean = false): Observable<any> {
         if (clientSecret === null || clientSecret === undefined) {
             throw new Error('Required parameter clientSecret was null or undefined when calling ElevatedLogin.');
@@ -171,9 +171,9 @@ export class AuthService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ClientCredentials(clientSecret: string, clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ClientCredentials(clientSecret: string, clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ClientCredentials(clientSecret: string, clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public ClientCredentials(clientSecret: string, clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
+    public ClientCredentials(clientSecret: string, clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
+    public ClientCredentials(clientSecret: string, clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
     public ClientCredentials(clientSecret: string, clientID: string, scope: string | string[], observe: any = 'body', reportProgress: boolean = false): Observable<any> {
         if (clientSecret === null || clientSecret === undefined) {
             throw new Error('Required parameter clientSecret was null or undefined when calling ClientCredentials.');
@@ -228,9 +228,9 @@ export class AuthService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public RefreshToken(refreshToken: string, clientID: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public RefreshToken(refreshToken: string, clientID: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public RefreshToken(refreshToken: string, clientID: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public RefreshToken(refreshToken: string, clientID: string, observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
+    public RefreshToken(refreshToken: string, clientID: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
+    public RefreshToken(refreshToken: string, clientID: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
     public RefreshToken(refreshToken: string, clientID: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
         if (refreshToken === null || refreshToken === undefined) {
             throw new Error('Required parameter refreshToken was null or undefined when calling RefreshToken.');
@@ -278,9 +278,9 @@ export class AuthService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public Anonymous(clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public Anonymous(clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public Anonymous(clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public Anonymous(clientID: string, scope: string | string[], observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
+    public Anonymous(clientID: string, scope: string | string[], observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
+    public Anonymous(clientID: string, scope: string | string[], observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
     public Anonymous(clientID: string, scope: string | string[], observe: any = 'body', reportProgress: boolean = false): Observable<any> {
         if (clientID === null || clientID === undefined) {
             throw new Error('Required parameter clientID was null or undefined when calling Anonymous.');
