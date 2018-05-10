@@ -259,7 +259,7 @@ export class AuthService {
         if (httpContentTypeSelected != undefined) {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
-        let authRequest = `grant_type=refresh_token&client_id=${clientID}&refreshToken=${refreshToken}`;
+        let authRequest = `grant_type=refresh_token&client_id=${clientID}&refresh_token=${refreshToken}`;
         return this.httpClient.post<Auth>(this.authPath,
             authRequest,
             {
