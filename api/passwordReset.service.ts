@@ -50,7 +50,7 @@ export class PasswordResetService {
     /**
      * 
      * 
-     * @param verificationCode Verification code of the forgotten password.
+     * @param verificationCode Verification code of the password reset.
      * @param passwordReset 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.

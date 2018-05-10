@@ -102,14 +102,14 @@ export class BuyerService {
     /**
      * 
      * 
-     * @param company 
+     * @param buyer 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(company: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
-    public Create(company: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
-    public Create(company: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
-    public Create(company: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Create(buyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
+    public Create(buyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
+    public Create(buyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
+    public Create(buyer: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -117,8 +117,8 @@ export class BuyerService {
         if (opts.reportProgress === null || opts.reportProgress === undefined) {
             opts.reportProgress = false;
         }
-        if (company === null || company === undefined) {
-            throw new Error('Required parameter company was null or undefined when calling Create.');
+        if (buyer === null || buyer === undefined) {
+            throw new Error('Required parameter buyer was null or undefined when calling Create.');
         }
 
         let headers = this.defaultHeaders;
@@ -148,7 +148,7 @@ export class BuyerService {
         }
 
         return this.httpClient.post<Buyer>(`${this.basePath}/buyers`,
-            company,
+            buyer,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -211,20 +211,20 @@ export class BuyerService {
     /**
      * 
      * 
-     * @param options.search Search of the buyer.
-     * @param options.searchOn Search on of the buyer.
-     * @param options.sortBy Sort by of the buyer.
-     * @param options.page Page of the buyer.
-     * @param options.pageSize Page size of the buyer.
-     * @param options.filters Filters of the buyer.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyer>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyer>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyer>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyer>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyer>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyer>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -237,11 +237,11 @@ export class BuyerService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -288,14 +288,14 @@ export class BuyerService {
      * 
      * 
      * @param buyerID ID of the buyer.
-     * @param company 
+     * @param partialBuyer 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, company: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
-    public Patch(buyerID: string, company: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
-    public Patch(buyerID: string, company: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
-    public Patch(buyerID: string, company: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
+    public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
+    public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
+    public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -306,8 +306,8 @@ export class BuyerService {
         if (buyerID === null || buyerID === undefined) {
             throw new Error('Required parameter buyerID was null or undefined when calling Patch.');
         }
-        if (company === null || company === undefined) {
-            throw new Error('Required parameter company was null or undefined when calling Patch.');
+        if (partialBuyer === null || partialBuyer === undefined) {
+            throw new Error('Required parameter partialBuyer was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -337,7 +337,7 @@ export class BuyerService {
         }
 
         return this.httpClient.patch<Buyer>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}`,
-            company,
+            partialBuyer,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -349,14 +349,14 @@ export class BuyerService {
      * 
      * 
      * @param buyerID ID of the buyer.
-     * @param company 
+     * @param buyer 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(buyerID: string, company: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
-    public Update(buyerID: string, company: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
-    public Update(buyerID: string, company: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
-    public Update(buyerID: string, company: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(buyerID: string, buyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
+    public Save(buyerID: string, buyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
+    public Save(buyerID: string, buyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
+    public Save(buyerID: string, buyer: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -365,10 +365,10 @@ export class BuyerService {
             opts.reportProgress = false;
         }
         if (buyerID === null || buyerID === undefined) {
-            throw new Error('Required parameter buyerID was null or undefined when calling Update.');
+            throw new Error('Required parameter buyerID was null or undefined when calling Save.');
         }
-        if (company === null || company === undefined) {
-            throw new Error('Required parameter company was null or undefined when calling Update.');
+        if (buyer === null || buyer === undefined) {
+            throw new Error('Required parameter buyer was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;
@@ -398,7 +398,7 @@ export class BuyerService {
         }
 
         return this.httpClient.put<Buyer>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}`,
-            company,
+            buyer,
             {
                 headers: headers,
                 observe: opts.observe,

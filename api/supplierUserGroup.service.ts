@@ -109,14 +109,14 @@ export class SupplierUserGroupService {
      * 
      * 
      * @param supplierID ID of the supplier.
-     * @param group 
+     * @param userGroup 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(supplierID: string, group: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
-    public Create(supplierID: string, group: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
-    public Create(supplierID: string, group: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
-    public Create(supplierID: string, group: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Create(supplierID: string, userGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
+    public Create(supplierID: string, userGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
+    public Create(supplierID: string, userGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
+    public Create(supplierID: string, userGroup: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -127,8 +127,8 @@ export class SupplierUserGroupService {
         if (supplierID === null || supplierID === undefined) {
             throw new Error('Required parameter supplierID was null or undefined when calling Create.');
         }
-        if (group === null || group === undefined) {
-            throw new Error('Required parameter group was null or undefined when calling Create.');
+        if (userGroup === null || userGroup === undefined) {
+            throw new Error('Required parameter userGroup was null or undefined when calling Create.');
         }
 
         let headers = this.defaultHeaders;
@@ -158,7 +158,7 @@ export class SupplierUserGroupService {
         }
 
         return this.httpClient.post<UserGroup>(`${this.basePath}/suppliers/${encodeURIComponent(String(supplierID))}/usergroups`,
-            group,
+            userGroup,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -286,20 +286,20 @@ export class SupplierUserGroupService {
      * 
      * 
      * @param supplierID ID of the supplier.
-     * @param options.search Search of the supplier user group.
-     * @param options.searchOn Search on of the supplier user group.
-     * @param options.sortBy Sort by of the supplier user group.
-     * @param options.page Page of the supplier user group.
-     * @param options.pageSize Page size of the supplier user group.
-     * @param options.filters Filters of the supplier user group.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(supplierID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup>;
-    public List(supplierID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
-    public List(supplierID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
-    public List(supplierID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(supplierID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup>;
+    public List(supplierID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
+    public List(supplierID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
+    public List(supplierID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -315,11 +315,11 @@ export class SupplierUserGroupService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -368,8 +368,8 @@ export class SupplierUserGroupService {
      * @param supplierID ID of the supplier.
      * @param options.userGroupID ID of the user group.
      * @param options.userID ID of the user.
-     * @param options.page Page of the supplier user group.
-     * @param options.pageSize Page size of the supplier user group.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -439,14 +439,14 @@ export class SupplierUserGroupService {
      * 
      * @param supplierID ID of the supplier.
      * @param userGroupID ID of the user group.
-     * @param group 
+     * @param partialUserGroup 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
-    public Patch(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
-    public Patch(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
-    public Patch(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(supplierID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
+    public Patch(supplierID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
+    public Patch(supplierID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
+    public Patch(supplierID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -460,8 +460,8 @@ export class SupplierUserGroupService {
         if (userGroupID === null || userGroupID === undefined) {
             throw new Error('Required parameter userGroupID was null or undefined when calling Patch.');
         }
-        if (group === null || group === undefined) {
-            throw new Error('Required parameter group was null or undefined when calling Patch.');
+        if (partialUserGroup === null || partialUserGroup === undefined) {
+            throw new Error('Required parameter partialUserGroup was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -491,7 +491,72 @@ export class SupplierUserGroupService {
         }
 
         return this.httpClient.patch<UserGroup>(`${this.basePath}/suppliers/${encodeURIComponent(String(supplierID))}/usergroups/${encodeURIComponent(String(userGroupID))}`,
-            group,
+            partialUserGroup,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param supplierID ID of the supplier.
+     * @param userGroupID ID of the user group.
+     * @param userGroup 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(supplierID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
+    public Save(supplierID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
+    public Save(supplierID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
+    public Save(supplierID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (supplierID === null || supplierID === undefined) {
+            throw new Error('Required parameter supplierID was null or undefined when calling Save.');
+        }
+        if (userGroupID === null || userGroupID === undefined) {
+            throw new Error('Required parameter userGroupID was null or undefined when calling Save.');
+        }
+        if (userGroup === null || userGroup === undefined) {
+            throw new Error('Required parameter userGroup was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<UserGroup>(`${this.basePath}/suppliers/${encodeURIComponent(String(supplierID))}/usergroups/${encodeURIComponent(String(userGroupID))}`,
+            userGroup,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -553,71 +618,6 @@ export class SupplierUserGroupService {
 
         return this.httpClient.post<any>(`${this.basePath}/suppliers/${encodeURIComponent(String(supplierID))}/usergroups/assignments`,
             userGroupAssignment,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param supplierID ID of the supplier.
-     * @param userGroupID ID of the user group.
-     * @param group 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public Update(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
-    public Update(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
-    public Update(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
-    public Update(supplierID: string, userGroupID: string, group: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (supplierID === null || supplierID === undefined) {
-            throw new Error('Required parameter supplierID was null or undefined when calling Update.');
-        }
-        if (userGroupID === null || userGroupID === undefined) {
-            throw new Error('Required parameter userGroupID was null or undefined when calling Update.');
-        }
-        if (group === null || group === undefined) {
-            throw new Error('Required parameter group was null or undefined when calling Update.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<UserGroup>(`${this.basePath}/suppliers/${encodeURIComponent(String(supplierID))}/usergroups/${encodeURIComponent(String(userGroupID))}`,
-            group,
             {
                 headers: headers,
                 observe: opts.observe,

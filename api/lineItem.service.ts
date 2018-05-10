@@ -51,7 +51,7 @@ export class LineItemService {
     /**
      * 
      * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param lineItemID ID of the line item.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -111,7 +111,7 @@ export class LineItemService {
     /**
      * 
      * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param lineItem 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -176,7 +176,7 @@ export class LineItemService {
     /**
      * 
      * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param lineItemID ID of the line item.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -236,22 +236,22 @@ export class LineItemService {
     /**
      * 
      * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param options.search Search of the line item.
-     * @param options.searchOn Search on of the line item.
-     * @param options.sortBy Sort by of the line item.
-     * @param options.page Page of the line item.
-     * @param options.pageSize Page size of the line item.
-     * @param options.filters Filters of the line item.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListLineItem>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListLineItem>>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListLineItem>>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListLineItem>;
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListLineItem>>;
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListLineItem>>;
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -270,11 +270,11 @@ export class LineItemService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -320,7 +320,7 @@ export class LineItemService {
     /**
      * 
      * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param lineItemID ID of the line item.
      * @param partialLineItem 
@@ -389,7 +389,7 @@ export class LineItemService {
     /**
      * 
      * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param lineItemID ID of the line item.
      * @param partialAddress 
@@ -458,7 +458,76 @@ export class LineItemService {
     /**
      * 
      * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param lineItemID ID of the line item.
+     * @param lineItem 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
+    public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
+    public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
+    public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling Save.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling Save.');
+        }
+        if (lineItemID === null || lineItemID === undefined) {
+            throw new Error('Required parameter lineItemID was null or undefined when calling Save.');
+        }
+        if (lineItem === null || lineItem === undefined) {
+            throw new Error('Required parameter lineItem was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<LineItem>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/lineitems/${encodeURIComponent(String(lineItemID))}`,
+            lineItem,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param lineItemID ID of the line item.
      * @param address 
@@ -517,75 +586,6 @@ export class LineItemService {
 
         return this.httpClient.put<LineItem>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/lineitems/${encodeURIComponent(String(lineItemID))}/shipto`,
             address,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param direction Direction of the line item. Possible values: Incoming, Outgoing.
-     * @param orderID ID of the order.
-     * @param lineItemID ID of the line item.
-     * @param lineItem 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public Update(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
-    public Update(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
-    public Update(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
-    public Update(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (direction === null || direction === undefined) {
-            throw new Error('Required parameter direction was null or undefined when calling Update.');
-        }
-        if (orderID === null || orderID === undefined) {
-            throw new Error('Required parameter orderID was null or undefined when calling Update.');
-        }
-        if (lineItemID === null || lineItemID === undefined) {
-            throw new Error('Required parameter lineItemID was null or undefined when calling Update.');
-        }
-        if (lineItem === null || lineItem === undefined) {
-            throw new Error('Required parameter lineItem was null or undefined when calling Update.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<LineItem>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/lineitems/${encodeURIComponent(String(lineItemID))}`,
-            lineItem,
             {
                 headers: headers,
                 observe: opts.observe,

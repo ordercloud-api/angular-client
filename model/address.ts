@@ -9,6 +9,7 @@
 
 export interface Address {
     ID?: string;
+    DateCreated?: string;
     CompanyName?: string;
     FirstName?: string;
     LastName?: string;

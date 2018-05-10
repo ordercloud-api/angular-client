@@ -224,20 +224,20 @@ export class ApprovalRuleService {
      * 
      * 
      * @param buyerID ID of the buyer.
-     * @param options.search Search of the approval rule.
-     * @param options.searchOn Search on of the approval rule.
-     * @param options.sortBy Sort by of the approval rule.
-     * @param options.page Page of the approval rule.
-     * @param options.pageSize Page size of the approval rule.
-     * @param options.filters Filters of the approval rule.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListApprovalRule>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListApprovalRule>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListApprovalRule>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListApprovalRule>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListApprovalRule>>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListApprovalRule>>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -253,11 +253,11 @@ export class ApprovalRuleService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -374,10 +374,10 @@ export class ApprovalRuleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule>;
-    public Update(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
-    public Update(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
-    public Update(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule>;
+    public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
+    public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
+    public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -386,13 +386,13 @@ export class ApprovalRuleService {
             opts.reportProgress = false;
         }
         if (buyerID === null || buyerID === undefined) {
-            throw new Error('Required parameter buyerID was null or undefined when calling Update.');
+            throw new Error('Required parameter buyerID was null or undefined when calling Save.');
         }
         if (approvalRuleID === null || approvalRuleID === undefined) {
-            throw new Error('Required parameter approvalRuleID was null or undefined when calling Update.');
+            throw new Error('Required parameter approvalRuleID was null or undefined when calling Save.');
         }
         if (approvalRule === null || approvalRule === undefined) {
-            throw new Error('Required parameter approvalRule was null or undefined when calling Update.');
+            throw new Error('Required parameter approvalRule was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;

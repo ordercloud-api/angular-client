@@ -164,14 +164,14 @@ export class SpecService {
      * 
      * 
      * @param specID ID of the spec.
-     * @param option 
+     * @param specOption 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CreateOption(specID: string, option: SpecOption, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpecOption>;
-    public CreateOption(specID: string, option: SpecOption, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpecOption>>;
-    public CreateOption(specID: string, option: SpecOption, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpecOption>>;
-    public CreateOption(specID: string, option: SpecOption, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public CreateOption(specID: string, specOption: SpecOption, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpecOption>;
+    public CreateOption(specID: string, specOption: SpecOption, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpecOption>>;
+    public CreateOption(specID: string, specOption: SpecOption, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpecOption>>;
+    public CreateOption(specID: string, specOption: SpecOption, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -182,8 +182,8 @@ export class SpecService {
         if (specID === null || specID === undefined) {
             throw new Error('Required parameter specID was null or undefined when calling CreateOption.');
         }
-        if (option === null || option === undefined) {
-            throw new Error('Required parameter option was null or undefined when calling CreateOption.');
+        if (specOption === null || specOption === undefined) {
+            throw new Error('Required parameter specOption was null or undefined when calling CreateOption.');
         }
 
         let headers = this.defaultHeaders;
@@ -213,7 +213,7 @@ export class SpecService {
         }
 
         return this.httpClient.post<SpecOption>(`${this.basePath}/specs/${encodeURIComponent(String(specID))}/options`,
-            option,
+            specOption,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -444,20 +444,20 @@ export class SpecService {
     /**
      * 
      * 
-     * @param options.search Search of the spec.
-     * @param options.searchOn Search on of the spec.
-     * @param options.sortBy Sort by of the spec.
-     * @param options.page Page of the spec.
-     * @param options.pageSize Page size of the spec.
-     * @param options.filters Filters of the spec.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpec>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpec>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpec>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpec>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpec>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpec>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -470,11 +470,11 @@ export class SpecService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -521,20 +521,20 @@ export class SpecService {
      * 
      * 
      * @param specID ID of the spec.
-     * @param options.search Search of the spec.
-     * @param options.searchOn Search on of the spec.
-     * @param options.sortBy Sort by of the spec.
-     * @param options.page Page of the spec.
-     * @param options.pageSize Page size of the spec.
-     * @param options.filters Filters of the spec.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListOptions(specID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpecOption>;
-    public ListOptions(specID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpecOption>>;
-    public ListOptions(specID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpecOption>>;
-    public ListOptions(specID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListOptions(specID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpecOption>;
+    public ListOptions(specID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpecOption>>;
+    public ListOptions(specID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpecOption>>;
+    public ListOptions(specID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -550,11 +550,11 @@ export class SpecService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -600,20 +600,20 @@ export class SpecService {
     /**
      * 
      * 
-     * @param options.search Search of the spec.
-     * @param options.searchOn Search on of the spec.
-     * @param options.sortBy Sort by of the spec.
-     * @param options.page Page of the spec.
-     * @param options.pageSize Page size of the spec.
-     * @param options.filters Filters of the spec.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListProductAssignments(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpecProductAssignment>;
-    public ListProductAssignments(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpecProductAssignment>>;
-    public ListProductAssignments(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpecProductAssignment>>;
-    public ListProductAssignments(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListProductAssignments(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpecProductAssignment>;
+    public ListProductAssignments(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpecProductAssignment>>;
+    public ListProductAssignments(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpecProductAssignment>>;
+    public ListProductAssignments(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -626,11 +626,11 @@ export class SpecService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -677,14 +677,14 @@ export class SpecService {
      * 
      * 
      * @param specID ID of the spec.
-     * @param spec 
+     * @param partialSpec 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(specID: string, spec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec>;
-    public Patch(specID: string, spec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
-    public Patch(specID: string, spec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
-    public Patch(specID: string, spec: Spec, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(specID: string, partialSpec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec>;
+    public Patch(specID: string, partialSpec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
+    public Patch(specID: string, partialSpec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
+    public Patch(specID: string, partialSpec: Spec, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -695,8 +695,8 @@ export class SpecService {
         if (specID === null || specID === undefined) {
             throw new Error('Required parameter specID was null or undefined when calling Patch.');
         }
-        if (spec === null || spec === undefined) {
-            throw new Error('Required parameter spec was null or undefined when calling Patch.');
+        if (partialSpec === null || partialSpec === undefined) {
+            throw new Error('Required parameter partialSpec was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -726,7 +726,7 @@ export class SpecService {
         }
 
         return this.httpClient.patch<Spec>(`${this.basePath}/specs/${encodeURIComponent(String(specID))}`,
-            spec,
+            partialSpec,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -739,14 +739,14 @@ export class SpecService {
      * 
      * @param specID ID of the spec.
      * @param optionID ID of the option.
-     * @param option 
+     * @param partialSpecOption 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpecOption>;
-    public PatchOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpecOption>>;
-    public PatchOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpecOption>>;
-    public PatchOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public PatchOption(specID: string, optionID: string, partialSpecOption: SpecOption, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpecOption>;
+    public PatchOption(specID: string, optionID: string, partialSpecOption: SpecOption, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpecOption>>;
+    public PatchOption(specID: string, optionID: string, partialSpecOption: SpecOption, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpecOption>>;
+    public PatchOption(specID: string, optionID: string, partialSpecOption: SpecOption, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -760,8 +760,8 @@ export class SpecService {
         if (optionID === null || optionID === undefined) {
             throw new Error('Required parameter optionID was null or undefined when calling PatchOption.');
         }
-        if (option === null || option === undefined) {
-            throw new Error('Required parameter option was null or undefined when calling PatchOption.');
+        if (partialSpecOption === null || partialSpecOption === undefined) {
+            throw new Error('Required parameter partialSpecOption was null or undefined when calling PatchOption.');
         }
 
         let headers = this.defaultHeaders;
@@ -791,64 +791,7 @@ export class SpecService {
         }
 
         return this.httpClient.patch<SpecOption>(`${this.basePath}/specs/${encodeURIComponent(String(specID))}/options/${encodeURIComponent(String(optionID))}`,
-            option,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param productAssignment 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public SaveProductAssignment(productAssignment: SpecProductAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public SaveProductAssignment(productAssignment: SpecProductAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public SaveProductAssignment(productAssignment: SpecProductAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public SaveProductAssignment(productAssignment: SpecProductAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (productAssignment === null || productAssignment === undefined) {
-            throw new Error('Required parameter productAssignment was null or undefined when calling SaveProductAssignment.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/specs/productassignments`,
-            productAssignment,
+            partialSpecOption,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -864,10 +807,10 @@ export class SpecService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(specID: string, spec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec>;
-    public Update(specID: string, spec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
-    public Update(specID: string, spec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
-    public Update(specID: string, spec: Spec, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(specID: string, spec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec>;
+    public Save(specID: string, spec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
+    public Save(specID: string, spec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
+    public Save(specID: string, spec: Spec, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -876,10 +819,10 @@ export class SpecService {
             opts.reportProgress = false;
         }
         if (specID === null || specID === undefined) {
-            throw new Error('Required parameter specID was null or undefined when calling Update.');
+            throw new Error('Required parameter specID was null or undefined when calling Save.');
         }
         if (spec === null || spec === undefined) {
-            throw new Error('Required parameter spec was null or undefined when calling Update.');
+            throw new Error('Required parameter spec was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;
@@ -922,14 +865,14 @@ export class SpecService {
      * 
      * @param specID ID of the spec.
      * @param optionID ID of the option.
-     * @param option 
+     * @param specOption 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public UpdateOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpecOption>;
-    public UpdateOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpecOption>>;
-    public UpdateOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpecOption>>;
-    public UpdateOption(specID: string, optionID: string, option: SpecOption, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public SaveOption(specID: string, optionID: string, specOption: SpecOption, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpecOption>;
+    public SaveOption(specID: string, optionID: string, specOption: SpecOption, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpecOption>>;
+    public SaveOption(specID: string, optionID: string, specOption: SpecOption, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpecOption>>;
+    public SaveOption(specID: string, optionID: string, specOption: SpecOption, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -938,13 +881,13 @@ export class SpecService {
             opts.reportProgress = false;
         }
         if (specID === null || specID === undefined) {
-            throw new Error('Required parameter specID was null or undefined when calling UpdateOption.');
+            throw new Error('Required parameter specID was null or undefined when calling SaveOption.');
         }
         if (optionID === null || optionID === undefined) {
-            throw new Error('Required parameter optionID was null or undefined when calling UpdateOption.');
+            throw new Error('Required parameter optionID was null or undefined when calling SaveOption.');
         }
-        if (option === null || option === undefined) {
-            throw new Error('Required parameter option was null or undefined when calling UpdateOption.');
+        if (specOption === null || specOption === undefined) {
+            throw new Error('Required parameter specOption was null or undefined when calling SaveOption.');
         }
 
         let headers = this.defaultHeaders;
@@ -974,7 +917,64 @@ export class SpecService {
         }
 
         return this.httpClient.put<SpecOption>(`${this.basePath}/specs/${encodeURIComponent(String(specID))}/options/${encodeURIComponent(String(optionID))}`,
-            option,
+            specOption,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param specProductAssignment 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public SaveProductAssignment(specProductAssignment: SpecProductAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public SaveProductAssignment(specProductAssignment: SpecProductAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public SaveProductAssignment(specProductAssignment: SpecProductAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public SaveProductAssignment(specProductAssignment: SpecProductAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (specProductAssignment === null || specProductAssignment === undefined) {
+            throw new Error('Required parameter specProductAssignment was null or undefined when calling SaveProductAssignment.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<any>(`${this.basePath}/specs/productassignments`,
+            specProductAssignment,
             {
                 headers: headers,
                 observe: opts.observe,

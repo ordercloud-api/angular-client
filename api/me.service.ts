@@ -15,32 +15,30 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 import { TokenService }                                      from './token.service';
 
-import { Address } from '../model/address';
 import { BuyerAddress } from '../model/buyerAddress';
 import { BuyerCreditCard } from '../model/buyerCreditCard';
 import { BuyerProduct } from '../model/buyerProduct';
-import { BuyerShipment } from '../model/buyerShipment';
 import { BuyerSpec } from '../model/buyerSpec';
 import { Catalog } from '../model/catalog';
-import { CreditCard } from '../model/creditCard';
+import { Category } from '../model/category';
 import { ListBuyerAddress } from '../model/listBuyerAddress';
 import { ListBuyerCreditCard } from '../model/listBuyerCreditCard';
 import { ListBuyerProduct } from '../model/listBuyerProduct';
-import { ListBuyerShipment } from '../model/listBuyerShipment';
 import { ListBuyerSpec } from '../model/listBuyerSpec';
 import { ListCatalog } from '../model/listCatalog';
 import { ListCategory } from '../model/listCategory';
 import { ListCostCenter } from '../model/listCostCenter';
 import { ListOrder } from '../model/listOrder';
 import { ListPromotion } from '../model/listPromotion';
+import { ListShipment } from '../model/listShipment';
 import { ListShipmentItem } from '../model/listShipmentItem';
 import { ListSpendingAccount } from '../model/listSpendingAccount';
 import { ListUserGroup } from '../model/listUserGroup';
 import { MeUser } from '../model/meUser';
 import { Promotion } from '../model/promotion';
+import { Shipment } from '../model/shipment';
 import { SpendingAccount } from '../model/spendingAccount';
 import { TokenPasswordReset } from '../model/tokenPasswordReset';
-import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -74,14 +72,14 @@ export class MeService {
     /**
      * 
      * 
-     * @param address 
+     * @param buyerAddress 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CreateAddress(address: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress>;
-    public CreateAddress(address: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
-    public CreateAddress(address: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
-    public CreateAddress(address: BuyerAddress, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress>;
+    public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
+    public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
+    public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -89,8 +87,8 @@ export class MeService {
         if (opts.reportProgress === null || opts.reportProgress === undefined) {
             opts.reportProgress = false;
         }
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling CreateAddress.');
+        if (buyerAddress === null || buyerAddress === undefined) {
+            throw new Error('Required parameter buyerAddress was null or undefined when calling CreateAddress.');
         }
 
         let headers = this.defaultHeaders;
@@ -120,7 +118,7 @@ export class MeService {
         }
 
         return this.httpClient.post<BuyerAddress>(`${this.basePath}/me/addresses`,
-            address,
+            buyerAddress,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -131,14 +129,14 @@ export class MeService {
     /**
      * 
      * 
-     * @param creditCard 
+     * @param buyerCreditCard 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CreateCreditCard(creditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard>;
-    public CreateCreditCard(creditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
-    public CreateCreditCard(creditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
-    public CreateCreditCard(creditCard: BuyerCreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard>;
+    public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
+    public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
+    public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -146,8 +144,8 @@ export class MeService {
         if (opts.reportProgress === null || opts.reportProgress === undefined) {
             opts.reportProgress = false;
         }
-        if (creditCard === null || creditCard === undefined) {
-            throw new Error('Required parameter creditCard was null or undefined when calling CreateCreditCard.');
+        if (buyerCreditCard === null || buyerCreditCard === undefined) {
+            throw new Error('Required parameter buyerCreditCard was null or undefined when calling CreateCreditCard.');
         }
 
         let headers = this.defaultHeaders;
@@ -177,7 +175,7 @@ export class MeService {
         }
 
         return this.httpClient.post<BuyerCreditCard>(`${this.basePath}/me/creditcards`,
-            creditCard,
+            buyerCreditCard,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -444,6 +442,68 @@ export class MeService {
     /**
      * 
      * 
+     * @param categoryID ID of the category.
+     * @param catalogID ID of the catalog.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'body', reportProgress?: boolean}): Observable<Category>;
+    public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (categoryID === null || categoryID === undefined) {
+            throw new Error('Required parameter categoryID was null or undefined when calling GetCategory.');
+        }
+        if (catalogID === null || catalogID === undefined) {
+            throw new Error('Required parameter catalogID was null or undefined when calling GetCategory.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (catalogID !== undefined) {
+            queryParameters = queryParameters.set('catalogID', <any>catalogID);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.get<Category>(`${this.basePath}/me/categories/${encodeURIComponent(String(categoryID))}`,
+            {
+                params: queryParameters,
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
      * @param creditcardID ID of the creditcard.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -604,9 +664,9 @@ export class MeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetShipment(shipmentID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerShipment>;
-    public GetShipment(shipmentID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerShipment>>;
-    public GetShipment(shipmentID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerShipment>>;
+    public GetShipment(shipmentID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Shipment>;
+    public GetShipment(shipmentID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Shipment>>;
+    public GetShipment(shipmentID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Shipment>>;
     public GetShipment(shipmentID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -641,7 +701,7 @@ export class MeService {
             'text/plain; charset=utf-8'
         ];
 
-        return this.httpClient.get<BuyerShipment>(`${this.basePath}/me/shipments/${encodeURIComponent(String(shipmentID))}`,
+        return this.httpClient.get<Shipment>(`${this.basePath}/me/shipments/${encodeURIComponent(String(shipmentID))}`,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -768,20 +828,20 @@ export class MeService {
     /**
      * 
      * 
-     * @param options.search Search of the address.
-     * @param options.searchOn Search on of the address.
-     * @param options.sortBy Sort by of the address.
-     * @param options.page Page of the address.
-     * @param options.pageSize Page size of the address.
-     * @param options.filters Filters of the address.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListAddresses(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerAddress>;
-    public ListAddresses(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerAddress>>;
-    public ListAddresses(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerAddress>>;
-    public ListAddresses(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerAddress>;
+    public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerAddress>>;
+    public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerAddress>>;
+    public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -794,11 +854,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -846,20 +906,20 @@ export class MeService {
      * 
      * @param options.from Lower bound of date range that the order was created (if outgoing) or submitted (if incoming).
      * @param options.to Upper bound of date range that the order was created (if outgoing) or submitted (if incoming).
-     * @param options.search Search of the order.
-     * @param options.searchOn Search on of the order.
-     * @param options.sortBy Sort by of the order.
-     * @param options.page Page of the order.
-     * @param options.pageSize Page size of the order.
-     * @param options.filters Filters of the order.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
-    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
-    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
-    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
+    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
+    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
+    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -878,11 +938,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -928,20 +988,20 @@ export class MeService {
     /**
      * 
      * 
-     * @param options.search Search of the catalog.
-     * @param options.searchOn Search on of the catalog.
-     * @param options.sortBy Sort by of the catalog.
-     * @param options.page Page of the catalog.
-     * @param options.pageSize Page size of the catalog.
-     * @param options.filters Filters of the catalog.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCatalogs(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCatalog>;
-    public ListCatalogs(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCatalog>>;
-    public ListCatalogs(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCatalog>>;
-    public ListCatalogs(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCatalog>;
+    public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCatalog>>;
+    public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCatalog>>;
+    public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -954,11 +1014,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1006,20 +1066,21 @@ export class MeService {
      * 
      * @param options.depth Depth of the category.
      * @param options.catalogID ID of the catalog.
-     * @param options.search Search of the category.
-     * @param options.searchOn Search on of the category.
-     * @param options.sortBy Sort by of the category.
-     * @param options.page Page of the category.
-     * @param options.pageSize Page size of the category.
-     * @param options.filters Filters of the category.
+     * @param options.productID ID of the product.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCategories(options?: { depth?: string, catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
-    public ListCategories(options?: { depth?: string, catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
-    public ListCategories(options?: { depth?: string, catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
-    public ListCategories(options?: { depth?: string, catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
+    public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
+    public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
+    public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1035,14 +1096,17 @@ export class MeService {
         if (opts.catalogID !== undefined) {
             queryParameters = queryParameters.set('catalogID', <any>opts.catalogID);
         }
+        if (opts.productID !== undefined) {
+            queryParameters = queryParameters.set('productID', <any>opts.productID);
+        }
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1088,20 +1152,20 @@ export class MeService {
     /**
      * 
      * 
-     * @param options.search Search of the cost center.
-     * @param options.searchOn Search on of the cost center.
-     * @param options.sortBy Sort by of the cost center.
-     * @param options.page Page of the cost center.
-     * @param options.pageSize Page size of the cost center.
-     * @param options.filters Filters of the cost center.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCostCenters(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter>;
-    public ListCostCenters(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
-    public ListCostCenters(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
-    public ListCostCenters(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter>;
+    public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
+    public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
+    public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1114,11 +1178,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1164,20 +1228,20 @@ export class MeService {
     /**
      * 
      * 
-     * @param options.search Search of the credit card.
-     * @param options.searchOn Search on of the credit card.
-     * @param options.sortBy Sort by of the credit card.
-     * @param options.page Page of the credit card.
-     * @param options.pageSize Page size of the credit card.
-     * @param options.filters Filters of the credit card.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCreditCards(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerCreditCard>;
-    public ListCreditCards(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerCreditCard>>;
-    public ListCreditCards(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerCreditCard>>;
-    public ListCreditCards(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerCreditCard>;
+    public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerCreditCard>>;
+    public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerCreditCard>>;
+    public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1190,11 +1254,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1242,20 +1306,20 @@ export class MeService {
      * 
      * @param options.from Lower bound of date range that the order was created (if outgoing) or submitted (if incoming).
      * @param options.to Upper bound of date range that the order was created (if outgoing) or submitted (if incoming).
-     * @param options.search Search of the order.
-     * @param options.searchOn Search on of the order.
-     * @param options.sortBy Sort by of the order.
-     * @param options.page Page of the order.
-     * @param options.pageSize Page size of the order.
-     * @param options.filters Filters of the order.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
-    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
-    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
-    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
+    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
+    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
+    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1274,11 +1338,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1327,20 +1391,20 @@ export class MeService {
      * @param options.catalogID ID of the catalog.
      * @param options.categoryID ID of the category.
      * @param options.depth Depth of the product.
-     * @param options.search Search of the product.
-     * @param options.searchOn Search on of the product.
-     * @param options.sortBy Sort by of the product.
-     * @param options.page Page of the product.
-     * @param options.pageSize Page size of the product.
-     * @param options.filters Filters of the product.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerProduct>;
-    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerProduct>>;
-    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerProduct>>;
-    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerProduct>;
+    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerProduct>>;
+    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerProduct>>;
+    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1362,11 +1426,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1412,20 +1476,20 @@ export class MeService {
     /**
      * 
      * 
-     * @param options.search Search of the promotion.
-     * @param options.searchOn Search on of the promotion.
-     * @param options.sortBy Sort by of the promotion.
-     * @param options.page Page of the promotion.
-     * @param options.pageSize Page size of the promotion.
-     * @param options.filters Filters of the promotion.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListPromotions(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion>;
-    public ListPromotions(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
-    public ListPromotions(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
-    public ListPromotions(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion>;
+    public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
+    public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
+    public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1438,11 +1502,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1490,20 +1554,20 @@ export class MeService {
      * 
      * @param shipmentID ID of the shipment.
      * @param options.orderID ID of the order.
-     * @param options.search Search of the shipment.
-     * @param options.searchOn Search on of the shipment.
-     * @param options.sortBy Sort by of the shipment.
-     * @param options.page Page of the shipment.
-     * @param options.pageSize Page size of the shipment.
-     * @param options.filters Filters of the shipment.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem>;
-    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
-    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
-    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem>;
+    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
+    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
+    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1522,11 +1586,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1573,20 +1637,20 @@ export class MeService {
      * 
      * 
      * @param options.orderID ID of the order.
-     * @param options.search Search of the shipment.
-     * @param options.searchOn Search on of the shipment.
-     * @param options.sortBy Sort by of the shipment.
-     * @param options.page Page of the shipment.
-     * @param options.pageSize Page size of the shipment.
-     * @param options.filters Filters of the shipment.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerShipment>;
-    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerShipment>>;
-    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerShipment>>;
-    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipment>;
+    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipment>>;
+    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipment>>;
+    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1602,11 +1666,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1640,7 +1704,7 @@ export class MeService {
             'text/plain; charset=utf-8'
         ];
 
-        return this.httpClient.get<ListBuyerShipment>(`${this.basePath}/me/shipments`,
+        return this.httpClient.get<ListShipment>(`${this.basePath}/me/shipments`,
             {
                 params: queryParameters,
                 headers: headers,
@@ -1654,20 +1718,20 @@ export class MeService {
      * 
      * @param productID ID of the product.
      * @param options.catalogID ID of the catalog.
-     * @param options.search Search of the product.
-     * @param options.searchOn Search on of the product.
-     * @param options.sortBy Sort by of the product.
-     * @param options.page Page of the product.
-     * @param options.pageSize Page size of the product.
-     * @param options.filters Filters of the product.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerSpec>;
-    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerSpec>>;
-    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerSpec>>;
-    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerSpec>;
+    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerSpec>>;
+    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerSpec>>;
+    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1686,11 +1750,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1736,20 +1800,20 @@ export class MeService {
     /**
      * 
      * 
-     * @param options.search Search of the spending account.
-     * @param options.searchOn Search on of the spending account.
-     * @param options.sortBy Sort by of the spending account.
-     * @param options.page Page of the spending account.
-     * @param options.pageSize Page size of the spending account.
-     * @param options.filters Filters of the spending account.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListSpendingAccounts(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpendingAccount>;
-    public ListSpendingAccounts(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpendingAccount>>;
-    public ListSpendingAccounts(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpendingAccount>>;
-    public ListSpendingAccounts(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpendingAccount>;
+    public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpendingAccount>>;
+    public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpendingAccount>>;
+    public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1762,11 +1826,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1812,20 +1876,20 @@ export class MeService {
     /**
      * 
      * 
-     * @param options.search Search of the user group.
-     * @param options.searchOn Search on of the user group.
-     * @param options.sortBy Sort by of the user group.
-     * @param options.page Page of the user group.
-     * @param options.pageSize Page size of the user group.
-     * @param options.filters Filters of the user group.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListUserGroups(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup>;
-    public ListUserGroups(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
-    public ListUserGroups(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
-    public ListUserGroups(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup>;
+    public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
+    public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
+    public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1838,11 +1902,11 @@ export class MeService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -1888,14 +1952,14 @@ export class MeService {
     /**
      * 
      * 
-     * @param user 
+     * @param partialMeUser 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser>;
-    public Patch(user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
-    public Patch(user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
-    public Patch(user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(partialMeUser: MeUser, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser>;
+    public Patch(partialMeUser: MeUser, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
+    public Patch(partialMeUser: MeUser, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
+    public Patch(partialMeUser: MeUser, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1903,8 +1967,8 @@ export class MeService {
         if (opts.reportProgress === null || opts.reportProgress === undefined) {
             opts.reportProgress = false;
         }
-        if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling Patch.');
+        if (partialMeUser === null || partialMeUser === undefined) {
+            throw new Error('Required parameter partialMeUser was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -1934,7 +1998,7 @@ export class MeService {
         }
 
         return this.httpClient.patch<MeUser>(`${this.basePath}/me`,
-            user,
+            partialMeUser,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -1946,14 +2010,14 @@ export class MeService {
      * 
      * 
      * @param addressID ID of the address.
-     * @param address 
+     * @param partialBuyerAddress 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchAddress(addressID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public PatchAddress(addressID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public PatchAddress(addressID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public PatchAddress(addressID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public PatchAddress(addressID: string, partialBuyerAddress: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public PatchAddress(addressID: string, partialBuyerAddress: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public PatchAddress(addressID: string, partialBuyerAddress: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public PatchAddress(addressID: string, partialBuyerAddress: BuyerAddress, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1964,8 +2028,8 @@ export class MeService {
         if (addressID === null || addressID === undefined) {
             throw new Error('Required parameter addressID was null or undefined when calling PatchAddress.');
         }
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling PatchAddress.');
+        if (partialBuyerAddress === null || partialBuyerAddress === undefined) {
+            throw new Error('Required parameter partialBuyerAddress was null or undefined when calling PatchAddress.');
         }
 
         let headers = this.defaultHeaders;
@@ -1995,7 +2059,7 @@ export class MeService {
         }
 
         return this.httpClient.patch<any>(`${this.basePath}/me/addresses/${encodeURIComponent(String(addressID))}`,
-            address,
+            partialBuyerAddress,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -2007,14 +2071,14 @@ export class MeService {
      * 
      * 
      * @param creditcardID ID of the creditcard.
-     * @param creditCard 
+     * @param partialBuyerCreditCard 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchCreditCard(creditcardID: string, creditCard: CreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public PatchCreditCard(creditcardID: string, creditCard: CreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public PatchCreditCard(creditcardID: string, creditCard: CreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public PatchCreditCard(creditcardID: string, creditCard: CreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public PatchCreditCard(creditcardID: string, partialBuyerCreditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public PatchCreditCard(creditcardID: string, partialBuyerCreditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public PatchCreditCard(creditcardID: string, partialBuyerCreditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public PatchCreditCard(creditcardID: string, partialBuyerCreditCard: BuyerCreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -2025,8 +2089,8 @@ export class MeService {
         if (creditcardID === null || creditcardID === undefined) {
             throw new Error('Required parameter creditcardID was null or undefined when calling PatchCreditCard.');
         }
-        if (creditCard === null || creditCard === undefined) {
-            throw new Error('Required parameter creditCard was null or undefined when calling PatchCreditCard.');
+        if (partialBuyerCreditCard === null || partialBuyerCreditCard === undefined) {
+            throw new Error('Required parameter partialBuyerCreditCard was null or undefined when calling PatchCreditCard.');
         }
 
         let headers = this.defaultHeaders;
@@ -2056,7 +2120,7 @@ export class MeService {
         }
 
         return this.httpClient.patch<any>(`${this.basePath}/me/creditcards/${encodeURIComponent(String(creditcardID))}`,
-            creditCard,
+            partialBuyerCreditCard,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -2067,15 +2131,15 @@ export class MeService {
     /**
      * 
      * 
-     * @param anonUserToken Anon user token of the me.
-     * @param user 
+     * @param anonUserToken Anon user token of the user.
+     * @param meUser 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Register(anonUserToken: string, user: User, options?: { anonUserToken?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public Register(anonUserToken: string, user: User, options?: { anonUserToken?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public Register(anonUserToken: string, user: User, options?: { anonUserToken?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public Register(anonUserToken: string, user: User, options?: { anonUserToken?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -2086,8 +2150,8 @@ export class MeService {
         if (anonUserToken === null || anonUserToken === undefined) {
             throw new Error('Required parameter anonUserToken was null or undefined when calling Register.');
         }
-        if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling Register.');
+        if (meUser === null || meUser === undefined) {
+            throw new Error('Required parameter meUser was null or undefined when calling Register.');
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -2122,7 +2186,7 @@ export class MeService {
         }
 
         return this.httpClient.put<any>(`${this.basePath}/me/register`,
-            user,
+            meUser,
             {
                 params: queryParameters,
                 headers: headers,
@@ -2134,14 +2198,14 @@ export class MeService {
     /**
      * 
      * 
-     * @param reset 
+     * @param tokenPasswordReset 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public ResetPasswordByToken(reset: TokenPasswordReset, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public ResetPasswordByToken(reset: TokenPasswordReset, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public ResetPasswordByToken(reset: TokenPasswordReset, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public ResetPasswordByToken(reset: TokenPasswordReset, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ResetPasswordByToken(tokenPasswordReset: TokenPasswordReset, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public ResetPasswordByToken(tokenPasswordReset: TokenPasswordReset, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public ResetPasswordByToken(tokenPasswordReset: TokenPasswordReset, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public ResetPasswordByToken(tokenPasswordReset: TokenPasswordReset, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -2149,8 +2213,8 @@ export class MeService {
         if (opts.reportProgress === null || opts.reportProgress === undefined) {
             opts.reportProgress = false;
         }
-        if (reset === null || reset === undefined) {
-            throw new Error('Required parameter reset was null or undefined when calling ResetPasswordByToken.');
+        if (tokenPasswordReset === null || tokenPasswordReset === undefined) {
+            throw new Error('Required parameter tokenPasswordReset was null or undefined when calling ResetPasswordByToken.');
         }
 
         let headers = this.defaultHeaders;
@@ -2180,7 +2244,186 @@ export class MeService {
         }
 
         return this.httpClient.post<any>(`${this.basePath}/me/password`,
-            reset,
+            tokenPasswordReset,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param meUser 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(meUser: MeUser, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser>;
+    public Save(meUser: MeUser, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
+    public Save(meUser: MeUser, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
+    public Save(meUser: MeUser, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (meUser === null || meUser === undefined) {
+            throw new Error('Required parameter meUser was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<MeUser>(`${this.basePath}/me`,
+            meUser,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param addressID ID of the address.
+     * @param buyerAddress 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress>;
+    public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
+    public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
+    public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (addressID === null || addressID === undefined) {
+            throw new Error('Required parameter addressID was null or undefined when calling SaveAddress.');
+        }
+        if (buyerAddress === null || buyerAddress === undefined) {
+            throw new Error('Required parameter buyerAddress was null or undefined when calling SaveAddress.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<BuyerAddress>(`${this.basePath}/me/addresses/${encodeURIComponent(String(addressID))}`,
+            buyerAddress,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param creditcardID ID of the creditcard.
+     * @param buyerCreditCard 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard>;
+    public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
+    public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
+    public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (creditcardID === null || creditcardID === undefined) {
+            throw new Error('Required parameter creditcardID was null or undefined when calling SaveCreditCard.');
+        }
+        if (buyerCreditCard === null || buyerCreditCard === undefined) {
+            throw new Error('Required parameter buyerCreditCard was null or undefined when calling SaveCreditCard.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<BuyerCreditCard>(`${this.basePath}/me/creditcards/${encodeURIComponent(String(creditcardID))}`,
+            buyerCreditCard,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -2241,185 +2484,6 @@ export class MeService {
             null,
             {
                 params: queryParameters,
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param user 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public Update(user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser>;
-    public Update(user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
-    public Update(user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
-    public Update(user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling Update.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<MeUser>(`${this.basePath}/me`,
-            user,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param addressID ID of the address.
-     * @param address 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public UpdateAddress(addressID: string, address: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress>;
-    public UpdateAddress(addressID: string, address: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
-    public UpdateAddress(addressID: string, address: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
-    public UpdateAddress(addressID: string, address: BuyerAddress, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (addressID === null || addressID === undefined) {
-            throw new Error('Required parameter addressID was null or undefined when calling UpdateAddress.');
-        }
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling UpdateAddress.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<BuyerAddress>(`${this.basePath}/me/addresses/${encodeURIComponent(String(addressID))}`,
-            address,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param creditcardID ID of the creditcard.
-     * @param creditCard 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public UpdateCreditCard(creditcardID: string, creditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard>;
-    public UpdateCreditCard(creditcardID: string, creditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
-    public UpdateCreditCard(creditcardID: string, creditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
-    public UpdateCreditCard(creditcardID: string, creditCard: BuyerCreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (creditcardID === null || creditcardID === undefined) {
-            throw new Error('Required parameter creditcardID was null or undefined when calling UpdateCreditCard.');
-        }
-        if (creditCard === null || creditCard === undefined) {
-            throw new Error('Required parameter creditCard was null or undefined when calling UpdateCreditCard.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<BuyerCreditCard>(`${this.basePath}/me/creditcards/${encodeURIComponent(String(creditcardID))}`,
-            creditCard,
-            {
                 headers: headers,
                 observe: opts.observe,
                 reportProgress: opts.reportProgress

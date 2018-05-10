@@ -294,20 +294,20 @@ export class CostCenterService {
      * 
      * 
      * @param buyerID ID of the buyer.
-     * @param options.search Search of the cost center.
-     * @param options.searchOn Search on of the cost center.
-     * @param options.sortBy Sort by of the cost center.
-     * @param options.page Page of the cost center.
-     * @param options.pageSize Page size of the cost center.
-     * @param options.filters Filters of the cost center.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -323,11 +323,11 @@ export class CostCenterService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -377,9 +377,9 @@ export class CostCenterService {
      * @param options.costCenterID ID of the cost center.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
-     * @param options.level Level of the cost center.
-     * @param options.page Page of the cost center.
-     * @param options.pageSize Page size of the cost center.
+     * @param options.level Level of the cost center assignment. Possible values: User, Group, Company.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -455,14 +455,14 @@ export class CostCenterService {
      * 
      * @param buyerID ID of the buyer.
      * @param costCenterID ID of the cost center.
-     * @param costCenter 
+     * @param partialCostCenter 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
-    public Patch(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
-    public Patch(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
-    public Patch(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
+    public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
+    public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
+    public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -476,8 +476,8 @@ export class CostCenterService {
         if (costCenterID === null || costCenterID === undefined) {
             throw new Error('Required parameter costCenterID was null or undefined when calling Patch.');
         }
-        if (costCenter === null || costCenter === undefined) {
-            throw new Error('Required parameter costCenter was null or undefined when calling Patch.');
+        if (partialCostCenter === null || partialCostCenter === undefined) {
+            throw new Error('Required parameter partialCostCenter was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -507,68 +507,7 @@ export class CostCenterService {
         }
 
         return this.httpClient.patch<CostCenter>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/costcenters/${encodeURIComponent(String(costCenterID))}`,
-            costCenter,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param buyerID ID of the buyer.
-     * @param assignment 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public SaveAssignment(buyerID: string, assignment: CostCenterAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public SaveAssignment(buyerID: string, assignment: CostCenterAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public SaveAssignment(buyerID: string, assignment: CostCenterAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public SaveAssignment(buyerID: string, assignment: CostCenterAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (buyerID === null || buyerID === undefined) {
-            throw new Error('Required parameter buyerID was null or undefined when calling SaveAssignment.');
-        }
-        if (assignment === null || assignment === undefined) {
-            throw new Error('Required parameter assignment was null or undefined when calling SaveAssignment.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/costcenters/assignments`,
-            assignment,
+            partialCostCenter,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -585,10 +524,10 @@ export class CostCenterService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
-    public Update(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
-    public Update(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
-    public Update(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
+    public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
+    public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
+    public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -597,13 +536,13 @@ export class CostCenterService {
             opts.reportProgress = false;
         }
         if (buyerID === null || buyerID === undefined) {
-            throw new Error('Required parameter buyerID was null or undefined when calling Update.');
+            throw new Error('Required parameter buyerID was null or undefined when calling Save.');
         }
         if (costCenterID === null || costCenterID === undefined) {
-            throw new Error('Required parameter costCenterID was null or undefined when calling Update.');
+            throw new Error('Required parameter costCenterID was null or undefined when calling Save.');
         }
         if (costCenter === null || costCenter === undefined) {
-            throw new Error('Required parameter costCenter was null or undefined when calling Update.');
+            throw new Error('Required parameter costCenter was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;
@@ -634,6 +573,67 @@ export class CostCenterService {
 
         return this.httpClient.put<CostCenter>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/costcenters/${encodeURIComponent(String(costCenterID))}`,
             costCenter,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param buyerID ID of the buyer.
+     * @param costCenterAssignment 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public SaveAssignment(buyerID: string, costCenterAssignment: CostCenterAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public SaveAssignment(buyerID: string, costCenterAssignment: CostCenterAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public SaveAssignment(buyerID: string, costCenterAssignment: CostCenterAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public SaveAssignment(buyerID: string, costCenterAssignment: CostCenterAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (buyerID === null || buyerID === undefined) {
+            throw new Error('Required parameter buyerID was null or undefined when calling SaveAssignment.');
+        }
+        if (costCenterAssignment === null || costCenterAssignment === undefined) {
+            throw new Error('Required parameter costCenterAssignment was null or undefined when calling SaveAssignment.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<any>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/costcenters/assignments`,
+            costCenterAssignment,
             {
                 headers: headers,
                 observe: opts.observe,

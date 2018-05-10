@@ -211,20 +211,20 @@ export class AdminAddressService {
     /**
      * 
      * 
-     * @param options.search Search of the admin address.
-     * @param options.searchOn Search on of the admin address.
-     * @param options.sortBy Sort by of the admin address.
-     * @param options.page Page of the admin address.
-     * @param options.pageSize Page size of the admin address.
-     * @param options.filters Filters of the admin address.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListAddress>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListAddress>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListAddress>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListAddress>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListAddress>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListAddress>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -237,11 +237,11 @@ export class AdminAddressService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -288,14 +288,14 @@ export class AdminAddressService {
      * 
      * 
      * @param addressID ID of the address.
-     * @param address 
+     * @param partialAddress 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(addressID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
-    public Patch(addressID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
-    public Patch(addressID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
-    public Patch(addressID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(addressID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
+    public Patch(addressID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
+    public Patch(addressID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
+    public Patch(addressID: string, partialAddress: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -306,8 +306,8 @@ export class AdminAddressService {
         if (addressID === null || addressID === undefined) {
             throw new Error('Required parameter addressID was null or undefined when calling Patch.');
         }
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling Patch.');
+        if (partialAddress === null || partialAddress === undefined) {
+            throw new Error('Required parameter partialAddress was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -337,7 +337,7 @@ export class AdminAddressService {
         }
 
         return this.httpClient.patch<Address>(`${this.basePath}/addresses/${encodeURIComponent(String(addressID))}`,
-            address,
+            partialAddress,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -353,10 +353,10 @@ export class AdminAddressService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(addressID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
-    public Update(addressID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
-    public Update(addressID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
-    public Update(addressID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(addressID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
+    public Save(addressID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
+    public Save(addressID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
+    public Save(addressID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -365,10 +365,10 @@ export class AdminAddressService {
             opts.reportProgress = false;
         }
         if (addressID === null || addressID === undefined) {
-            throw new Error('Required parameter addressID was null or undefined when calling Update.');
+            throw new Error('Required parameter addressID was null or undefined when calling Save.');
         }
         if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling Update.');
+            throw new Error('Required parameter address was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;

@@ -16,7 +16,6 @@ import { Observable }                                        from 'rxjs/Observab
 import { TokenService }                                      from './token.service';
 
 import { Address } from '../model/address';
-import { BuyerShipment } from '../model/buyerShipment';
 import { ListOrder } from '../model/listOrder';
 import { ListOrderApproval } from '../model/listOrderApproval';
 import { ListOrderPromotion } from '../model/listOrderPromotion';
@@ -24,6 +23,8 @@ import { ListUser } from '../model/listUser';
 import { Order } from '../model/order';
 import { OrderApprovalInfo } from '../model/orderApprovalInfo';
 import { Promotion } from '../model/promotion';
+import { Shipment } from '../model/shipment';
+import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -57,7 +58,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -113,9 +114,9 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param promoCode Promo code of the order.
+     * @param promoCode Promo code of the promotion.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -174,16 +175,16 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param info 
+     * @param orderApprovalInfo 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Approve(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Approve(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Approve(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
-    public Approve(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
+    public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -197,8 +198,8 @@ export class OrderService {
         if (orderID === null || orderID === undefined) {
             throw new Error('Required parameter orderID was null or undefined when calling Approve.');
         }
-        if (info === null || info === undefined) {
-            throw new Error('Required parameter info was null or undefined when calling Approve.');
+        if (orderApprovalInfo === null || orderApprovalInfo === undefined) {
+            throw new Error('Required parameter orderApprovalInfo was null or undefined when calling Approve.');
         }
 
         let headers = this.defaultHeaders;
@@ -228,7 +229,7 @@ export class OrderService {
         }
 
         return this.httpClient.post<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/approve`,
-            info,
+            orderApprovalInfo,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -239,7 +240,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -296,7 +297,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param order 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -357,16 +358,16 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param info 
+     * @param orderApprovalInfo 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Decline(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Decline(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Decline(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
-    public Decline(direction: string, orderID: string, info: OrderApprovalInfo, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
+    public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -380,8 +381,8 @@ export class OrderService {
         if (orderID === null || orderID === undefined) {
             throw new Error('Required parameter orderID was null or undefined when calling Decline.');
         }
-        if (info === null || info === undefined) {
-            throw new Error('Required parameter info was null or undefined when calling Decline.');
+        if (orderApprovalInfo === null || orderApprovalInfo === undefined) {
+            throw new Error('Required parameter orderApprovalInfo was null or undefined when calling Decline.');
         }
 
         let headers = this.defaultHeaders;
@@ -411,7 +412,7 @@ export class OrderService {
         }
 
         return this.httpClient.post<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/decline`,
-            info,
+            orderApprovalInfo,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -422,7 +423,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -478,25 +479,25 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param options.buyerID ID of the buyer.
      * @param options.supplierID ID of the supplier.
      * @param options.from Lower bound of date range that the order was created.
      * @param options.to Upper bound of date range that the order was created.
-     * @param options.search Search of the order.
-     * @param options.searchOn Search on of the order.
-     * @param options.sortBy Sort by of the order.
-     * @param options.page Page of the order.
-     * @param options.pageSize Page size of the order.
-     * @param options.filters Filters of the order.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
-    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
-    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
-    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
+    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
+    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
+    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -524,11 +525,11 @@ export class OrderService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -574,22 +575,22 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param options.search Search of the order.
-     * @param options.searchOn Search on of the order.
-     * @param options.sortBy Sort by of the order.
-     * @param options.page Page of the order.
-     * @param options.pageSize Page size of the order.
-     * @param options.filters Filters of the order.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderApproval>;
-    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderApproval>>;
-    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderApproval>>;
-    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderApproval>;
+    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderApproval>>;
+    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderApproval>>;
+    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -608,11 +609,11 @@ export class OrderService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -658,22 +659,22 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param options.search Search of the order.
-     * @param options.searchOn Search on of the order.
-     * @param options.sortBy Sort by of the order.
-     * @param options.page Page of the order.
-     * @param options.pageSize Page size of the order.
-     * @param options.filters Filters of the order.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
-    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
-    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
-    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
+    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
+    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
+    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -692,11 +693,11 @@ export class OrderService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -742,22 +743,22 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param options.search Search of the order.
-     * @param options.searchOn Search on of the order.
-     * @param options.sortBy Sort by of the order.
-     * @param options.page Page of the order.
-     * @param options.pageSize Page size of the order.
-     * @param options.filters Filters of the order.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderPromotion>;
-    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderPromotion>>;
-    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderPromotion>>;
-    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderPromotion>;
+    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderPromotion>>;
+    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderPromotion>>;
+    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -776,11 +777,11 @@ export class OrderService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -826,7 +827,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param partialOrder 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -891,16 +892,16 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param address 
+     * @param partialAddress 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public PatchBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public PatchBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
-    public PatchBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
+    public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -914,8 +915,8 @@ export class OrderService {
         if (orderID === null || orderID === undefined) {
             throw new Error('Required parameter orderID was null or undefined when calling PatchBillingAddress.');
         }
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling PatchBillingAddress.');
+        if (partialAddress === null || partialAddress === undefined) {
+            throw new Error('Required parameter partialAddress was null or undefined when calling PatchBillingAddress.');
         }
 
         let headers = this.defaultHeaders;
@@ -945,7 +946,7 @@ export class OrderService {
         }
 
         return this.httpClient.patch<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/billto`,
-            address,
+            partialAddress,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -956,16 +957,81 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param address 
+     * @param partialUser 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public PatchShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public PatchShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
-    public PatchShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
+    public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling PatchFromUser.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling PatchFromUser.');
+        }
+        if (partialUser === null || partialUser === undefined) {
+            throw new Error('Required parameter partialUser was null or undefined when calling PatchFromUser.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.patch<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/fromuser`,
+            partialUser,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param partialAddress 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
+    public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -979,8 +1045,8 @@ export class OrderService {
         if (orderID === null || orderID === undefined) {
             throw new Error('Required parameter orderID was null or undefined when calling PatchShippingAddress.');
         }
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling PatchShippingAddress.');
+        if (partialAddress === null || partialAddress === undefined) {
+            throw new Error('Required parameter partialAddress was null or undefined when calling PatchShippingAddress.');
         }
 
         let headers = this.defaultHeaders;
@@ -1010,7 +1076,7 @@ export class OrderService {
         }
 
         return this.httpClient.patch<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/shipto`,
-            address,
+            partialAddress,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -1021,7 +1087,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param promoCode Promo code of the order.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -1081,7 +1147,72 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param order 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(direction: string, orderID: string, order: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
+    public Save(direction: string, orderID: string, order: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Save(direction: string, orderID: string, order: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Save(direction: string, orderID: string, order: Order, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling Save.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling Save.');
+        }
+        if (order === null || order === undefined) {
+            throw new Error('Required parameter order was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}`,
+            order,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param address 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -1146,7 +1277,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param address 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -1211,16 +1342,16 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param shipment 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Ship(direction: string, orderID: string, shipment: BuyerShipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Ship(direction: string, orderID: string, shipment: BuyerShipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Ship(direction: string, orderID: string, shipment: BuyerShipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
-    public Ship(direction: string, orderID: string, shipment: BuyerShipment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
+    public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1276,7 +1407,7 @@ export class OrderService {
     /**
      * 
      * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -1323,71 +1454,6 @@ export class OrderService {
 
         return this.httpClient.post<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/submit`,
             null,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param direction Direction of the order. Possible values: Incoming, Outgoing.
-     * @param orderID ID of the order.
-     * @param order 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public Update(direction: string, orderID: string, order: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Update(direction: string, orderID: string, order: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Update(direction: string, orderID: string, order: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
-    public Update(direction: string, orderID: string, order: Order, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (direction === null || direction === undefined) {
-            throw new Error('Required parameter direction was null or undefined when calling Update.');
-        }
-        if (orderID === null || orderID === undefined) {
-            throw new Error('Required parameter orderID was null or undefined when calling Update.');
-        }
-        if (order === null || order === undefined) {
-            throw new Error('Required parameter order was null or undefined when calling Update.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}`,
-            order,
             {
                 headers: headers,
                 observe: opts.observe,

@@ -12,6 +12,7 @@ export interface BuyerAddress {
     Shipping?: boolean;
     Billing?: boolean;
     Editable?: boolean;
+    DateCreated?: string;
     CompanyName?: string;
     FirstName?: string;
     LastName?: string;

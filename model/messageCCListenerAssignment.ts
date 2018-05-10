@@ -11,6 +11,7 @@ import { MessageSenderAssignment } from './messageSenderAssignment';
 export interface MessageCCListenerAssignment {
     MessageSenderAssignment?: MessageSenderAssignment;
     MessageConfigName?: string;
+    MessageConfigDescription?: string;
     MessageType?: string;
     BuyerID?: string;
     UserGroupID?: string;

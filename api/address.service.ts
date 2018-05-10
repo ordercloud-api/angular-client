@@ -294,20 +294,20 @@ export class AddressService {
      * 
      * 
      * @param buyerID ID of the buyer.
-     * @param options.search Search of the address.
-     * @param options.searchOn Search on of the address.
-     * @param options.sortBy Sort by of the address.
-     * @param options.page Page of the address.
-     * @param options.pageSize Page size of the address.
-     * @param options.filters Filters of the address.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListAddress>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListAddress>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListAddress>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListAddress>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListAddress>>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListAddress>>;
+    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -323,11 +323,11 @@ export class AddressService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -377,11 +377,11 @@ export class AddressService {
      * @param options.addressID ID of the address.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
-     * @param options.level Level of the address.
-     * @param options.isShipping Is shipping of the address.
-     * @param options.isBilling Is billing of the address.
-     * @param options.page Page of the address.
-     * @param options.pageSize Page size of the address.
+     * @param options.level Level of the address assignment. Possible values: User, Group, Company.
+     * @param options.isShipping Is shipping of the address assignment.
+     * @param options.isBilling Is billing of the address assignment.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -463,14 +463,14 @@ export class AddressService {
      * 
      * @param buyerID ID of the buyer.
      * @param addressID ID of the address.
-     * @param address 
+     * @param partialAddress 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, addressID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
-    public Patch(buyerID: string, addressID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
-    public Patch(buyerID: string, addressID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
-    public Patch(buyerID: string, addressID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(buyerID: string, addressID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
+    public Patch(buyerID: string, addressID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
+    public Patch(buyerID: string, addressID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
+    public Patch(buyerID: string, addressID: string, partialAddress: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -484,8 +484,8 @@ export class AddressService {
         if (addressID === null || addressID === undefined) {
             throw new Error('Required parameter addressID was null or undefined when calling Patch.');
         }
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling Patch.');
+        if (partialAddress === null || partialAddress === undefined) {
+            throw new Error('Required parameter partialAddress was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -515,68 +515,7 @@ export class AddressService {
         }
 
         return this.httpClient.patch<Address>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/addresses/${encodeURIComponent(String(addressID))}`,
-            address,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param buyerID ID of the buyer.
-     * @param assignment 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public SaveAssignment(buyerID: string, assignment: AddressAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public SaveAssignment(buyerID: string, assignment: AddressAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public SaveAssignment(buyerID: string, assignment: AddressAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public SaveAssignment(buyerID: string, assignment: AddressAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (buyerID === null || buyerID === undefined) {
-            throw new Error('Required parameter buyerID was null or undefined when calling SaveAssignment.');
-        }
-        if (assignment === null || assignment === undefined) {
-            throw new Error('Required parameter assignment was null or undefined when calling SaveAssignment.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/addresses/assignments`,
-            assignment,
+            partialAddress,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -593,10 +532,10 @@ export class AddressService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(buyerID: string, addressID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
-    public Update(buyerID: string, addressID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
-    public Update(buyerID: string, addressID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
-    public Update(buyerID: string, addressID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(buyerID: string, addressID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Address>;
+    public Save(buyerID: string, addressID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Address>>;
+    public Save(buyerID: string, addressID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Address>>;
+    public Save(buyerID: string, addressID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -605,13 +544,13 @@ export class AddressService {
             opts.reportProgress = false;
         }
         if (buyerID === null || buyerID === undefined) {
-            throw new Error('Required parameter buyerID was null or undefined when calling Update.');
+            throw new Error('Required parameter buyerID was null or undefined when calling Save.');
         }
         if (addressID === null || addressID === undefined) {
-            throw new Error('Required parameter addressID was null or undefined when calling Update.');
+            throw new Error('Required parameter addressID was null or undefined when calling Save.');
         }
         if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling Update.');
+            throw new Error('Required parameter address was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;
@@ -642,6 +581,67 @@ export class AddressService {
 
         return this.httpClient.put<Address>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/addresses/${encodeURIComponent(String(addressID))}`,
             address,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param buyerID ID of the buyer.
+     * @param addressAssignment 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public SaveAssignment(buyerID: string, addressAssignment: AddressAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public SaveAssignment(buyerID: string, addressAssignment: AddressAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public SaveAssignment(buyerID: string, addressAssignment: AddressAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public SaveAssignment(buyerID: string, addressAssignment: AddressAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (buyerID === null || buyerID === undefined) {
+            throw new Error('Required parameter buyerID was null or undefined when calling SaveAssignment.');
+        }
+        if (addressAssignment === null || addressAssignment === undefined) {
+            throw new Error('Required parameter addressAssignment was null or undefined when calling SaveAssignment.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<any>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/addresses/assignments`,
+            addressAssignment,
             {
                 headers: headers,
                 observe: opts.observe,

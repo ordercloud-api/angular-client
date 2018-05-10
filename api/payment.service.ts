@@ -51,7 +51,7 @@ export class PaymentService {
     /**
      * 
      * 
-     * @param direction Direction of the payment. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param paymentID ID of the payment.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -111,7 +111,7 @@ export class PaymentService {
     /**
      * 
      * 
-     * @param direction Direction of the payment. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param payment 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -176,17 +176,17 @@ export class PaymentService {
     /**
      * 
      * 
-     * @param direction Direction of the payment. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param paymentID ID of the payment.
-     * @param transaction 
+     * @param paymentTransaction 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CreateTransaction(direction: string, orderID: string, paymentID: string, transaction: PaymentTransaction, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment>;
-    public CreateTransaction(direction: string, orderID: string, paymentID: string, transaction: PaymentTransaction, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
-    public CreateTransaction(direction: string, orderID: string, paymentID: string, transaction: PaymentTransaction, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
-    public CreateTransaction(direction: string, orderID: string, paymentID: string, transaction: PaymentTransaction, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment>;
+    public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
+    public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
+    public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -203,8 +203,8 @@ export class PaymentService {
         if (paymentID === null || paymentID === undefined) {
             throw new Error('Required parameter paymentID was null or undefined when calling CreateTransaction.');
         }
-        if (transaction === null || transaction === undefined) {
-            throw new Error('Required parameter transaction was null or undefined when calling CreateTransaction.');
+        if (paymentTransaction === null || paymentTransaction === undefined) {
+            throw new Error('Required parameter paymentTransaction was null or undefined when calling CreateTransaction.');
         }
 
         let headers = this.defaultHeaders;
@@ -234,7 +234,7 @@ export class PaymentService {
         }
 
         return this.httpClient.post<Payment>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/payments/${encodeURIComponent(String(paymentID))}/transactions`,
-            transaction,
+            paymentTransaction,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -245,7 +245,7 @@ export class PaymentService {
     /**
      * 
      * 
-     * @param direction Direction of the payment. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param paymentID ID of the payment.
      * @param transactionID ID of the transaction.
@@ -309,7 +309,7 @@ export class PaymentService {
     /**
      * 
      * 
-     * @param direction Direction of the payment. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param paymentID ID of the payment.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -369,22 +369,22 @@ export class PaymentService {
     /**
      * 
      * 
-     * @param direction Direction of the payment. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param options.search Search of the payment.
-     * @param options.searchOn Search on of the payment.
-     * @param options.sortBy Sort by of the payment.
-     * @param options.page Page of the payment.
-     * @param options.pageSize Page size of the payment.
-     * @param options.filters Filters of the payment.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPayment>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPayment>>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPayment>>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPayment>;
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPayment>>;
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPayment>>;
+    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -403,11 +403,11 @@ export class PaymentService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -453,7 +453,7 @@ export class PaymentService {
     /**
      * 
      * 
-     * @param direction Direction of the payment. Possible values: Incoming, Outgoing.
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
      * @param paymentID ID of the payment.
      * @param partialPayment 

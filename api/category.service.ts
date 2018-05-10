@@ -364,20 +364,20 @@ export class CategoryService {
      * 
      * @param catalogID ID of the catalog.
      * @param options.depth Depth of the category.
-     * @param options.search Search of the category.
-     * @param options.searchOn Search on of the category.
-     * @param options.sortBy Sort by of the category.
-     * @param options.page Page of the category.
-     * @param options.pageSize Page size of the category.
-     * @param options.filters Filters of the category.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
+    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -396,11 +396,11 @@ export class CategoryService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -451,9 +451,9 @@ export class CategoryService {
      * @param options.buyerID ID of the buyer.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
-     * @param options.level Level of the category.
-     * @param options.page Page of the category.
-     * @param options.pageSize Page size of the category.
+     * @param options.level Level of the category assignment. Possible values: User, Group, Company.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -533,8 +533,8 @@ export class CategoryService {
      * @param catalogID ID of the catalog.
      * @param options.categoryID ID of the category.
      * @param options.productID ID of the product.
-     * @param options.page Page of the category.
-     * @param options.pageSize Page size of the category.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -604,14 +604,14 @@ export class CategoryService {
      * 
      * @param catalogID ID of the catalog.
      * @param categoryID ID of the category.
-     * @param category 
+     * @param partialCategory 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
-    public Patch(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
-    public Patch(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
-    public Patch(catalogID: string, categoryID: string, category: Category, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
+    public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -625,8 +625,8 @@ export class CategoryService {
         if (categoryID === null || categoryID === undefined) {
             throw new Error('Required parameter categoryID was null or undefined when calling Patch.');
         }
-        if (category === null || category === undefined) {
-            throw new Error('Required parameter category was null or undefined when calling Patch.');
+        if (partialCategory === null || partialCategory === undefined) {
+            throw new Error('Required parameter partialCategory was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -656,6 +656,71 @@ export class CategoryService {
         }
 
         return this.httpClient.patch<Category>(`${this.basePath}/catalogs/${encodeURIComponent(String(catalogID))}/categories/${encodeURIComponent(String(categoryID))}`,
+            partialCategory,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param catalogID ID of the catalog.
+     * @param categoryID ID of the category.
+     * @param category 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
+    public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (catalogID === null || catalogID === undefined) {
+            throw new Error('Required parameter catalogID was null or undefined when calling Save.');
+        }
+        if (categoryID === null || categoryID === undefined) {
+            throw new Error('Required parameter categoryID was null or undefined when calling Save.');
+        }
+        if (category === null || category === undefined) {
+            throw new Error('Required parameter category was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<Category>(`${this.basePath}/catalogs/${encodeURIComponent(String(catalogID))}/categories/${encodeURIComponent(String(categoryID))}`,
             category,
             {
                 headers: headers,
@@ -729,14 +794,14 @@ export class CategoryService {
      * 
      * 
      * @param catalogID ID of the catalog.
-     * @param productAssignment 
+     * @param categoryProductAssignment 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SaveProductAssignment(catalogID: string, productAssignment: CategoryProductAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public SaveProductAssignment(catalogID: string, productAssignment: CategoryProductAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public SaveProductAssignment(catalogID: string, productAssignment: CategoryProductAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public SaveProductAssignment(catalogID: string, productAssignment: CategoryProductAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public SaveProductAssignment(catalogID: string, categoryProductAssignment: CategoryProductAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public SaveProductAssignment(catalogID: string, categoryProductAssignment: CategoryProductAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public SaveProductAssignment(catalogID: string, categoryProductAssignment: CategoryProductAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public SaveProductAssignment(catalogID: string, categoryProductAssignment: CategoryProductAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -747,8 +812,8 @@ export class CategoryService {
         if (catalogID === null || catalogID === undefined) {
             throw new Error('Required parameter catalogID was null or undefined when calling SaveProductAssignment.');
         }
-        if (productAssignment === null || productAssignment === undefined) {
-            throw new Error('Required parameter productAssignment was null or undefined when calling SaveProductAssignment.');
+        if (categoryProductAssignment === null || categoryProductAssignment === undefined) {
+            throw new Error('Required parameter categoryProductAssignment was null or undefined when calling SaveProductAssignment.');
         }
 
         let headers = this.defaultHeaders;
@@ -778,72 +843,7 @@ export class CategoryService {
         }
 
         return this.httpClient.post<any>(`${this.basePath}/catalogs/${encodeURIComponent(String(catalogID))}/categories/productassignments`,
-            productAssignment,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param catalogID ID of the catalog.
-     * @param categoryID ID of the category.
-     * @param category 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public Update(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
-    public Update(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
-    public Update(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
-    public Update(catalogID: string, categoryID: string, category: Category, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (catalogID === null || catalogID === undefined) {
-            throw new Error('Required parameter catalogID was null or undefined when calling Update.');
-        }
-        if (categoryID === null || categoryID === undefined) {
-            throw new Error('Required parameter categoryID was null or undefined when calling Update.');
-        }
-        if (category === null || category === undefined) {
-            throw new Error('Required parameter category was null or undefined when calling Update.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<Category>(`${this.basePath}/catalogs/${encodeURIComponent(String(catalogID))}/categories/${encodeURIComponent(String(categoryID))}`,
-            category,
+            categoryProductAssignment,
             {
                 headers: headers,
                 observe: opts.observe,

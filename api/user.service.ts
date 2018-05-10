@@ -227,14 +227,14 @@ export class UserService {
      * 
      * @param buyerID ID of the buyer.
      * @param userID ID of the user.
-     * @param tokenRequest 
+     * @param impersonateTokenRequest 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetAccessToken(buyerID: string, userID: string, tokenRequest: ImpersonateTokenRequest, options?: { observe?: 'body', reportProgress?: boolean}): Observable<AccessToken>;
-    public GetAccessToken(buyerID: string, userID: string, tokenRequest: ImpersonateTokenRequest, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<AccessToken>>;
-    public GetAccessToken(buyerID: string, userID: string, tokenRequest: ImpersonateTokenRequest, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<AccessToken>>;
-    public GetAccessToken(buyerID: string, userID: string, tokenRequest: ImpersonateTokenRequest, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public GetAccessToken(buyerID: string, userID: string, impersonateTokenRequest: ImpersonateTokenRequest, options?: { observe?: 'body', reportProgress?: boolean}): Observable<AccessToken>;
+    public GetAccessToken(buyerID: string, userID: string, impersonateTokenRequest: ImpersonateTokenRequest, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<AccessToken>>;
+    public GetAccessToken(buyerID: string, userID: string, impersonateTokenRequest: ImpersonateTokenRequest, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<AccessToken>>;
+    public GetAccessToken(buyerID: string, userID: string, impersonateTokenRequest: ImpersonateTokenRequest, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -248,8 +248,8 @@ export class UserService {
         if (userID === null || userID === undefined) {
             throw new Error('Required parameter userID was null or undefined when calling GetAccessToken.');
         }
-        if (tokenRequest === null || tokenRequest === undefined) {
-            throw new Error('Required parameter tokenRequest was null or undefined when calling GetAccessToken.');
+        if (impersonateTokenRequest === null || impersonateTokenRequest === undefined) {
+            throw new Error('Required parameter impersonateTokenRequest was null or undefined when calling GetAccessToken.');
         }
 
         let headers = this.defaultHeaders;
@@ -279,7 +279,7 @@ export class UserService {
         }
 
         return this.httpClient.post<AccessToken>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/users/${encodeURIComponent(String(userID))}/accesstoken`,
-            tokenRequest,
+            impersonateTokenRequest,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -292,20 +292,20 @@ export class UserService {
      * 
      * @param buyerID ID of the buyer.
      * @param options.userGroupID ID of the user group.
-     * @param options.search Search of the user.
-     * @param options.searchOn Search on of the user.
-     * @param options.sortBy Sort by of the user.
-     * @param options.page Page of the user.
-     * @param options.pageSize Page size of the user.
-     * @param options.filters Filters of the user.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
-    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
-    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
-    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
+    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
+    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
+    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -324,11 +324,11 @@ export class UserService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -376,14 +376,85 @@ export class UserService {
      * 
      * @param buyerID ID of the buyer.
      * @param userID ID of the user.
-     * @param user 
+     * @param newBuyerID ID of the new buyer.
+     * @param orders Orders of the user. Possible values: None, Unsubmitted, All.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Patch(buyerID: string, userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Patch(buyerID: string, userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
-    public Patch(buyerID: string, userID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'body', reportProgress?: boolean}): Observable<User>;
+    public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (buyerID === null || buyerID === undefined) {
+            throw new Error('Required parameter buyerID was null or undefined when calling Move.');
+        }
+        if (userID === null || userID === undefined) {
+            throw new Error('Required parameter userID was null or undefined when calling Move.');
+        }
+        if (newBuyerID === null || newBuyerID === undefined) {
+            throw new Error('Required parameter newBuyerID was null or undefined when calling Move.');
+        }
+        if (orders === null || orders === undefined) {
+            throw new Error('Required parameter orders was null or undefined when calling Move.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (orders !== undefined) {
+            queryParameters = queryParameters.set('orders', <any>orders);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.post<User>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/users/${encodeURIComponent(String(userID))}/moveto/${encodeURIComponent(String(newBuyerID))}`,
+            null,
+            {
+                params: queryParameters,
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param buyerID ID of the buyer.
+     * @param userID ID of the user.
+     * @param partialUser 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
+    public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -397,8 +468,8 @@ export class UserService {
         if (userID === null || userID === undefined) {
             throw new Error('Required parameter userID was null or undefined when calling Patch.');
         }
-        if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling Patch.');
+        if (partialUser === null || partialUser === undefined) {
+            throw new Error('Required parameter partialUser was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -428,7 +499,7 @@ export class UserService {
         }
 
         return this.httpClient.patch<User>(`${this.basePath}/buyers/${encodeURIComponent(String(buyerID))}/users/${encodeURIComponent(String(userID))}`,
-            user,
+            partialUser,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -445,10 +516,10 @@ export class UserService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(buyerID: string, userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Update(buyerID: string, userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Update(buyerID: string, userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
-    public Update(buyerID: string, userID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(buyerID: string, userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
+    public Save(buyerID: string, userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Save(buyerID: string, userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Save(buyerID: string, userID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -457,13 +528,13 @@ export class UserService {
             opts.reportProgress = false;
         }
         if (buyerID === null || buyerID === undefined) {
-            throw new Error('Required parameter buyerID was null or undefined when calling Update.');
+            throw new Error('Required parameter buyerID was null or undefined when calling Save.');
         }
         if (userID === null || userID === undefined) {
-            throw new Error('Required parameter userID was null or undefined when calling Update.');
+            throw new Error('Required parameter userID was null or undefined when calling Save.');
         }
         if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling Update.');
+            throw new Error('Required parameter user was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;

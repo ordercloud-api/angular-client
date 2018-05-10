@@ -11,4 +11,5 @@ export interface MessageSender {
     ID?: string;
     Name?: string;
     MessageTypes?: Array<string>;
+    Description?: string;
 }

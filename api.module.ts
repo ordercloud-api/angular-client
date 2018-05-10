@@ -14,9 +14,10 @@ import { CategoryService } from './api/category.service';
 import { CostCenterService } from './api/costCenter.service';
 import { CreditCardService } from './api/creditCard.service';
 import { ImpersonationConfigService } from './api/impersonationConfig.service';
+import { IncrementorService } from './api/incrementor.service';
 import { LineItemService } from './api/lineItem.service';
 import { MeService } from './api/me.service';
-import { MessageSendersService } from './api/messageSenders.service';
+import { MessageSenderService } from './api/messageSender.service';
 import { OrderService } from './api/order.service';
 import { PasswordResetService } from './api/passwordReset.service';
 import { PaymentService } from './api/payment.service';
@@ -51,9 +52,10 @@ import { TokenService } from './api/token.service';
     CostCenterService,
     CreditCardService,
     ImpersonationConfigService,
+    IncrementorService,
     LineItemService,
     MeService,
-    MessageSendersService,
+    MessageSenderService,
     OrderService,
     PasswordResetService,
     PaymentService,

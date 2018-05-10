@@ -404,20 +404,20 @@ export class ProductService {
      * @param options.catalogID ID of the catalog.
      * @param options.categoryID ID of the category.
      * @param options.supplierID ID of the supplier.
-     * @param options.search Search of the product.
-     * @param options.searchOn Search on of the product.
-     * @param options.sortBy Sort by of the product.
-     * @param options.page Page of the product.
-     * @param options.pageSize Page size of the product.
-     * @param options.filters Filters of the product.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct>;
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct>;
+    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
+    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
+    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -439,11 +439,11 @@ export class ProductService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -494,9 +494,9 @@ export class ProductService {
      * @param options.buyerID ID of the buyer.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
-     * @param options.level Level of the product.
-     * @param options.page Page of the product.
-     * @param options.pageSize Page size of the product.
+     * @param options.level Level of the product assignment. Possible values: User, Group, Company.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -574,20 +574,20 @@ export class ProductService {
      * 
      * 
      * @param productID ID of the product.
-     * @param options.search Search of the product.
-     * @param options.searchOn Search on of the product.
-     * @param options.sortBy Sort by of the product.
-     * @param options.page Page of the product.
-     * @param options.pageSize Page size of the product.
-     * @param options.filters Filters of the product.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSupplier>;
-    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSupplier>>;
-    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSupplier>>;
-    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSupplier>;
+    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSupplier>>;
+    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSupplier>>;
+    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -603,11 +603,11 @@ export class ProductService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -654,20 +654,20 @@ export class ProductService {
      * 
      * 
      * @param productID ID of the product.
-     * @param options.search Search of the product.
-     * @param options.searchOn Search on of the product.
-     * @param options.sortBy Sort by of the product.
-     * @param options.page Page of the product.
-     * @param options.pageSize Page size of the product.
-     * @param options.filters Filters of the product.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListVariants(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListVariant>;
-    public ListVariants(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListVariant>>;
-    public ListVariants(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListVariant>>;
-    public ListVariants(productID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListVariant>;
+    public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListVariant>>;
+    public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListVariant>>;
+    public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -683,11 +683,11 @@ export class ProductService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -734,14 +734,14 @@ export class ProductService {
      * 
      * 
      * @param productID ID of the product.
-     * @param product 
+     * @param partialProduct 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(productID: string, product: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
-    public Patch(productID: string, product: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
-    public Patch(productID: string, product: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
-    public Patch(productID: string, product: Product, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(productID: string, partialProduct: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
+    public Patch(productID: string, partialProduct: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
+    public Patch(productID: string, partialProduct: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
+    public Patch(productID: string, partialProduct: Product, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -752,8 +752,8 @@ export class ProductService {
         if (productID === null || productID === undefined) {
             throw new Error('Required parameter productID was null or undefined when calling Patch.');
         }
-        if (product === null || product === undefined) {
-            throw new Error('Required parameter product was null or undefined when calling Patch.');
+        if (partialProduct === null || partialProduct === undefined) {
+            throw new Error('Required parameter partialProduct was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -783,7 +783,7 @@ export class ProductService {
         }
 
         return this.httpClient.patch<Product>(`${this.basePath}/products/${encodeURIComponent(String(productID))}`,
-            product,
+            partialProduct,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -796,14 +796,14 @@ export class ProductService {
      * 
      * @param productID ID of the product.
      * @param variantID ID of the variant.
-     * @param variant 
+     * @param partialVariant 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant>;
-    public PatchVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
-    public PatchVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
-    public PatchVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant>;
+    public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
+    public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
+    public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -817,8 +817,8 @@ export class ProductService {
         if (variantID === null || variantID === undefined) {
             throw new Error('Required parameter variantID was null or undefined when calling PatchVariant.');
         }
-        if (variant === null || variant === undefined) {
-            throw new Error('Required parameter variant was null or undefined when calling PatchVariant.');
+        if (partialVariant === null || partialVariant === undefined) {
+            throw new Error('Required parameter partialVariant was null or undefined when calling PatchVariant.');
         }
 
         let headers = this.defaultHeaders;
@@ -848,7 +848,7 @@ export class ProductService {
         }
 
         return this.httpClient.patch<Variant>(`${this.basePath}/products/${encodeURIComponent(String(productID))}/variants/${encodeURIComponent(String(variantID))}`,
-            variant,
+            partialVariant,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -905,6 +905,67 @@ export class ProductService {
         ];
 
         return this.httpClient.delete<any>(`${this.basePath}/products/${encodeURIComponent(String(productID))}/suppliers/${encodeURIComponent(String(supplierID))}`,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param productID ID of the product.
+     * @param product 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(productID: string, product: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
+    public Save(productID: string, product: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
+    public Save(productID: string, product: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
+    public Save(productID: string, product: Product, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (productID === null || productID === undefined) {
+            throw new Error('Required parameter productID was null or undefined when calling Save.');
+        }
+        if (product === null || product === undefined) {
+            throw new Error('Required parameter product was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<Product>(`${this.basePath}/products/${encodeURIComponent(String(productID))}`,
+            product,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -1030,76 +1091,15 @@ export class ProductService {
      * 
      * 
      * @param productID ID of the product.
-     * @param product 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public Update(productID: string, product: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
-    public Update(productID: string, product: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
-    public Update(productID: string, product: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
-    public Update(productID: string, product: Product, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (productID === null || productID === undefined) {
-            throw new Error('Required parameter productID was null or undefined when calling Update.');
-        }
-        if (product === null || product === undefined) {
-            throw new Error('Required parameter product was null or undefined when calling Update.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<Product>(`${this.basePath}/products/${encodeURIComponent(String(productID))}`,
-            product,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param productID ID of the product.
      * @param variantID ID of the variant.
      * @param variant 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public UpdateVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant>;
-    public UpdateVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
-    public UpdateVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
-    public UpdateVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant>;
+    public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
+    public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
+    public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -1108,13 +1108,13 @@ export class ProductService {
             opts.reportProgress = false;
         }
         if (productID === null || productID === undefined) {
-            throw new Error('Required parameter productID was null or undefined when calling UpdateVariant.');
+            throw new Error('Required parameter productID was null or undefined when calling SaveVariant.');
         }
         if (variantID === null || variantID === undefined) {
-            throw new Error('Required parameter variantID was null or undefined when calling UpdateVariant.');
+            throw new Error('Required parameter variantID was null or undefined when calling SaveVariant.');
         }
         if (variant === null || variant === undefined) {
-            throw new Error('Required parameter variant was null or undefined when calling UpdateVariant.');
+            throw new Error('Required parameter variant was null or undefined when calling SaveVariant.');
         }
 
         let headers = this.defaultHeaders;

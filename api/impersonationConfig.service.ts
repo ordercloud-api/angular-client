@@ -211,20 +211,20 @@ export class ImpersonationConfigService {
     /**
      * 
      * 
-     * @param options.search Search of the impersonation config.
-     * @param options.searchOn Search on of the impersonation config.
-     * @param options.sortBy Sort by of the impersonation config.
-     * @param options.page Page of the impersonation config.
-     * @param options.pageSize Page size of the impersonation config.
-     * @param options.filters Filters of the impersonation config.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListImpersonationConfig>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListImpersonationConfig>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListImpersonationConfig>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListImpersonationConfig>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListImpersonationConfig>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListImpersonationConfig>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -237,11 +237,11 @@ export class ImpersonationConfigService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -288,14 +288,14 @@ export class ImpersonationConfigService {
      * 
      * 
      * @param impersonationConfigID ID of the impersonation config.
-     * @param impersonationConfig 
+     * @param partialImpersonationConfig 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ImpersonationConfig>;
-    public Patch(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ImpersonationConfig>>;
-    public Patch(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ImpersonationConfig>>;
-    public Patch(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(impersonationConfigID: string, partialImpersonationConfig: ImpersonationConfig, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ImpersonationConfig>;
+    public Patch(impersonationConfigID: string, partialImpersonationConfig: ImpersonationConfig, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ImpersonationConfig>>;
+    public Patch(impersonationConfigID: string, partialImpersonationConfig: ImpersonationConfig, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ImpersonationConfig>>;
+    public Patch(impersonationConfigID: string, partialImpersonationConfig: ImpersonationConfig, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -306,8 +306,8 @@ export class ImpersonationConfigService {
         if (impersonationConfigID === null || impersonationConfigID === undefined) {
             throw new Error('Required parameter impersonationConfigID was null or undefined when calling Patch.');
         }
-        if (impersonationConfig === null || impersonationConfig === undefined) {
-            throw new Error('Required parameter impersonationConfig was null or undefined when calling Patch.');
+        if (partialImpersonationConfig === null || partialImpersonationConfig === undefined) {
+            throw new Error('Required parameter partialImpersonationConfig was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -337,7 +337,7 @@ export class ImpersonationConfigService {
         }
 
         return this.httpClient.patch<ImpersonationConfig>(`${this.basePath}/impersonationconfig/${encodeURIComponent(String(impersonationConfigID))}`,
-            impersonationConfig,
+            partialImpersonationConfig,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -353,10 +353,10 @@ export class ImpersonationConfigService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ImpersonationConfig>;
-    public Update(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ImpersonationConfig>>;
-    public Update(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ImpersonationConfig>>;
-    public Update(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ImpersonationConfig>;
+    public Save(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ImpersonationConfig>>;
+    public Save(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ImpersonationConfig>>;
+    public Save(impersonationConfigID: string, impersonationConfig: ImpersonationConfig, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -365,10 +365,10 @@ export class ImpersonationConfigService {
             opts.reportProgress = false;
         }
         if (impersonationConfigID === null || impersonationConfigID === undefined) {
-            throw new Error('Required parameter impersonationConfigID was null or undefined when calling Update.');
+            throw new Error('Required parameter impersonationConfigID was null or undefined when calling Save.');
         }
         if (impersonationConfig === null || impersonationConfig === undefined) {
-            throw new Error('Required parameter impersonationConfig was null or undefined when calling Update.');
+            throw new Error('Required parameter impersonationConfig was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;

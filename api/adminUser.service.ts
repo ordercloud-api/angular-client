@@ -211,20 +211,20 @@ export class AdminUserService {
     /**
      * 
      * 
-     * @param options.search Search of the admin user.
-     * @param options.searchOn Search on of the admin user.
-     * @param options.sortBy Sort by of the admin user.
-     * @param options.page Page of the admin user.
-     * @param options.pageSize Page size of the admin user.
-     * @param options.filters Filters of the admin user.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -237,11 +237,11 @@ export class AdminUserService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -288,14 +288,14 @@ export class AdminUserService {
      * 
      * 
      * @param userID ID of the user.
-     * @param user 
+     * @param partialUser 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Patch(userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Patch(userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
-    public Patch(userID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(userID: string, partialUser: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
+    public Patch(userID: string, partialUser: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Patch(userID: string, partialUser: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Patch(userID: string, partialUser: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -306,8 +306,8 @@ export class AdminUserService {
         if (userID === null || userID === undefined) {
             throw new Error('Required parameter userID was null or undefined when calling Patch.');
         }
-        if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling Patch.');
+        if (partialUser === null || partialUser === undefined) {
+            throw new Error('Required parameter partialUser was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -337,7 +337,7 @@ export class AdminUserService {
         }
 
         return this.httpClient.patch<User>(`${this.basePath}/adminusers/${encodeURIComponent(String(userID))}`,
-            user,
+            partialUser,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -353,10 +353,10 @@ export class AdminUserService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Update(userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Update(userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
-    public Update(userID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
+    public Save(userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Save(userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Save(userID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -365,10 +365,10 @@ export class AdminUserService {
             opts.reportProgress = false;
         }
         if (userID === null || userID === undefined) {
-            throw new Error('Required parameter userID was null or undefined when calling Update.');
+            throw new Error('Required parameter userID was null or undefined when calling Save.');
         }
         if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling Update.');
+            throw new Error('Required parameter user was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;

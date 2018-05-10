@@ -9,14 +9,14 @@ import { Address } from './address';
 
 
 export interface Shipment {
-    BuyerID?: string;
+    xp?: any;
     ID?: string;
+    BuyerID?: string;
     Shipper?: string;
     DateShipped?: string;
     DateDelivered?: string;
     TrackingNumber?: string;
     Cost?: number;
-    xp?: any;
     Account?: string;
     FromAddressID?: string;
     ToAddressID?: string;

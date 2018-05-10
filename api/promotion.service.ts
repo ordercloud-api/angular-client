@@ -104,14 +104,14 @@ export class PromotionService {
     /**
      * 
      * 
-     * @param promo 
+     * @param promotion 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(promo: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
-    public Create(promo: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
-    public Create(promo: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
-    public Create(promo: Promotion, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Create(promotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
+    public Create(promotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
+    public Create(promotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
+    public Create(promotion: Promotion, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -119,8 +119,8 @@ export class PromotionService {
         if (opts.reportProgress === null || opts.reportProgress === undefined) {
             opts.reportProgress = false;
         }
-        if (promo === null || promo === undefined) {
-            throw new Error('Required parameter promo was null or undefined when calling Create.');
+        if (promotion === null || promotion === undefined) {
+            throw new Error('Required parameter promotion was null or undefined when calling Create.');
         }
 
         let headers = this.defaultHeaders;
@@ -150,7 +150,7 @@ export class PromotionService {
         }
 
         return this.httpClient.post<Promotion>(`${this.basePath}/promotions`,
-            promo,
+            promotion,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -284,20 +284,20 @@ export class PromotionService {
     /**
      * 
      * 
-     * @param options.search Search of the promotion.
-     * @param options.searchOn Search on of the promotion.
-     * @param options.sortBy Sort by of the promotion.
-     * @param options.page Page of the promotion.
-     * @param options.pageSize Page size of the promotion.
-     * @param options.filters Filters of the promotion.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -310,11 +310,11 @@ export class PromotionService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -364,9 +364,9 @@ export class PromotionService {
      * @param options.promotionID ID of the promotion.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
-     * @param options.level Level of the promotion.
-     * @param options.page Page of the promotion.
-     * @param options.pageSize Page size of the promotion.
+     * @param options.level Level of the promotion assignment. Possible values: User, Group, Company.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -501,72 +501,15 @@ export class PromotionService {
     /**
      * 
      * 
-     * @param assignment 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public SaveAssignment(assignment: PromotionAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public SaveAssignment(assignment: PromotionAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public SaveAssignment(assignment: PromotionAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public SaveAssignment(assignment: PromotionAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (assignment === null || assignment === undefined) {
-            throw new Error('Required parameter assignment was null or undefined when calling SaveAssignment.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/promotions/assignments`,
-            assignment,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
      * @param promotionID ID of the promotion.
-     * @param promo 
+     * @param promotion 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(promotionID: string, promo: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
-    public Update(promotionID: string, promo: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
-    public Update(promotionID: string, promo: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
-    public Update(promotionID: string, promo: Promotion, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(promotionID: string, promotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
+    public Save(promotionID: string, promotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
+    public Save(promotionID: string, promotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
+    public Save(promotionID: string, promotion: Promotion, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -575,10 +518,10 @@ export class PromotionService {
             opts.reportProgress = false;
         }
         if (promotionID === null || promotionID === undefined) {
-            throw new Error('Required parameter promotionID was null or undefined when calling Update.');
+            throw new Error('Required parameter promotionID was null or undefined when calling Save.');
         }
-        if (promo === null || promo === undefined) {
-            throw new Error('Required parameter promo was null or undefined when calling Update.');
+        if (promotion === null || promotion === undefined) {
+            throw new Error('Required parameter promotion was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;
@@ -608,7 +551,64 @@ export class PromotionService {
         }
 
         return this.httpClient.put<Promotion>(`${this.basePath}/promotions/${encodeURIComponent(String(promotionID))}`,
-            promo,
+            promotion,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param promotionAssignment 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public SaveAssignment(promotionAssignment: PromotionAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public SaveAssignment(promotionAssignment: PromotionAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public SaveAssignment(promotionAssignment: PromotionAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public SaveAssignment(promotionAssignment: PromotionAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (promotionAssignment === null || promotionAssignment === undefined) {
+            throw new Error('Required parameter promotionAssignment was null or undefined when calling SaveAssignment.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<any>(`${this.basePath}/promotions/assignments`,
+            promotionAssignment,
             {
                 headers: headers,
                 observe: opts.observe,

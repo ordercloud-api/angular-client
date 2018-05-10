@@ -274,20 +274,20 @@ export class PriceScheduleService {
     /**
      * 
      * 
-     * @param options.search Search of the price schedule.
-     * @param options.searchOn Search on of the price schedule.
-     * @param options.sortBy Sort by of the price schedule.
-     * @param options.page Page of the price schedule.
-     * @param options.pageSize Page size of the price schedule.
-     * @param options.filters Filters of the price schedule.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPriceSchedule>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPriceSchedule>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPriceSchedule>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPriceSchedule>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPriceSchedule>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPriceSchedule>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -300,11 +300,11 @@ export class PriceScheduleService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -351,14 +351,14 @@ export class PriceScheduleService {
      * 
      * 
      * @param priceScheduleID ID of the price schedule.
-     * @param priceSchedule 
+     * @param partialPriceSchedule 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
-    public Patch(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
-    public Patch(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
-    public Patch(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
+    public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
+    public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
+    public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -369,8 +369,8 @@ export class PriceScheduleService {
         if (priceScheduleID === null || priceScheduleID === undefined) {
             throw new Error('Required parameter priceScheduleID was null or undefined when calling Patch.');
         }
-        if (priceSchedule === null || priceSchedule === undefined) {
-            throw new Error('Required parameter priceSchedule was null or undefined when calling Patch.');
+        if (partialPriceSchedule === null || partialPriceSchedule === undefined) {
+            throw new Error('Required parameter partialPriceSchedule was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -400,6 +400,67 @@ export class PriceScheduleService {
         }
 
         return this.httpClient.patch<PriceSchedule>(`${this.basePath}/priceschedules/${encodeURIComponent(String(priceScheduleID))}`,
+            partialPriceSchedule,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param priceScheduleID ID of the price schedule.
+     * @param priceSchedule 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
+    public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
+    public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
+    public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (priceScheduleID === null || priceScheduleID === undefined) {
+            throw new Error('Required parameter priceScheduleID was null or undefined when calling Save.');
+        }
+        if (priceSchedule === null || priceSchedule === undefined) {
+            throw new Error('Required parameter priceSchedule was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<PriceSchedule>(`${this.basePath}/priceschedules/${encodeURIComponent(String(priceScheduleID))}`,
             priceSchedule,
             {
                 headers: headers,
@@ -462,67 +523,6 @@ export class PriceScheduleService {
 
         return this.httpClient.post<PriceSchedule>(`${this.basePath}/priceschedules/${encodeURIComponent(String(priceScheduleID))}/PriceBreaks`,
             priceBreak,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param priceScheduleID ID of the price schedule.
-     * @param priceSchedule 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public Update(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
-    public Update(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
-    public Update(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
-    public Update(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (priceScheduleID === null || priceScheduleID === undefined) {
-            throw new Error('Required parameter priceScheduleID was null or undefined when calling Update.');
-        }
-        if (priceSchedule === null || priceSchedule === undefined) {
-            throw new Error('Required parameter priceSchedule was null or undefined when calling Update.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<PriceSchedule>(`${this.basePath}/priceschedules/${encodeURIComponent(String(priceScheduleID))}`,
-            priceSchedule,
             {
                 headers: headers,
                 observe: opts.observe,

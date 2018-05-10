@@ -12,4 +12,5 @@ export interface MessageSenderAssignment {
     BuyerID?: string;
     UserGroupID?: string;
     MessageConfigName?: string;
+    MessageConfigDescription?: string;
 }

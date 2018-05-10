@@ -334,20 +334,20 @@ export class ShipmentService {
      * 
      * 
      * @param options.orderID ID of the order.
-     * @param options.search Search of the shipment.
-     * @param options.searchOn Search on of the shipment.
-     * @param options.sortBy Sort by of the shipment.
-     * @param options.page Page of the shipment.
-     * @param options.pageSize Page size of the shipment.
-     * @param options.filters Filters of the shipment.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipment>;
-    public List(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipment>>;
-    public List(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipment>>;
-    public List(options?: { orderID?: string, search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipment>;
+    public List(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipment>>;
+    public List(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipment>>;
+    public List(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -363,11 +363,11 @@ export class ShipmentService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -414,20 +414,20 @@ export class ShipmentService {
      * 
      * 
      * @param shipmentID ID of the shipment.
-     * @param options.search Search of the shipment.
-     * @param options.searchOn Search on of the shipment.
-     * @param options.sortBy Sort by of the shipment.
-     * @param options.page Page of the shipment.
-     * @param options.pageSize Page size of the shipment.
-     * @param options.filters Filters of the shipment.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem>;
-    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
-    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
-    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem>;
+    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
+    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
+    public ListItems(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -443,11 +443,11 @@ export class ShipmentService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -494,14 +494,14 @@ export class ShipmentService {
      * 
      * 
      * @param shipmentID ID of the shipment.
-     * @param shipment 
+     * @param partialShipment 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(shipmentID: string, shipment: Shipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Shipment>;
-    public Patch(shipmentID: string, shipment: Shipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Shipment>>;
-    public Patch(shipmentID: string, shipment: Shipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Shipment>>;
-    public Patch(shipmentID: string, shipment: Shipment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Patch(shipmentID: string, partialShipment: Shipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Shipment>;
+    public Patch(shipmentID: string, partialShipment: Shipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Shipment>>;
+    public Patch(shipmentID: string, partialShipment: Shipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Shipment>>;
+    public Patch(shipmentID: string, partialShipment: Shipment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -512,8 +512,8 @@ export class ShipmentService {
         if (shipmentID === null || shipmentID === undefined) {
             throw new Error('Required parameter shipmentID was null or undefined when calling Patch.');
         }
-        if (shipment === null || shipment === undefined) {
-            throw new Error('Required parameter shipment was null or undefined when calling Patch.');
+        if (partialShipment === null || partialShipment === undefined) {
+            throw new Error('Required parameter partialShipment was null or undefined when calling Patch.');
         }
 
         let headers = this.defaultHeaders;
@@ -543,68 +543,7 @@ export class ShipmentService {
         }
 
         return this.httpClient.patch<Shipment>(`${this.basePath}/shipments/${encodeURIComponent(String(shipmentID))}`,
-            shipment,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param shipmentID ID of the shipment.
-     * @param item 
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public SaveItem(shipmentID: string, item: ShipmentItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ShipmentItem>;
-    public SaveItem(shipmentID: string, item: ShipmentItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ShipmentItem>>;
-    public SaveItem(shipmentID: string, item: ShipmentItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ShipmentItem>>;
-    public SaveItem(shipmentID: string, item: ShipmentItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (shipmentID === null || shipmentID === undefined) {
-            throw new Error('Required parameter shipmentID was null or undefined when calling SaveItem.');
-        }
-        if (item === null || item === undefined) {
-            throw new Error('Required parameter item was null or undefined when calling SaveItem.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<ShipmentItem>(`${this.basePath}/shipments/${encodeURIComponent(String(shipmentID))}/items`,
-            item,
+            partialShipment,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -620,10 +559,10 @@ export class ShipmentService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Update(shipmentID: string, shipment: Shipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Shipment>;
-    public Update(shipmentID: string, shipment: Shipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Shipment>>;
-    public Update(shipmentID: string, shipment: Shipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Shipment>>;
-    public Update(shipmentID: string, shipment: Shipment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Save(shipmentID: string, shipment: Shipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Shipment>;
+    public Save(shipmentID: string, shipment: Shipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Shipment>>;
+    public Save(shipmentID: string, shipment: Shipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Shipment>>;
+    public Save(shipmentID: string, shipment: Shipment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -632,10 +571,10 @@ export class ShipmentService {
             opts.reportProgress = false;
         }
         if (shipmentID === null || shipmentID === undefined) {
-            throw new Error('Required parameter shipmentID was null or undefined when calling Update.');
+            throw new Error('Required parameter shipmentID was null or undefined when calling Save.');
         }
         if (shipment === null || shipment === undefined) {
-            throw new Error('Required parameter shipment was null or undefined when calling Update.');
+            throw new Error('Required parameter shipment was null or undefined when calling Save.');
         }
 
         let headers = this.defaultHeaders;
@@ -666,6 +605,67 @@ export class ShipmentService {
 
         return this.httpClient.put<Shipment>(`${this.basePath}/shipments/${encodeURIComponent(String(shipmentID))}`,
             shipment,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param shipmentID ID of the shipment.
+     * @param shipmentItem 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public SaveItem(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ShipmentItem>;
+    public SaveItem(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ShipmentItem>>;
+    public SaveItem(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ShipmentItem>>;
+    public SaveItem(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (shipmentID === null || shipmentID === undefined) {
+            throw new Error('Required parameter shipmentID was null or undefined when calling SaveItem.');
+        }
+        if (shipmentItem === null || shipmentItem === undefined) {
+            throw new Error('Required parameter shipmentItem was null or undefined when calling SaveItem.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<ShipmentItem>(`${this.basePath}/shipments/${encodeURIComponent(String(shipmentID))}/items`,
+            shipmentItem,
             {
                 headers: headers,
                 observe: opts.observe,

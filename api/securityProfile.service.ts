@@ -172,20 +172,20 @@ export class SecurityProfileService {
     /**
      * 
      * 
-     * @param options.search Search of the security profile.
-     * @param options.searchOn Search on of the security profile.
-     * @param options.sortBy Sort by of the security profile.
-     * @param options.page Page of the security profile.
-     * @param options.pageSize Page size of the security profile.
-     * @param options.filters Filters of the security profile.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSecurityProfile>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSecurityProfile>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSecurityProfile>>;
-    public List(options?: { search?: string, searchOn?: Array<string>, sortBy?: Array<string>, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSecurityProfile>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSecurityProfile>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSecurityProfile>>;
+    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -198,11 +198,11 @@ export class SecurityProfileService {
         if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn) {
-            queryParameters = queryParameters.set('searchOn', opts.searchOn.join(COLLECTION_FORMATS['csv']));
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy) {
-            queryParameters = queryParameters.set('sortBy', opts.sortBy.join(COLLECTION_FORMATS['csv']));
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
         if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
@@ -253,10 +253,10 @@ export class SecurityProfileService {
      * @param options.securityProfileID ID of the security profile.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
-     * @param options.commerceRole Commerce role of the security profile.
-     * @param options.level Level of the security profile.
-     * @param options.page Page of the security profile.
-     * @param options.pageSize Page size of the security profile.
+     * @param options.commerceRole Commerce role of the security profile assignment. Possible values: Buyer, Seller, Supplier.
+     * @param options.level Level of the security profile assignment. Possible values: User, Group, Company.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
@@ -336,14 +336,14 @@ export class SecurityProfileService {
     /**
      * 
      * 
-     * @param assignment 
+     * @param securityProfileAssignment 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SaveAssignment(assignment: SecurityProfileAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public SaveAssignment(assignment: SecurityProfileAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public SaveAssignment(assignment: SecurityProfileAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public SaveAssignment(assignment: SecurityProfileAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public SaveAssignment(securityProfileAssignment: SecurityProfileAssignment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public SaveAssignment(securityProfileAssignment: SecurityProfileAssignment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public SaveAssignment(securityProfileAssignment: SecurityProfileAssignment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public SaveAssignment(securityProfileAssignment: SecurityProfileAssignment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -351,8 +351,8 @@ export class SecurityProfileService {
         if (opts.reportProgress === null || opts.reportProgress === undefined) {
             opts.reportProgress = false;
         }
-        if (assignment === null || assignment === undefined) {
-            throw new Error('Required parameter assignment was null or undefined when calling SaveAssignment.');
+        if (securityProfileAssignment === null || securityProfileAssignment === undefined) {
+            throw new Error('Required parameter securityProfileAssignment was null or undefined when calling SaveAssignment.');
         }
 
         let headers = this.defaultHeaders;
@@ -382,7 +382,7 @@ export class SecurityProfileService {
         }
 
         return this.httpClient.post<any>(`${this.basePath}/securityprofiles/assignments`,
-            assignment,
+            securityProfileAssignment,
             {
                 headers: headers,
                 observe: opts.observe,
