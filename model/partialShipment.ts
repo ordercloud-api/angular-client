@@ -9,6 +9,7 @@ import { Address } from './address';
 
 
 export interface PartialShipment {
+    xp?: any;
     ID?: string;
     BuyerID?: string;
     Shipper?: string;
@@ -16,7 +17,6 @@ export interface PartialShipment {
     DateDelivered?: string;
     TrackingNumber?: string;
     Cost?: number;
-    xp?: any;
     Account?: string;
     FromAddressID?: string;
     ToAddressID?: string;

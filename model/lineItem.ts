@@ -11,10 +11,9 @@ import { LineItemSpec } from './lineItemSpec';
 
 
 export interface LineItem {
-    Quantity?: number;
-    xp?: any;
     ID?: string;
     ProductID?: string;
+    Quantity?: number;
     DateAdded?: string;
     QuantityShipped?: number;
     UnitPrice?: number;
@@ -28,4 +27,5 @@ export interface LineItem {
     ShippingAddress?: Address;
     ShipFromAddress?: Address;
     Specs?: Array<LineItemSpec>;
+    xp?: any;
 }
