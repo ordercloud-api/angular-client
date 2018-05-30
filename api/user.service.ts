@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
-import { Observable }                                        from 'rxjs';
+import { Observable }                                        from 'rxjs/Observable';
 import { TokenService }                                      from './token.service';
 
 import { AccessToken } from '../model/accessToken';
@@ -318,25 +318,25 @@ export class UserService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.userGroupID !== undefined) {
+        if (opts.userGroupID !== undefined && opts.userGroupID !== null) {
             queryParameters = queryParameters.set('userGroupID', <any>opts.userGroupID);
         }
-        if (opts.search !== undefined) {
+        if (opts.search !== undefined && opts.search !== null) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined) {
+        if (opts.searchOn !== undefined && opts.searchOn !== null) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined) {
+        if (opts.sortBy !== undefined && opts.sortBy !== null) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined) {
+        if (opts.page !== undefined && opts.page !== null) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined) {
+        if (opts.pageSize !== undefined && opts.pageSize !== null) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined) {
+        if (opts.filters !== undefined && opts.filters !== null) {
             queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
         }
 
@@ -406,7 +406,7 @@ export class UserService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (orders !== undefined) {
+        if (orders !== undefined && orders !== null) {
             queryParameters = queryParameters.set('orders', <any>orders);
         }
 

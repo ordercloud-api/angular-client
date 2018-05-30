@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
-import { Observable }                                        from 'rxjs';
+import { Observable }                                        from 'rxjs/Observable';
 import { TokenService }                                      from './token.service';
 
 import { Address } from '../model/address';
@@ -196,10 +196,10 @@ export class AddressService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.userID !== undefined) {
+        if (opts.userID !== undefined && opts.userID !== null) {
             queryParameters = queryParameters.set('userID', <any>opts.userID);
         }
-        if (opts.userGroupID !== undefined) {
+        if (opts.userGroupID !== undefined && opts.userGroupID !== null) {
             queryParameters = queryParameters.set('userGroupID', <any>opts.userGroupID);
         }
 
@@ -320,22 +320,22 @@ export class AddressService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.search !== undefined) {
+        if (opts.search !== undefined && opts.search !== null) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined) {
+        if (opts.searchOn !== undefined && opts.searchOn !== null) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined) {
+        if (opts.sortBy !== undefined && opts.sortBy !== null) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined) {
+        if (opts.page !== undefined && opts.page !== null) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined) {
+        if (opts.pageSize !== undefined && opts.pageSize !== null) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined) {
+        if (opts.filters !== undefined && opts.filters !== null) {
             queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
         }
 
@@ -402,28 +402,28 @@ export class AddressService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.addressID !== undefined) {
+        if (opts.addressID !== undefined && opts.addressID !== null) {
             queryParameters = queryParameters.set('addressID', <any>opts.addressID);
         }
-        if (opts.userID !== undefined) {
+        if (opts.userID !== undefined && opts.userID !== null) {
             queryParameters = queryParameters.set('userID', <any>opts.userID);
         }
-        if (opts.userGroupID !== undefined) {
+        if (opts.userGroupID !== undefined && opts.userGroupID !== null) {
             queryParameters = queryParameters.set('userGroupID', <any>opts.userGroupID);
         }
-        if (opts.level !== undefined) {
+        if (opts.level !== undefined && opts.level !== null) {
             queryParameters = queryParameters.set('level', <any>opts.level);
         }
-        if (opts.isShipping !== undefined) {
+        if (opts.isShipping !== undefined && opts.isShipping !== null) {
             queryParameters = queryParameters.set('isShipping', <any>opts.isShipping);
         }
-        if (opts.isBilling !== undefined) {
+        if (opts.isBilling !== undefined && opts.isBilling !== null) {
             queryParameters = queryParameters.set('isBilling', <any>opts.isBilling);
         }
-        if (opts.page !== undefined) {
+        if (opts.page !== undefined && opts.page !== null) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined) {
+        if (opts.pageSize !== undefined && opts.pageSize !== null) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
 

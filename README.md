@@ -1,6 +1,6 @@
 # OrderCloud.io's Angular SDK
 
-> The official client library for building Angular (6.0.0+) solutions on [OrderCloud.io's](https://developer.ordercloud.io/documentation) B2B ecommerce platform
+> The official client library for building Angular (4.3.0+) solutions on [OrderCloud.io's](https://developer.ordercloud.io/documentation) B2B ecommerce platform
 
 This SDK aims to greatly improve developer productivity and reduce errors by providing discoverable, strongly-typed wrappers for all public endpoints and request/response models.
 
@@ -11,7 +11,7 @@ All included methods are a 1:1 reflection of the API with the *addition* of the 
 This Angular SDK is made possible by leveraging [Swagger's](https://swagger.io/) open source tools with our Open API Specification: `https://api.ordercloud.io/v1/swagger`
 
 ### Requirements
-* angular 6.0.0+
+* angular 4.3.0+
 * [ngx-cookie](https://github.com/salemdar/ngx-cookie) 2.0.0+
 
 ### Installation

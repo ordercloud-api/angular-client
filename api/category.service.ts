@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
-import { Observable }                                        from 'rxjs';
+import { Observable }                                        from 'rxjs/Observable';
 import { TokenService }                                      from './token.service';
 
 import { Category } from '../model/category';
@@ -202,13 +202,13 @@ export class CategoryService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (buyerID !== undefined) {
+        if (buyerID !== undefined && buyerID !== null) {
             queryParameters = queryParameters.set('buyerID', <any>buyerID);
         }
-        if (opts.userID !== undefined) {
+        if (opts.userID !== undefined && opts.userID !== null) {
             queryParameters = queryParameters.set('userID', <any>opts.userID);
         }
-        if (opts.userGroupID !== undefined) {
+        if (opts.userGroupID !== undefined && opts.userGroupID !== null) {
             queryParameters = queryParameters.set('userGroupID', <any>opts.userGroupID);
         }
 
@@ -390,25 +390,25 @@ export class CategoryService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.depth !== undefined) {
+        if (opts.depth !== undefined && opts.depth !== null) {
             queryParameters = queryParameters.set('depth', <any>opts.depth);
         }
-        if (opts.search !== undefined) {
+        if (opts.search !== undefined && opts.search !== null) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined) {
+        if (opts.searchOn !== undefined && opts.searchOn !== null) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined) {
+        if (opts.sortBy !== undefined && opts.sortBy !== null) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined) {
+        if (opts.page !== undefined && opts.page !== null) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined) {
+        if (opts.pageSize !== undefined && opts.pageSize !== null) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined) {
+        if (opts.filters !== undefined && opts.filters !== null) {
             queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
         }
 
@@ -474,25 +474,25 @@ export class CategoryService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.categoryID !== undefined) {
+        if (opts.categoryID !== undefined && opts.categoryID !== null) {
             queryParameters = queryParameters.set('categoryID', <any>opts.categoryID);
         }
-        if (opts.buyerID !== undefined) {
+        if (opts.buyerID !== undefined && opts.buyerID !== null) {
             queryParameters = queryParameters.set('buyerID', <any>opts.buyerID);
         }
-        if (opts.userID !== undefined) {
+        if (opts.userID !== undefined && opts.userID !== null) {
             queryParameters = queryParameters.set('userID', <any>opts.userID);
         }
-        if (opts.userGroupID !== undefined) {
+        if (opts.userGroupID !== undefined && opts.userGroupID !== null) {
             queryParameters = queryParameters.set('userGroupID', <any>opts.userGroupID);
         }
-        if (opts.level !== undefined) {
+        if (opts.level !== undefined && opts.level !== null) {
             queryParameters = queryParameters.set('level', <any>opts.level);
         }
-        if (opts.page !== undefined) {
+        if (opts.page !== undefined && opts.page !== null) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined) {
+        if (opts.pageSize !== undefined && opts.pageSize !== null) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
 
@@ -555,16 +555,16 @@ export class CategoryService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.categoryID !== undefined) {
+        if (opts.categoryID !== undefined && opts.categoryID !== null) {
             queryParameters = queryParameters.set('categoryID', <any>opts.categoryID);
         }
-        if (opts.productID !== undefined) {
+        if (opts.productID !== undefined && opts.productID !== null) {
             queryParameters = queryParameters.set('productID', <any>opts.productID);
         }
-        if (opts.page !== undefined) {
+        if (opts.page !== undefined && opts.page !== null) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined) {
+        if (opts.pageSize !== undefined && opts.pageSize !== null) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
 
