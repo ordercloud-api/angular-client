@@ -510,35 +510,65 @@ export class OrderService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.buyerID !== undefined && opts.buyerID !== null) {
+        if (opts.buyerID !== undefined) {
             queryParameters = queryParameters.set('buyerID', <any>opts.buyerID);
         }
-        if (opts.supplierID !== undefined && opts.supplierID !== null) {
+        if (opts.buyerID === null) {
+            throw new Error('Parameter buyerID was null when calling List. Null values are not allowed');
+        }
+        if (opts.supplierID !== undefined) {
             queryParameters = queryParameters.set('supplierID', <any>opts.supplierID);
         }
-        if (opts.from !== undefined && opts.from !== null) {
+        if (opts.supplierID === null) {
+            throw new Error('Parameter supplierID was null when calling List. Null values are not allowed');
+        }
+        if (opts.from !== undefined) {
             queryParameters = queryParameters.set('from', <any>opts.from);
         }
-        if (opts.to !== undefined && opts.to !== null) {
+        if (opts.from === null) {
+            throw new Error('Parameter from was null when calling List. Null values are not allowed');
+        }
+        if (opts.to !== undefined) {
             queryParameters = queryParameters.set('to', <any>opts.to);
         }
-        if (opts.search !== undefined && opts.search !== null) {
+        if (opts.to === null) {
+            throw new Error('Parameter to was null when calling List. Null values are not allowed');
+        }
+        if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined && opts.searchOn !== null) {
+        if (opts.search === null) {
+            throw new Error('Parameter search was null when calling List. Null values are not allowed');
+        }
+        if (opts.searchOn !== undefined) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined && opts.sortBy !== null) {
+        if (opts.searchOn === null) {
+            throw new Error('Parameter searchOn was null when calling List. Null values are not allowed');
+        }
+        if (opts.sortBy !== undefined) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined && opts.page !== null) {
+        if (opts.sortBy === null) {
+            throw new Error('Parameter sortBy was null when calling List. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined && opts.pageSize !== null) {
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling List. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined && opts.filters !== null) {
-            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling List. Null values are not allowed');
+        }
+        if (opts.filters !== undefined) {
+            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters, 'List');
+        }
+        if (opts.filters === null) {
+            throw new Error('Parameter filters was null when calling List. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;
@@ -606,23 +636,41 @@ export class OrderService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.search !== undefined && opts.search !== null) {
+        if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined && opts.searchOn !== null) {
+        if (opts.search === null) {
+            throw new Error('Parameter search was null when calling ListApprovals. Null values are not allowed');
+        }
+        if (opts.searchOn !== undefined) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined && opts.sortBy !== null) {
+        if (opts.searchOn === null) {
+            throw new Error('Parameter searchOn was null when calling ListApprovals. Null values are not allowed');
+        }
+        if (opts.sortBy !== undefined) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined && opts.page !== null) {
+        if (opts.sortBy === null) {
+            throw new Error('Parameter sortBy was null when calling ListApprovals. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined && opts.pageSize !== null) {
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling ListApprovals. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined && opts.filters !== null) {
-            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling ListApprovals. Null values are not allowed');
+        }
+        if (opts.filters !== undefined) {
+            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters, 'ListApprovals');
+        }
+        if (opts.filters === null) {
+            throw new Error('Parameter filters was null when calling ListApprovals. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;
@@ -690,23 +738,41 @@ export class OrderService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.search !== undefined && opts.search !== null) {
+        if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined && opts.searchOn !== null) {
+        if (opts.search === null) {
+            throw new Error('Parameter search was null when calling ListEligibleApprovers. Null values are not allowed');
+        }
+        if (opts.searchOn !== undefined) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined && opts.sortBy !== null) {
+        if (opts.searchOn === null) {
+            throw new Error('Parameter searchOn was null when calling ListEligibleApprovers. Null values are not allowed');
+        }
+        if (opts.sortBy !== undefined) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined && opts.page !== null) {
+        if (opts.sortBy === null) {
+            throw new Error('Parameter sortBy was null when calling ListEligibleApprovers. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined && opts.pageSize !== null) {
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling ListEligibleApprovers. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined && opts.filters !== null) {
-            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling ListEligibleApprovers. Null values are not allowed');
+        }
+        if (opts.filters !== undefined) {
+            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters, 'ListEligibleApprovers');
+        }
+        if (opts.filters === null) {
+            throw new Error('Parameter filters was null when calling ListEligibleApprovers. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;
@@ -774,23 +840,41 @@ export class OrderService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.search !== undefined && opts.search !== null) {
+        if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined && opts.searchOn !== null) {
+        if (opts.search === null) {
+            throw new Error('Parameter search was null when calling ListPromotions. Null values are not allowed');
+        }
+        if (opts.searchOn !== undefined) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined && opts.sortBy !== null) {
+        if (opts.searchOn === null) {
+            throw new Error('Parameter searchOn was null when calling ListPromotions. Null values are not allowed');
+        }
+        if (opts.sortBy !== undefined) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined && opts.page !== null) {
+        if (opts.sortBy === null) {
+            throw new Error('Parameter sortBy was null when calling ListPromotions. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined && opts.pageSize !== null) {
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling ListPromotions. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined && opts.filters !== null) {
-            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling ListPromotions. Null values are not allowed');
+        }
+        if (opts.filters !== undefined) {
+            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters, 'ListPromotions');
+        }
+        if (opts.filters === null) {
+            throw new Error('Parameter filters was null when calling ListPromotions. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;

@@ -196,11 +196,17 @@ export class AddressService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.userID !== undefined && opts.userID !== null) {
+        if (opts.userID !== undefined) {
             queryParameters = queryParameters.set('userID', <any>opts.userID);
         }
-        if (opts.userGroupID !== undefined && opts.userGroupID !== null) {
+        if (opts.userID === null) {
+            throw new Error('Parameter userID was null when calling DeleteAssignment. Null values are not allowed');
+        }
+        if (opts.userGroupID !== undefined) {
             queryParameters = queryParameters.set('userGroupID', <any>opts.userGroupID);
+        }
+        if (opts.userGroupID === null) {
+            throw new Error('Parameter userGroupID was null when calling DeleteAssignment. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;
@@ -320,23 +326,41 @@ export class AddressService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.search !== undefined && opts.search !== null) {
+        if (opts.search !== undefined) {
             queryParameters = queryParameters.set('search', <any>opts.search);
         }
-        if (opts.searchOn !== undefined && opts.searchOn !== null) {
+        if (opts.search === null) {
+            throw new Error('Parameter search was null when calling List. Null values are not allowed');
+        }
+        if (opts.searchOn !== undefined) {
             queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
         }
-        if (opts.sortBy !== undefined && opts.sortBy !== null) {
+        if (opts.searchOn === null) {
+            throw new Error('Parameter searchOn was null when calling List. Null values are not allowed');
+        }
+        if (opts.sortBy !== undefined) {
             queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
         }
-        if (opts.page !== undefined && opts.page !== null) {
+        if (opts.sortBy === null) {
+            throw new Error('Parameter sortBy was null when calling List. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined && opts.pageSize !== null) {
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling List. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
         }
-        if (opts.filters !== undefined && opts.filters !== null) {
-            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters);
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling List. Null values are not allowed');
+        }
+        if (opts.filters !== undefined) {
+            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters, 'List');
+        }
+        if (opts.filters === null) {
+            throw new Error('Parameter filters was null when calling List. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;
@@ -402,29 +426,53 @@ export class AddressService {
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (opts.addressID !== undefined && opts.addressID !== null) {
+        if (opts.addressID !== undefined) {
             queryParameters = queryParameters.set('addressID', <any>opts.addressID);
         }
-        if (opts.userID !== undefined && opts.userID !== null) {
+        if (opts.addressID === null) {
+            throw new Error('Parameter addressID was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.userID !== undefined) {
             queryParameters = queryParameters.set('userID', <any>opts.userID);
         }
-        if (opts.userGroupID !== undefined && opts.userGroupID !== null) {
+        if (opts.userID === null) {
+            throw new Error('Parameter userID was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.userGroupID !== undefined) {
             queryParameters = queryParameters.set('userGroupID', <any>opts.userGroupID);
         }
-        if (opts.level !== undefined && opts.level !== null) {
+        if (opts.userGroupID === null) {
+            throw new Error('Parameter userGroupID was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.level !== undefined) {
             queryParameters = queryParameters.set('level', <any>opts.level);
         }
-        if (opts.isShipping !== undefined && opts.isShipping !== null) {
+        if (opts.level === null) {
+            throw new Error('Parameter level was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.isShipping !== undefined) {
             queryParameters = queryParameters.set('isShipping', <any>opts.isShipping);
         }
-        if (opts.isBilling !== undefined && opts.isBilling !== null) {
+        if (opts.isShipping === null) {
+            throw new Error('Parameter isShipping was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.isBilling !== undefined) {
             queryParameters = queryParameters.set('isBilling', <any>opts.isBilling);
         }
-        if (opts.page !== undefined && opts.page !== null) {
+        if (opts.isBilling === null) {
+            throw new Error('Parameter isBilling was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
             queryParameters = queryParameters.set('page', <any>opts.page);
         }
-        if (opts.pageSize !== undefined && opts.pageSize !== null) {
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
             queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
+        }
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling ListAssignments. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;

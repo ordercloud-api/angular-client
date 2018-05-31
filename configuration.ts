@@ -43,10 +43,13 @@ export class Configuration {
      * Unwrap filters object - Swagger doesn't support free-form query parameters
      * out of the box so we need to manually unwrap filters ourselves
      */
-    public unwrapFilters(filters: any, queryParameters: HttpParams) {
+    public unwrapFilters(filters: any, queryParameters: HttpParams, operationId: string) {
         for (var filterKey in filters) {
             var filterVal = filters[filterKey];
-              if (filters.hasOwnProperty(filterKey) && filterVal != undefined && filterVal != null) {
+              if(filterVal === null) {
+                  throw new Error(`Parameter ${filterKey} was null when calling ${operationId}. Use negative filters ("!" operator) to return items without a certain value. For example an order list call with status: !Unsubmitted would return all orders without a status of Unsubmitted`);
+              }
+              if (filters.hasOwnProperty(filterKey) && filterVal !== undefined) {
                 if (filterVal instanceof Array) {
                     filterVal.forEach((arrayVal, index) => {
                         let action = index === 0 ? 'set' : 'append';
