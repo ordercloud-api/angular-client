@@ -29,6 +29,7 @@ import { ShipmentService } from './api/shipment.service';
 import { SpecService } from './api/spec.service';
 import { SpendingAccountService } from './api/spendingAccount.service';
 import { SupplierService } from './api/supplier.service';
+import { SupplierAddressService } from './api/supplierAddress.service';
 import { SupplierUserService } from './api/supplierUser.service';
 import { SupplierUserGroupService } from './api/supplierUserGroup.service';
 import { UserService } from './api/user.service';
@@ -67,6 +68,7 @@ import { TokenService } from './api/token.service';
     SpecService,
     SpendingAccountService,
     SupplierService,
+    SupplierAddressService,
     SupplierUserService,
     SupplierUserGroupService,
     UserService,
