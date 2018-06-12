@@ -1,6 +1,6 @@
 {
   "name": "@ordercloud/angular-sdk",
-  "version": "0.0.1-13",
+  "version": "0.0.1-14",
   "description": "angular @ordercloud/angular-sdk+ typescript sdk for building on top of the ordercloud platform",
   "author": "ordercloud.io",
   "repository": {
@@ -23,22 +23,22 @@
     "postinstall": "npm run build"
   },
   "peerDependencies": {
-    "@angular/core": "^4.3.0",
-    "@angular/http": "^4.3.0",
-    "@angular/common": "^4.3.0",
-    "@angular/compiler": "^4.3.0",
+    "@angular/core": "^6.0.0",
+    "@angular/http": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
     "core-js": "^2.5.4",
-    "rxjs": "^5.4.0",
+    "rxjs": "^6.0.0",
     "zone.js": "<1.0.0",
     "ngx-cookie": "^4.0.0"
   },
   "devDependencies": {
-    "@angular/core": "^4.3.0",
-    "@angular/http": "^4.3.0",
-    "@angular/common": "^4.3.0",
-    "@angular/compiler": "^4.3.0",
-    "@angular/platform-browser": "^4.3.0",
-    "rxjs": "^5.4.0",
+    "@angular/core": "^6.0.0",
+    "@angular/http": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "rxjs": "^6.0.0",
     "zone.js": "<1",
     "typescript": "^2.1.5",
     "ngx-cookie": "^4.0.0"

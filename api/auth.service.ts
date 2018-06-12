@@ -13,7 +13,7 @@ import {
     HttpResponse, HttpEvent
 }                                                            from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
-import { Observable }                                        from 'rxjs/Observable';
+import { Observable }                                        from 'rxjs';
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 import { AccessToken }                                       from '../model/accessToken';
