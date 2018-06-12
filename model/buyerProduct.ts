@@ -10,8 +10,8 @@ import { PriceSchedule } from './priceSchedule';
 
 
 export interface BuyerProduct {
-    PriceSchedule?: PriceSchedule;
     ID?: string;
+    PriceSchedule?: PriceSchedule;
     Name?: string;
     Description?: string;
     QuantityMultiplier?: number;

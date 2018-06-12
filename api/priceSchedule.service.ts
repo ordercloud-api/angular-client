@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
-import { Observable }                                        from 'rxjs';
+import { Observable }                                        from 'rxjs/Observable';
 import { TokenService }                                      from './token.service';
 
 import { ListPriceSchedule } from '../model/listPriceSchedule';
