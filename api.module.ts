@@ -3,78 +3,78 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 
-import { AddressService } from './api/address.service';
-import { AdminAddressService } from './api/adminAddress.service';
-import { AdminUserService } from './api/adminUser.service';
-import { AdminUserGroupService } from './api/adminUserGroup.service';
-import { ApprovalRuleService } from './api/approvalRule.service';
-import { BuyerService } from './api/buyer.service';
-import { CatalogService } from './api/catalog.service';
-import { CategoryService } from './api/category.service';
-import { CostCenterService } from './api/costCenter.service';
-import { CreditCardService } from './api/creditCard.service';
-import { ImpersonationConfigService } from './api/impersonationConfig.service';
-import { IncrementorService } from './api/incrementor.service';
-import { LineItemService } from './api/lineItem.service';
-import { MeService } from './api/me.service';
-import { MessageSenderService } from './api/messageSender.service';
-import { OrderService } from './api/order.service';
-import { PasswordResetService } from './api/passwordReset.service';
-import { PaymentService } from './api/payment.service';
-import { PriceScheduleService } from './api/priceSchedule.service';
-import { ProductService } from './api/product.service';
-import { PromotionService } from './api/promotion.service';
-import { SecurityProfileService } from './api/securityProfile.service';
-import { ShipmentService } from './api/shipment.service';
-import { SpecService } from './api/spec.service';
-import { SpendingAccountService } from './api/spendingAccount.service';
-import { SupplierService } from './api/supplier.service';
-import { SupplierAddressService } from './api/supplierAddress.service';
-import { SupplierUserService } from './api/supplierUser.service';
-import { SupplierUserGroupService } from './api/supplierUserGroup.service';
-import { UserService } from './api/user.service';
-import { UserGroupService } from './api/userGroup.service';
-import { AuthService } from './api/auth.service';
-import { TokenService } from './api/token.service';
+import { OcAddressService } from './api/address.service';
+import { OcAdminAddressService } from './api/adminAddress.service';
+import { OcAdminUserService } from './api/adminUser.service';
+import { OcAdminUserGroupService } from './api/adminUserGroup.service';
+import { OcApprovalRuleService } from './api/approvalRule.service';
+import { OcBuyerService } from './api/buyer.service';
+import { OcCatalogService } from './api/catalog.service';
+import { OcCategoryService } from './api/category.service';
+import { OcCostCenterService } from './api/costCenter.service';
+import { OcCreditCardService } from './api/creditCard.service';
+import { OcImpersonationConfigService } from './api/impersonationConfig.service';
+import { OcIncrementorService } from './api/incrementor.service';
+import { OcLineItemService } from './api/lineItem.service';
+import { OcMeService } from './api/me.service';
+import { OcMessageSenderService } from './api/messageSender.service';
+import { OcOrderService } from './api/order.service';
+import { OcPasswordResetService } from './api/passwordReset.service';
+import { OcPaymentService } from './api/payment.service';
+import { OcPriceScheduleService } from './api/priceSchedule.service';
+import { OcProductService } from './api/product.service';
+import { OcPromotionService } from './api/promotion.service';
+import { OcSecurityProfileService } from './api/securityProfile.service';
+import { OcShipmentService } from './api/shipment.service';
+import { OcSpecService } from './api/spec.service';
+import { OcSpendingAccountService } from './api/spendingAccount.service';
+import { OcSupplierService } from './api/supplier.service';
+import { OcSupplierAddressService } from './api/supplierAddress.service';
+import { OcSupplierUserService } from './api/supplierUser.service';
+import { OcSupplierUserGroupService } from './api/supplierUserGroup.service';
+import { OcUserService } from './api/user.service';
+import { OcUserGroupService } from './api/userGroup.service';
+import { OcAuthService } from './api/auth.service';
+import { OcTokenService } from './api/token.service';
 
 @NgModule({
   imports:      [ CommonModule, HttpClientModule ],
   declarations: [],
   exports:      [],
   providers: [
-    AddressService,
-    AdminAddressService,
-    AdminUserService,
-    AdminUserGroupService,
-    ApprovalRuleService,
-    BuyerService,
-    CatalogService,
-    CategoryService,
-    CostCenterService,
-    CreditCardService,
-    ImpersonationConfigService,
-    IncrementorService,
-    LineItemService,
-    MeService,
-    MessageSenderService,
-    OrderService,
-    PasswordResetService,
-    PaymentService,
-    PriceScheduleService,
-    ProductService,
-    PromotionService,
-    SecurityProfileService,
-    ShipmentService,
-    SpecService,
-    SpendingAccountService,
-    SupplierService,
-    SupplierAddressService,
-    SupplierUserService,
-    SupplierUserGroupService,
-    UserService,
-    UserGroupService,
-    AuthService,
-    TokenService
+    OcAddressService,
+    OcAdminAddressService,
+    OcAdminUserService,
+    OcAdminUserGroupService,
+    OcApprovalRuleService,
+    OcBuyerService,
+    OcCatalogService,
+    OcCategoryService,
+    OcCostCenterService,
+    OcCreditCardService,
+    OcImpersonationConfigService,
+    OcIncrementorService,
+    OcLineItemService,
+    OcMeService,
+    OcMessageSenderService,
+    OcOrderService,
+    OcPasswordResetService,
+    OcPaymentService,
+    OcPriceScheduleService,
+    OcProductService,
+    OcPromotionService,
+    OcSecurityProfileService,
+    OcShipmentService,
+    OcSpecService,
+    OcSpendingAccountService,
+    OcSupplierService,
+    OcSupplierAddressService,
+    OcSupplierUserService,
+    OcSupplierUserGroupService,
+    OcUserService,
+    OcUserGroupService,
+    OcAuthService,
+    OcTokenService
      ]
 })
 export class OrderCloudModule {

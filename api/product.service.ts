@@ -13,7 +13,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
-import { TokenService }                                      from './token.service';
+import { OcTokenService }                                      from './token.service';
 
 import { ListProduct } from '../model/listProduct';
 import { ListProductAssignment } from '../model/listProductAssignment';
@@ -28,14 +28,14 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class ProductService {
+export class OcProductService {
 
     protected basePath = 'https://api.ordercloud.io/v1';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     private impersonating = false;
 
-    constructor(protected httpClient: HttpClient, protected tokens: TokenService, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, protected ocTokenService: OcTokenService, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -77,7 +77,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -129,7 +129,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -207,7 +207,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -270,7 +270,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -324,7 +324,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -380,7 +380,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -494,7 +494,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -602,7 +602,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -700,7 +700,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -798,7 +798,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -855,7 +855,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -920,7 +920,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -981,7 +981,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -1037,7 +1037,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -1094,7 +1094,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -1155,7 +1155,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -1216,7 +1216,7 @@ export class ProductService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 

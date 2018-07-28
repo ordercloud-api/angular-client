@@ -11,7 +11,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class TokenService {
+export class OcTokenService {
 
     private authTokenCookieName: string;
     private impersonationTokenCookieName: string;

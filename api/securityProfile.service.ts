@@ -13,7 +13,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
-import { TokenService }                                      from './token.service';
+import { OcTokenService }                                      from './token.service';
 
 import { ListSecurityProfile } from '../model/listSecurityProfile';
 import { ListSecurityProfileAssignment } from '../model/listSecurityProfileAssignment';
@@ -25,14 +25,14 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class SecurityProfileService {
+export class OcSecurityProfileService {
 
     protected basePath = 'https://api.ordercloud.io/v1';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     private impersonating = false;
 
-    constructor(protected httpClient: HttpClient, protected tokens: TokenService, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, protected ocTokenService: OcTokenService, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -56,14 +56,15 @@ export class SecurityProfileService {
      * @param options.buyerID ID of the buyer.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
+     * @param options.supplierID ID of the supplier.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public DeleteAssignment(securityProfileID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -94,11 +95,17 @@ export class SecurityProfileService {
         if (opts.userGroupID === null) {
             throw new Error('Parameter userGroupID was null when calling DeleteAssignment. Null values are not allowed');
         }
+        if (opts.supplierID !== undefined) {
+            queryParameters = queryParameters.set('supplierID', <any>opts.supplierID);
+        }
+        if (opts.supplierID === null) {
+            throw new Error('Parameter supplierID was null when calling DeleteAssignment. Null values are not allowed');
+        }
 
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -151,7 +158,7 @@ export class SecurityProfileService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -244,7 +251,7 @@ export class SecurityProfileService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -359,7 +366,7 @@ export class SecurityProfileService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -412,7 +419,7 @@ export class SecurityProfileService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 

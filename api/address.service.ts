@@ -13,7 +13,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
-import { TokenService }                                      from './token.service';
+import { OcTokenService }                                      from './token.service';
 
 import { Address } from '../model/address';
 import { AddressAssignment } from '../model/addressAssignment';
@@ -25,14 +25,14 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class AddressService {
+export class OcAddressService {
 
     protected basePath = 'https://api.ordercloud.io/v1';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     private impersonating = false;
 
-    constructor(protected httpClient: HttpClient, protected tokens: TokenService, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, protected ocTokenService: OcTokenService, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -78,7 +78,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -134,7 +134,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -212,7 +212,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -269,7 +269,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -366,7 +366,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -478,7 +478,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -539,7 +539,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -604,7 +604,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
@@ -665,7 +665,7 @@ export class AddressService {
         let headers = this.defaultHeaders;
 
         // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.tokens.GetImpersonation() : this.tokens.GetAccess();
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
         this.impersonating = false;
         headers = headers.set('Authorization', 'Bearer ' + accessToken);
 
