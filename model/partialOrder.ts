@@ -10,7 +10,6 @@ import { User } from './user';
 
 
 export interface PartialOrder {
-    DateCreated?: string;
     ID?: string;
     FromUser?: User;
     FromCompanyID?: string;
@@ -21,6 +20,7 @@ export interface PartialOrder {
     Comments?: string;
     LineItemCount?: number;
     Status?: string;
+    DateCreated?: string;
     DateSubmitted?: string;
     DateApproved?: string;
     DateDeclined?: string;

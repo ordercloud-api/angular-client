@@ -23,6 +23,7 @@ import { OcPasswordResetService } from './api/passwordReset.service';
 import { OcPaymentService } from './api/payment.service';
 import { OcPriceScheduleService } from './api/priceSchedule.service';
 import { OcProductService } from './api/product.service';
+import { OcProductFacetService } from './api/productFacet.service';
 import { OcPromotionService } from './api/promotion.service';
 import { OcSecurityProfileService } from './api/securityProfile.service';
 import { OcShipmentService } from './api/shipment.service';
@@ -62,6 +63,7 @@ import { OcTokenService } from './api/token.service';
     OcPaymentService,
     OcPriceScheduleService,
     OcProductService,
+    OcProductFacetService,
     OcPromotionService,
     OcSecurityProfileService,
     OcShipmentService,
