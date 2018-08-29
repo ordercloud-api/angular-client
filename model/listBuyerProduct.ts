@@ -23,7 +23,7 @@ export interface FacetMeta {
 export interface Facet {
   ID: string;
   Name: string;
-  values: FacetValue[];
+  Values: FacetValue[];
 }
 
 export interface FacetValue {
