@@ -5,11 +5,29 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { BuyerProduct } from './buyerProduct';
-import { Meta } from './meta';
-
-
+import { BuyerProduct } from "./buyerProduct";
 export interface ListBuyerProduct {
-    Items?: Array<BuyerProduct>;
-    Meta?: Meta;
+  Items?: Array<BuyerProduct>;
+  Meta?: FacetMeta;
+}
+
+export interface FacetMeta {
+  Facets: Facet[];
+  Page?: number;
+  PageSize?: number;
+  TotalCount?: number;
+  TotalPages?: number;
+  ItemRange?: Array<number>;
+}
+
+export interface Facet {
+  ID: string;
+  Name: string;
+  values: FacetValue[];
+}
+
+export interface FacetValue {
+  ID: string;
+  Value: string;
+  Count: number;
 }
