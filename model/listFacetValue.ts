@@ -5,11 +5,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { BuyerProduct } from './buyerProduct';
-import { MetaWithFacets } from './metaWithFacets';
 
 
-export interface ListBuyerProduct {
-    Items?: Array<BuyerProduct>;
-    Meta?: MetaWithFacets;
+export interface ListFacetValue {
+    Value?: string;
+    Count?: number;
 }
