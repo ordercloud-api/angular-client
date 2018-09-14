@@ -44,7 +44,7 @@ export class OcPriceScheduleService {
      * @description enable impersonation by calling this prior to any of the other methods in this service
      * 
      */
-    public As(): any {
+    public As(): this {
         this.impersonating = true;
         return this;
     }
