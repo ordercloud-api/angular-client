@@ -163,6 +163,23 @@ export class ImpersonationExample {
 }
 ```
 
+### Typed XP
+Many resources in the API support xp, or extendable properties, which let API consumers define their own properties. Typed xp is an opt-in feature of this SDK which allows strong typing on those consumer-defined properties.
+ 
+For example
+
+```typescript
+interface MyUserXpSchema {
+  age: number;
+  isHighRoller: boolean
+}
+
+var user: User<MyUserXpSchema> = userService.Get<MyUserXpSchema>(addressID);
+
+user.xp.age // strongly typed number
+user.xp.isHighRoller // strongly typed boolean
+```
+
 ### Http Responses
 This SDK takes advantage of the version of the [HTTP service](https://blog.angularindepth.com/the-new-angular-httpclient-api-9e5c85fe3361) introduced in Angular 4.3
 
