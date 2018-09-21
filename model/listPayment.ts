@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { Payment } from './payment';
 
 
-export interface ListPayment {
-    Items?: Array<Payment>;
+export interface ListPayment<PaymentXp = any, PaymentTransactionXp = any> {
+    Items?: Array<Payment<PaymentXp, PaymentTransactionXp>>;
     Meta?: Meta;
 }

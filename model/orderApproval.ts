@@ -8,12 +8,12 @@
 import { User } from './user';
 
 
-export interface OrderApproval {
+export interface OrderApproval<UserXp = any> {
     ApprovalRuleID?: string;
     ApprovingGroupID?: string;
     Status?: string;
     DateCreated?: string;
     DateCompleted?: string;
-    Approver?: User;
+    Approver?: User<UserXp>;
     Comments?: string;
 }

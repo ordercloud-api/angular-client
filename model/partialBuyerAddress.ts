@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialBuyerAddress {
+export interface PartialBuyerAddress<BuyerAddressXp = any> {
     ID?: string;
     Shipping?: boolean;
     Billing?: boolean;
@@ -24,5 +24,5 @@ export interface PartialBuyerAddress {
     Country?: string;
     Phone?: string;
     AddressName?: string;
-    xp?: any;
+    xp?: BuyerAddressXp;
 }

@@ -9,7 +9,7 @@ import { CreditCard } from './creditCard';
 import { Meta } from './meta';
 
 
-export interface ListCreditCard {
-    Items?: Array<CreditCard>;
+export interface ListCreditCard<CreditCardXp = any> {
+    Items?: Array<CreditCard<CreditCardXp>>;
     Meta?: Meta;
 }

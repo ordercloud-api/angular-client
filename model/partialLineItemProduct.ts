@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialLineItemProduct {
+export interface PartialLineItemProduct<ProductXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
@@ -16,5 +16,5 @@ export interface PartialLineItemProduct {
     ShipHeight?: number;
     ShipWidth?: number;
     ShipLength?: number;
-    xp?: any;
+    xp?: ProductXp;
 }

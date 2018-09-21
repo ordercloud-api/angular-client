@@ -9,7 +9,7 @@ import { BuyerCreditCard } from './buyerCreditCard';
 import { Meta } from './meta';
 
 
-export interface ListBuyerCreditCard {
-    Items?: Array<BuyerCreditCard>;
+export interface ListBuyerCreditCard<BuyerCreditCardXp = any> {
+    Items?: Array<BuyerCreditCard<BuyerCreditCardXp>>;
     Meta?: Meta;
 }

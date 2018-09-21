@@ -117,9 +117,9 @@ export class OcPaymentService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(direction: string, orderID: string, payment: Payment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment>;
-    public Create(direction: string, orderID: string, payment: Payment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
-    public Create(direction: string, orderID: string, payment: Payment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
+    public Create<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, payment: Payment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment<PaymentXp, PaymentTransactionXp>>;
+    public Create<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, payment: Payment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
+    public Create<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, payment: Payment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
     public Create(direction: string, orderID: string, payment: Payment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -183,9 +183,9 @@ export class OcPaymentService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment>;
-    public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
-    public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
+    public CreateTransaction<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment<PaymentXp, PaymentTransactionXp>>;
+    public CreateTransaction<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
+    public CreateTransaction<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
     public CreateTransaction(direction: string, orderID: string, paymentID: string, paymentTransaction: PaymentTransaction, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -315,9 +315,9 @@ export class OcPaymentService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(direction: string, orderID: string, paymentID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment>;
-    public Get(direction: string, orderID: string, paymentID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
-    public Get(direction: string, orderID: string, paymentID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
+    public Get<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment<PaymentXp, PaymentTransactionXp>>;
+    public Get<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
+    public Get<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
     public Get(direction: string, orderID: string, paymentID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -381,9 +381,9 @@ export class OcPaymentService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPayment>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPayment>>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPayment>>;
+    public List<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPayment<PaymentXp, PaymentTransactionXp>>;
+    public List<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPayment>>;
+    public List<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPayment>>;
     public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -478,9 +478,9 @@ export class OcPaymentService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(direction: string, orderID: string, paymentID: string, partialPayment: Payment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment>;
-    public Patch(direction: string, orderID: string, paymentID: string, partialPayment: Payment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
-    public Patch(direction: string, orderID: string, paymentID: string, partialPayment: Payment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
+    public Patch<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, partialPayment: Payment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Payment<PaymentXp, PaymentTransactionXp>>;
+    public Patch<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, partialPayment: Payment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Payment>>;
+    public Patch<PaymentXp = any, PaymentTransactionXp = any>(direction: string, orderID: string, paymentID: string, partialPayment: Payment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Payment>>;
     public Patch(direction: string, orderID: string, paymentID: string, partialPayment: Payment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

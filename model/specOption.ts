@@ -7,12 +7,12 @@
  */
 
 
-export interface SpecOption {
+export interface SpecOption<SpecOptionXp = any> {
     ID?: string;
     Value?: string;
     ListOrder?: number;
     IsOpenText?: boolean;
     PriceMarkupType?: string;
     PriceMarkup?: number;
-    xp?: any;
+    xp?: SpecOptionXp;
 }

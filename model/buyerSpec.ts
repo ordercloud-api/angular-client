@@ -8,8 +8,8 @@
 import { SpecOption } from './specOption';
 
 
-export interface BuyerSpec {
-    Options?: Array<SpecOption>;
+export interface BuyerSpec<BuyerSpecXp = any, SpecOptionXp = any> {
+    Options?: Array<SpecOption<SpecOptionXp>>;
     ID?: string;
     ListOrder?: number;
     Name?: string;
@@ -18,5 +18,5 @@ export interface BuyerSpec {
     AllowOpenText?: boolean;
     DefaultOptionID?: string;
     DefinesVariant?: boolean;
-    xp?: any;
+    xp?: BuyerSpecXp;
 }

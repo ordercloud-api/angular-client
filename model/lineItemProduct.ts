@@ -7,7 +7,7 @@
  */
 
 
-export interface LineItemProduct {
+export interface LineItemProduct<ProductXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
@@ -16,5 +16,5 @@ export interface LineItemProduct {
     ShipHeight?: number;
     ShipWidth?: number;
     ShipLength?: number;
-    xp?: any;
+    xp?: ProductXp;
 }

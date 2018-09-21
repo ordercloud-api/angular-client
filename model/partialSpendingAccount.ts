@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialSpendingAccount {
+export interface PartialSpendingAccount<SpendingAccountXp = any> {
     ID?: string;
     Name?: string;
     Balance?: number;
@@ -15,5 +15,5 @@ export interface PartialSpendingAccount {
     RedemptionCode?: string;
     StartDate?: string;
     EndDate?: string;
-    xp?: any;
+    xp?: SpendingAccountXp;
 }

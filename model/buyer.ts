@@ -7,10 +7,10 @@
  */
 
 
-export interface Buyer {
+export interface Buyer<BuyerXp = any> {
     ID?: string;
     Name?: string;
     DefaultCatalogID?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: BuyerXp;
 }

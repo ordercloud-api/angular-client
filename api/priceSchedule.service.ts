@@ -107,9 +107,9 @@ export class OcPriceScheduleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(priceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
-    public Create(priceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
-    public Create(priceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
+    public Create<PriceScheduleXp = any>(priceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule<PriceScheduleXp>>;
+    public Create<PriceScheduleXp = any>(priceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
+    public Create<PriceScheduleXp = any>(priceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
     public Create(priceSchedule: PriceSchedule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -229,9 +229,9 @@ export class OcPriceScheduleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(priceScheduleID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
-    public Get(priceScheduleID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
-    public Get(priceScheduleID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
+    public Get<PriceScheduleXp = any>(priceScheduleID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule<PriceScheduleXp>>;
+    public Get<PriceScheduleXp = any>(priceScheduleID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
+    public Get<PriceScheduleXp = any>(priceScheduleID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
     public Get(priceScheduleID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -287,9 +287,9 @@ export class OcPriceScheduleService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPriceSchedule>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPriceSchedule>>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPriceSchedule>>;
+    public List<PriceScheduleXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPriceSchedule<PriceScheduleXp>>;
+    public List<PriceScheduleXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPriceSchedule>>;
+    public List<PriceScheduleXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPriceSchedule>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -376,9 +376,9 @@ export class OcPriceScheduleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
-    public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
-    public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
+    public Patch<PriceScheduleXp = any>(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule<PriceScheduleXp>>;
+    public Patch<PriceScheduleXp = any>(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
+    public Patch<PriceScheduleXp = any>(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
     public Patch(priceScheduleID: string, partialPriceSchedule: PriceSchedule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -437,9 +437,9 @@ export class OcPriceScheduleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
-    public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
-    public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
+    public Save<PriceScheduleXp = any>(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule<PriceScheduleXp>>;
+    public Save<PriceScheduleXp = any>(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
+    public Save<PriceScheduleXp = any>(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
     public Save(priceScheduleID: string, priceSchedule: PriceSchedule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -498,9 +498,9 @@ export class OcPriceScheduleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SavePriceBreak(priceScheduleID: string, priceBreak: PriceBreak, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule>;
-    public SavePriceBreak(priceScheduleID: string, priceBreak: PriceBreak, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
-    public SavePriceBreak(priceScheduleID: string, priceBreak: PriceBreak, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
+    public SavePriceBreak<PriceScheduleXp = any>(priceScheduleID: string, priceBreak: PriceBreak, options?: { observe?: 'body', reportProgress?: boolean}): Observable<PriceSchedule<PriceScheduleXp>>;
+    public SavePriceBreak<PriceScheduleXp = any>(priceScheduleID: string, priceBreak: PriceBreak, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<PriceSchedule>>;
+    public SavePriceBreak<PriceScheduleXp = any>(priceScheduleID: string, priceBreak: PriceBreak, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<PriceSchedule>>;
     public SavePriceBreak(priceScheduleID: string, priceBreak: PriceBreak, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

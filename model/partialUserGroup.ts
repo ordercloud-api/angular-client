@@ -7,9 +7,9 @@
  */
 
 
-export interface PartialUserGroup {
+export interface PartialUserGroup<UserGroupXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
-    xp?: any;
+    xp?: UserGroupXp;
 }

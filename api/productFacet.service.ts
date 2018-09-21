@@ -106,9 +106,9 @@ export class OcProductFacetService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(productFacet: ProductFacet, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet>;
-    public Create(productFacet: ProductFacet, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
-    public Create(productFacet: ProductFacet, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
+    public Create<ProductFacetXp = any>(productFacet: ProductFacet, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet<ProductFacetXp>>;
+    public Create<ProductFacetXp = any>(productFacet: ProductFacet, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
+    public Create<ProductFacetXp = any>(productFacet: ProductFacet, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
     public Create(productFacet: ProductFacet, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -163,9 +163,9 @@ export class OcProductFacetService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(productFacetID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet>;
-    public Get(productFacetID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
-    public Get(productFacetID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
+    public Get<ProductFacetXp = any>(productFacetID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet<ProductFacetXp>>;
+    public Get<ProductFacetXp = any>(productFacetID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
+    public Get<ProductFacetXp = any>(productFacetID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
     public Get(productFacetID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -221,9 +221,9 @@ export class OcProductFacetService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProductFacet>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProductFacet>>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProductFacet>>;
+    public List<ProductFacetXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProductFacet<ProductFacetXp>>;
+    public List<ProductFacetXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProductFacet>>;
+    public List<ProductFacetXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProductFacet>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -310,9 +310,9 @@ export class OcProductFacetService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(productFacetID: string, partialProductFacet: ProductFacet, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet>;
-    public Patch(productFacetID: string, partialProductFacet: ProductFacet, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
-    public Patch(productFacetID: string, partialProductFacet: ProductFacet, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
+    public Patch<ProductFacetXp = any>(productFacetID: string, partialProductFacet: ProductFacet, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet<ProductFacetXp>>;
+    public Patch<ProductFacetXp = any>(productFacetID: string, partialProductFacet: ProductFacet, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
+    public Patch<ProductFacetXp = any>(productFacetID: string, partialProductFacet: ProductFacet, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
     public Patch(productFacetID: string, partialProductFacet: ProductFacet, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -371,9 +371,9 @@ export class OcProductFacetService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(productFacetID: string, productFacet: ProductFacet, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet>;
-    public Save(productFacetID: string, productFacet: ProductFacet, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
-    public Save(productFacetID: string, productFacet: ProductFacet, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
+    public Save<ProductFacetXp = any>(productFacetID: string, productFacet: ProductFacet, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ProductFacet<ProductFacetXp>>;
+    public Save<ProductFacetXp = any>(productFacetID: string, productFacet: ProductFacet, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ProductFacet>>;
+    public Save<ProductFacetXp = any>(productFacetID: string, productFacet: ProductFacet, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ProductFacet>>;
     public Save(productFacetID: string, productFacet: ProductFacet, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

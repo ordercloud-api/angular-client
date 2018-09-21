@@ -7,7 +7,7 @@
  */
 
 
-export interface BuyerAddress {
+export interface BuyerAddress<BuyerAddressXp = any> {
     ID?: string;
     Shipping?: boolean;
     Billing?: boolean;
@@ -24,5 +24,5 @@ export interface BuyerAddress {
     Country?: string;
     Phone?: string;
     AddressName?: string;
-    xp?: any;
+    xp?: BuyerAddressXp;
 }

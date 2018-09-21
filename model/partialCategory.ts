@@ -7,13 +7,13 @@
  */
 
 
-export interface PartialCategory {
-    ID?: string;
+export interface PartialCategory<CategoryXp = any> {
     Name?: string;
+    ID?: string;
     Description?: string;
     ListOrder?: number;
     Active?: boolean;
     ParentID?: string;
     ChildCount?: number;
-    xp?: any;
+    xp?: CategoryXp;
 }

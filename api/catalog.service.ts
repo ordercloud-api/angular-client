@@ -110,9 +110,9 @@ export class OcCatalogService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(catalog: Catalog, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog>;
-    public Create(catalog: Catalog, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
-    public Create(catalog: Catalog, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
+    public Create<CatalogXp = any>(catalog: Catalog, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog<CatalogXp>>;
+    public Create<CatalogXp = any>(catalog: Catalog, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
+    public Create<CatalogXp = any>(catalog: Catalog, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
     public Create(catalog: Catalog, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -288,9 +288,9 @@ export class OcCatalogService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(catalogID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog>;
-    public Get(catalogID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
-    public Get(catalogID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
+    public Get<CatalogXp = any>(catalogID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog<CatalogXp>>;
+    public Get<CatalogXp = any>(catalogID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
+    public Get<CatalogXp = any>(catalogID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
     public Get(catalogID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -346,9 +346,9 @@ export class OcCatalogService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCatalog>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCatalog>>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCatalog>>;
+    public List<CatalogXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCatalog<CatalogXp>>;
+    public List<CatalogXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCatalog>>;
+    public List<CatalogXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCatalog>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -595,9 +595,9 @@ export class OcCatalogService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(catalogID: string, partialCatalog: Catalog, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog>;
-    public Patch(catalogID: string, partialCatalog: Catalog, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
-    public Patch(catalogID: string, partialCatalog: Catalog, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
+    public Patch<CatalogXp = any>(catalogID: string, partialCatalog: Catalog, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog<CatalogXp>>;
+    public Patch<CatalogXp = any>(catalogID: string, partialCatalog: Catalog, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
+    public Patch<CatalogXp = any>(catalogID: string, partialCatalog: Catalog, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
     public Patch(catalogID: string, partialCatalog: Catalog, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -656,9 +656,9 @@ export class OcCatalogService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(catalogID: string, catalog: Catalog, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog>;
-    public Save(catalogID: string, catalog: Catalog, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
-    public Save(catalogID: string, catalog: Catalog, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
+    public Save<CatalogXp = any>(catalogID: string, catalog: Catalog, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog<CatalogXp>>;
+    public Save<CatalogXp = any>(catalogID: string, catalog: Catalog, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
+    public Save<CatalogXp = any>(catalogID: string, catalog: Catalog, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
     public Save(catalogID: string, catalog: Catalog, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

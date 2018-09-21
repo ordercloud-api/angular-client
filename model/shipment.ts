@@ -8,7 +8,7 @@
 import { Address } from './address';
 
 
-export interface Shipment {
+export interface Shipment<ShipmentXp = any, AddressXp = any> {
     ID?: string;
     BuyerID?: string;
     Shipper?: string;
@@ -16,10 +16,10 @@ export interface Shipment {
     DateDelivered?: string;
     TrackingNumber?: string;
     Cost?: number;
-    xp?: any;
+    xp?: ShipmentXp;
     Account?: string;
     FromAddressID?: string;
     ToAddressID?: string;
-    FromAddress?: Address;
-    ToAddress?: Address;
+    FromAddress?: Address<AddressXp>;
+    ToAddress?: Address<AddressXp>;
 }

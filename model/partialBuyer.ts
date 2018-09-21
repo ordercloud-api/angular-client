@@ -7,10 +7,10 @@
  */
 
 
-export interface PartialBuyer {
+export interface PartialBuyer<BuyerXp = any> {
     ID?: string;
     Name?: string;
     DefaultCatalogID?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: BuyerXp;
 }

@@ -7,11 +7,11 @@
  */
 
 
-export interface ProductFacet {
+export interface ProductFacet<ProductFacetXp = any> {
     ID?: string;
     Name?: string;
     XpPath?: string;
     ListOrder?: number;
     MinCount?: number;
-    xp?: any;
+    xp?: ProductFacetXp;
 }

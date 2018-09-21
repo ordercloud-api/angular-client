@@ -108,9 +108,9 @@ export class OcPromotionService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(promotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
-    public Create(promotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
-    public Create(promotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
+    public Create<PromotionXp = any>(promotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion<PromotionXp>>;
+    public Create<PromotionXp = any>(promotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
+    public Create<PromotionXp = any>(promotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
     public Create(promotion: Promotion, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -245,9 +245,9 @@ export class OcPromotionService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(promotionID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
-    public Get(promotionID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
-    public Get(promotionID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
+    public Get<PromotionXp = any>(promotionID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion<PromotionXp>>;
+    public Get<PromotionXp = any>(promotionID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
+    public Get<PromotionXp = any>(promotionID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
     public Get(promotionID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -303,9 +303,9 @@ export class OcPromotionService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
+    public List<PromotionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion<PromotionXp>>;
+    public List<PromotionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
+    public List<PromotionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -493,9 +493,9 @@ export class OcPromotionService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(promotionID: string, partialPromotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
-    public Patch(promotionID: string, partialPromotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
-    public Patch(promotionID: string, partialPromotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
+    public Patch<PromotionXp = any>(promotionID: string, partialPromotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion<PromotionXp>>;
+    public Patch<PromotionXp = any>(promotionID: string, partialPromotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
+    public Patch<PromotionXp = any>(promotionID: string, partialPromotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
     public Patch(promotionID: string, partialPromotion: Promotion, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -554,9 +554,9 @@ export class OcPromotionService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(promotionID: string, promotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
-    public Save(promotionID: string, promotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
-    public Save(promotionID: string, promotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
+    public Save<PromotionXp = any>(promotionID: string, promotion: Promotion, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion<PromotionXp>>;
+    public Save<PromotionXp = any>(promotionID: string, promotion: Promotion, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
+    public Save<PromotionXp = any>(promotionID: string, promotion: Promotion, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
     public Save(promotionID: string, promotion: Promotion, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

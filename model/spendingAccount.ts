@@ -7,7 +7,7 @@
  */
 
 
-export interface SpendingAccount {
+export interface SpendingAccount<SpendingAccountXp = any> {
     ID?: string;
     Name?: string;
     Balance?: number;
@@ -15,5 +15,5 @@ export interface SpendingAccount {
     RedemptionCode?: string;
     StartDate?: string;
     EndDate?: string;
-    xp?: any;
+    xp?: SpendingAccountXp;
 }

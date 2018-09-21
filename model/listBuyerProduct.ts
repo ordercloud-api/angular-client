@@ -9,7 +9,7 @@ import { BuyerProduct } from './buyerProduct';
 import { MetaWithFacets } from './metaWithFacets';
 
 
-export interface ListBuyerProduct {
-    Items?: Array<BuyerProduct>;
-    Meta?: MetaWithFacets;
+export interface ListBuyerProduct<BuyerProductXp = any, PriceScheduleXp = any, ListFacetXp = any> {
+    Items?: Array<BuyerProduct<BuyerProductXp, PriceScheduleXp>>;
+    Meta?: MetaWithFacets<ListFacetXp>;
 }

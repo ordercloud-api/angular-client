@@ -8,7 +8,7 @@
 import { MeBuyer } from './meBuyer';
 
 
-export interface MeUser {
+export interface MeUser<MeUserXp = any> {
     Buyer?: MeBuyer;
     ID?: string;
     Username?: string;
@@ -19,6 +19,6 @@ export interface MeUser {
     Phone?: string;
     TermsAccepted?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: MeUserXp;
     AvailableRoles?: Array<string>;
 }

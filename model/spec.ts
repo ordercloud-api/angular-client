@@ -7,7 +7,7 @@
  */
 
 
-export interface Spec {
+export interface Spec<SpecXp = any> {
     OptionCount?: number;
     ID?: string;
     ListOrder?: number;
@@ -17,5 +17,5 @@ export interface Spec {
     AllowOpenText?: boolean;
     DefaultOptionID?: string;
     DefinesVariant?: boolean;
-    xp?: any;
+    xp?: SpecXp;
 }

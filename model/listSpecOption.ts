@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { SpecOption } from './specOption';
 
 
-export interface ListSpecOption {
-    Items?: Array<SpecOption>;
+export interface ListSpecOption<SpecOptionXp = any> {
+    Items?: Array<SpecOption<SpecOptionXp>>;
     Meta?: Meta;
 }

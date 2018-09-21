@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { Shipment } from './shipment';
 
 
-export interface ListShipment {
-    Items?: Array<Shipment>;
+export interface ListShipment<ShipmentXp = any, AddressXp = any> {
+    Items?: Array<Shipment<ShipmentXp, AddressXp>>;
     Meta?: Meta;
 }

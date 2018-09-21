@@ -9,7 +9,7 @@ import { Category } from './category';
 import { Meta } from './meta';
 
 
-export interface ListCategory {
-    Items?: Array<Category>;
+export interface ListCategory<CategoryXp = any> {
+    Items?: Array<Category<CategoryXp>>;
     Meta?: Meta;
 }

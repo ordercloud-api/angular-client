@@ -7,11 +7,11 @@
  */
 
 
-export interface Catalog {
+export interface Catalog<CatalogXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
     Active?: boolean;
     CategoryCount?: number;
-    xp?: any;
+    xp?: CatalogXp;
 }

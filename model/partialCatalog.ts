@@ -7,11 +7,11 @@
  */
 
 
-export interface PartialCatalog {
+export interface PartialCatalog<CatalogXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
     Active?: boolean;
     CategoryCount?: number;
-    xp?: any;
+    xp?: CatalogXp;
 }

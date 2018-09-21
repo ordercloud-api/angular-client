@@ -7,9 +7,9 @@
  */
 
 
-export interface UserGroup {
+export interface UserGroup<UserGroupXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
-    xp?: any;
+    xp?: UserGroupXp;
 }

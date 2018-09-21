@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { ProductFacet } from './productFacet';
 
 
-export interface ListProductFacet {
-    Items?: Array<ProductFacet>;
+export interface ListProductFacet<ProductFacetXp = any> {
+    Items?: Array<ProductFacet<ProductFacetXp>>;
     Meta?: Meta;
 }

@@ -8,7 +8,7 @@
 import { PaymentTransaction } from './paymentTransaction';
 
 
-export interface PartialPayment {
+export interface PartialPayment<PaymentXp = any, PaymentTransactionXp = any> {
     ID?: string;
     Type?: string;
     DateCreated?: string;
@@ -17,6 +17,6 @@ export interface PartialPayment {
     Description?: string;
     Amount?: number;
     Accepted?: boolean;
-    xp?: any;
-    Transactions?: Array<PaymentTransaction>;
+    xp?: PaymentXp;
+    Transactions?: Array<PaymentTransaction<PaymentTransactionXp>>;
 }

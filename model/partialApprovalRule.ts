@@ -7,11 +7,11 @@
  */
 
 
-export interface PartialApprovalRule {
+export interface PartialApprovalRule<ApprovalRuleXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
     ApprovingGroupID?: string;
     RuleExpression?: string;
-    xp?: any;
+    xp?: ApprovalRuleXp;
 }

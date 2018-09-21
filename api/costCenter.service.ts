@@ -113,9 +113,9 @@ export class OcCostCenterService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(buyerID: string, costCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
-    public Create(buyerID: string, costCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
-    public Create(buyerID: string, costCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
+    public Create<CostCenterXp = any>(buyerID: string, costCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter<CostCenterXp>>;
+    public Create<CostCenterXp = any>(buyerID: string, costCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
+    public Create<CostCenterXp = any>(buyerID: string, costCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
     public Create(buyerID: string, costCenter: CostCenter, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -248,9 +248,9 @@ export class OcCostCenterService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(buyerID: string, costCenterID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
-    public Get(buyerID: string, costCenterID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
-    public Get(buyerID: string, costCenterID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
+    public Get<CostCenterXp = any>(buyerID: string, costCenterID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter<CostCenterXp>>;
+    public Get<CostCenterXp = any>(buyerID: string, costCenterID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
+    public Get<CostCenterXp = any>(buyerID: string, costCenterID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
     public Get(buyerID: string, costCenterID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -310,9 +310,9 @@ export class OcCostCenterService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
+    public List<CostCenterXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter<CostCenterXp>>;
+    public List<CostCenterXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
+    public List<CostCenterXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
     public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -501,9 +501,9 @@ export class OcCostCenterService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
-    public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
-    public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
+    public Patch<CostCenterXp = any>(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter<CostCenterXp>>;
+    public Patch<CostCenterXp = any>(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
+    public Patch<CostCenterXp = any>(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
     public Patch(buyerID: string, costCenterID: string, partialCostCenter: CostCenter, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -566,9 +566,9 @@ export class OcCostCenterService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter>;
-    public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
-    public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
+    public Save<CostCenterXp = any>(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CostCenter<CostCenterXp>>;
+    public Save<CostCenterXp = any>(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CostCenter>>;
+    public Save<CostCenterXp = any>(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CostCenter>>;
     public Save(buyerID: string, costCenterID: string, costCenter: CostCenter, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

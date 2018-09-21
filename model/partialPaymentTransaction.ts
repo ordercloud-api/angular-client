@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialPaymentTransaction {
+export interface PartialPaymentTransaction<PaymentTransactionXp = any> {
     ID?: string;
     Type?: string;
     DateExecuted?: string;
@@ -15,5 +15,5 @@ export interface PartialPaymentTransaction {
     Succeeded?: boolean;
     ResultCode?: string;
     ResultMessage?: string;
-    xp?: any;
+    xp?: PaymentTransactionXp;
 }

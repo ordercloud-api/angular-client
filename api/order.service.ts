@@ -120,9 +120,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public AddPromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderPromotion>;
-    public AddPromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderPromotion>>;
-    public AddPromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderPromotion>>;
+    public AddPromotion<OrderPromotionXp = any>(direction: string, orderID: string, promoCode: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderPromotion<OrderPromotionXp>>;
+    public AddPromotion<OrderPromotionXp = any>(direction: string, orderID: string, promoCode: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderPromotion>>;
+    public AddPromotion<OrderPromotionXp = any>(direction: string, orderID: string, promoCode: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderPromotion>>;
     public AddPromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -181,9 +181,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Approve<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Approve<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Approve<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Approve(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -245,9 +245,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Cancel(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Cancel(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Cancel(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Cancel<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Cancel<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Cancel<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Cancel(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -302,9 +302,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(direction: string, order: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Create(direction: string, order: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Create(direction: string, order: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Create<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, order: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Create<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, order: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Create<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, order: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Create(direction: string, order: Order, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -364,9 +364,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Decline<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Decline<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Decline<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Decline(direction: string, orderID: string, orderApprovalInfo: OrderApprovalInfo, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -428,9 +428,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Get(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Get(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Get<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Get<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Get<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Get(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -494,9 +494,9 @@ export class OcOrderService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
-    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
-    public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
+    public List<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder<OrderXp, UserXp, AddressXp>>;
+    public List<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
+    public List<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
     public List(direction: string, options?: { buyerID?: string, supplierID?: string, from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -617,9 +617,9 @@ export class OcOrderService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderApproval>;
-    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderApproval>>;
-    public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderApproval>>;
+    public ListApprovals<UserXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderApproval<UserXp>>;
+    public ListApprovals<UserXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderApproval>>;
+    public ListApprovals<UserXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderApproval>>;
     public ListApprovals(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -719,9 +719,9 @@ export class OcOrderService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
-    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
-    public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
+    public ListEligibleApprovers<UserXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser<UserXp>>;
+    public ListEligibleApprovers<UserXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
+    public ListEligibleApprovers<UserXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
     public ListEligibleApprovers(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -821,9 +821,9 @@ export class OcOrderService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderPromotion>;
-    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderPromotion>>;
-    public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderPromotion>>;
+    public ListPromotions<OrderPromotionXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrderPromotion<OrderPromotionXp>>;
+    public ListPromotions<OrderPromotionXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrderPromotion>>;
+    public ListPromotions<OrderPromotionXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrderPromotion>>;
     public ListPromotions(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -917,9 +917,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(direction: string, orderID: string, partialOrder: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Patch(direction: string, orderID: string, partialOrder: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Patch(direction: string, orderID: string, partialOrder: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Patch<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialOrder: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Patch<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialOrder: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Patch<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialOrder: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Patch(direction: string, orderID: string, partialOrder: Order, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -982,9 +982,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public PatchBillingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public PatchBillingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public PatchBillingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public PatchBillingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1047,9 +1047,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public PatchFromUser<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialUser: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public PatchFromUser<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialUser: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public PatchFromUser<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialUser: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public PatchFromUser(direction: string, orderID: string, partialUser: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1112,9 +1112,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public PatchShippingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public PatchShippingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public PatchShippingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public PatchShippingAddress(direction: string, orderID: string, partialAddress: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1177,9 +1177,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public RemovePromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public RemovePromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public RemovePromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public RemovePromotion<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, promoCode: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public RemovePromotion<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, promoCode: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public RemovePromotion<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, promoCode: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public RemovePromotion(direction: string, orderID: string, promoCode: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1237,9 +1237,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(direction: string, orderID: string, order: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Save(direction: string, orderID: string, order: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Save(direction: string, orderID: string, order: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Save<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, order: Order, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Save<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, order: Order, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Save<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, order: Order, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Save(direction: string, orderID: string, order: Order, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1302,9 +1302,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SetBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public SetBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public SetBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public SetBillingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public SetBillingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public SetBillingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public SetBillingAddress(direction: string, orderID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1367,9 +1367,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SetShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public SetShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public SetShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public SetShippingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public SetShippingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public SetShippingAddress<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public SetShippingAddress(direction: string, orderID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1432,9 +1432,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Ship<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Ship<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Ship<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, shipment: Shipment, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Ship(direction: string, orderID: string, shipment: Shipment, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1496,9 +1496,9 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Submit(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order>;
-    public Submit(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
-    public Submit(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Submit<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Submit<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Submit<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
     public Submit(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

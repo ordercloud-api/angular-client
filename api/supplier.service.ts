@@ -106,9 +106,9 @@ export class OcSupplierService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(supplier: Supplier, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier>;
-    public Create(supplier: Supplier, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
-    public Create(supplier: Supplier, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
+    public Create<SupplierXp = any>(supplier: Supplier, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier<SupplierXp>>;
+    public Create<SupplierXp = any>(supplier: Supplier, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
+    public Create<SupplierXp = any>(supplier: Supplier, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
     public Create(supplier: Supplier, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -163,9 +163,9 @@ export class OcSupplierService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(supplierID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier>;
-    public Get(supplierID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
-    public Get(supplierID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
+    public Get<SupplierXp = any>(supplierID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier<SupplierXp>>;
+    public Get<SupplierXp = any>(supplierID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
+    public Get<SupplierXp = any>(supplierID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
     public Get(supplierID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -221,9 +221,9 @@ export class OcSupplierService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSupplier>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSupplier>>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSupplier>>;
+    public List<SupplierXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSupplier<SupplierXp>>;
+    public List<SupplierXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSupplier>>;
+    public List<SupplierXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSupplier>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -310,9 +310,9 @@ export class OcSupplierService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(supplierID: string, partialSupplier: Supplier, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier>;
-    public Patch(supplierID: string, partialSupplier: Supplier, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
-    public Patch(supplierID: string, partialSupplier: Supplier, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
+    public Patch<SupplierXp = any>(supplierID: string, partialSupplier: Supplier, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier<SupplierXp>>;
+    public Patch<SupplierXp = any>(supplierID: string, partialSupplier: Supplier, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
+    public Patch<SupplierXp = any>(supplierID: string, partialSupplier: Supplier, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
     public Patch(supplierID: string, partialSupplier: Supplier, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -371,9 +371,9 @@ export class OcSupplierService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(supplierID: string, supplier: Supplier, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier>;
-    public Save(supplierID: string, supplier: Supplier, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
-    public Save(supplierID: string, supplier: Supplier, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
+    public Save<SupplierXp = any>(supplierID: string, supplier: Supplier, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Supplier<SupplierXp>>;
+    public Save<SupplierXp = any>(supplierID: string, supplier: Supplier, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Supplier>>;
+    public Save<SupplierXp = any>(supplierID: string, supplier: Supplier, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Supplier>>;
     public Save(supplierID: string, supplier: Supplier, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

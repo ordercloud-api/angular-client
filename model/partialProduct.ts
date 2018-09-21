@@ -8,7 +8,7 @@
 import { Inventory } from './inventory';
 
 
-export interface PartialProduct {
+export interface PartialProduct<ProductXp = any> {
     DefaultPriceScheduleID?: string;
     ID?: string;
     Name?: string;
@@ -20,7 +20,7 @@ export interface PartialProduct {
     ShipLength?: number;
     Active?: boolean;
     SpecCount?: number;
-    xp?: any;
+    xp?: ProductXp;
     VariantCount?: number;
     ShipFromAddressID?: string;
     Inventory?: Inventory;

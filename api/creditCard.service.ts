@@ -113,9 +113,9 @@ export class OcCreditCardService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(buyerID: string, creditCard: CreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard>;
-    public Create(buyerID: string, creditCard: CreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
-    public Create(buyerID: string, creditCard: CreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
+    public Create<CreditCardXp = any>(buyerID: string, creditCard: CreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard<CreditCardXp>>;
+    public Create<CreditCardXp = any>(buyerID: string, creditCard: CreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
+    public Create<CreditCardXp = any>(buyerID: string, creditCard: CreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
     public Create(buyerID: string, creditCard: CreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -248,9 +248,9 @@ export class OcCreditCardService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(buyerID: string, creditCardID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard>;
-    public Get(buyerID: string, creditCardID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
-    public Get(buyerID: string, creditCardID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
+    public Get<CreditCardXp = any>(buyerID: string, creditCardID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard<CreditCardXp>>;
+    public Get<CreditCardXp = any>(buyerID: string, creditCardID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
+    public Get<CreditCardXp = any>(buyerID: string, creditCardID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
     public Get(buyerID: string, creditCardID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -310,9 +310,9 @@ export class OcCreditCardService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCreditCard>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCreditCard>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCreditCard>>;
+    public List<CreditCardXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCreditCard<CreditCardXp>>;
+    public List<CreditCardXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCreditCard>>;
+    public List<CreditCardXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCreditCard>>;
     public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -501,9 +501,9 @@ export class OcCreditCardService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, creditCardID: string, partialCreditCard: CreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard>;
-    public Patch(buyerID: string, creditCardID: string, partialCreditCard: CreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
-    public Patch(buyerID: string, creditCardID: string, partialCreditCard: CreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
+    public Patch<CreditCardXp = any>(buyerID: string, creditCardID: string, partialCreditCard: CreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard<CreditCardXp>>;
+    public Patch<CreditCardXp = any>(buyerID: string, creditCardID: string, partialCreditCard: CreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
+    public Patch<CreditCardXp = any>(buyerID: string, creditCardID: string, partialCreditCard: CreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
     public Patch(buyerID: string, creditCardID: string, partialCreditCard: CreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -566,9 +566,9 @@ export class OcCreditCardService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(buyerID: string, creditCardID: string, creditCard: CreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard>;
-    public Save(buyerID: string, creditCardID: string, creditCard: CreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
-    public Save(buyerID: string, creditCardID: string, creditCard: CreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
+    public Save<CreditCardXp = any>(buyerID: string, creditCardID: string, creditCard: CreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<CreditCard<CreditCardXp>>;
+    public Save<CreditCardXp = any>(buyerID: string, creditCardID: string, creditCard: CreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<CreditCard>>;
+    public Save<CreditCardXp = any>(buyerID: string, creditCardID: string, creditCard: CreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<CreditCard>>;
     public Save(buyerID: string, creditCardID: string, creditCard: CreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

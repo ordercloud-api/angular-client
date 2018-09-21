@@ -111,9 +111,9 @@ export class OcApprovalRuleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(buyerID: string, approvalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule>;
-    public Create(buyerID: string, approvalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
-    public Create(buyerID: string, approvalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
+    public Create<ApprovalRuleXp = any>(buyerID: string, approvalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule<ApprovalRuleXp>>;
+    public Create<ApprovalRuleXp = any>(buyerID: string, approvalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
+    public Create<ApprovalRuleXp = any>(buyerID: string, approvalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
     public Create(buyerID: string, approvalRule: ApprovalRule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -172,9 +172,9 @@ export class OcApprovalRuleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(buyerID: string, approvalRuleID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule>;
-    public Get(buyerID: string, approvalRuleID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
-    public Get(buyerID: string, approvalRuleID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
+    public Get<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule<ApprovalRuleXp>>;
+    public Get<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
+    public Get<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
     public Get(buyerID: string, approvalRuleID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -234,9 +234,9 @@ export class OcApprovalRuleService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListApprovalRule>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListApprovalRule>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListApprovalRule>>;
+    public List<ApprovalRuleXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListApprovalRule<ApprovalRuleXp>>;
+    public List<ApprovalRuleXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListApprovalRule>>;
+    public List<ApprovalRuleXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListApprovalRule>>;
     public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -327,9 +327,9 @@ export class OcApprovalRuleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, approvalRuleID: string, partialApprovalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule>;
-    public Patch(buyerID: string, approvalRuleID: string, partialApprovalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
-    public Patch(buyerID: string, approvalRuleID: string, partialApprovalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
+    public Patch<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, partialApprovalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule<ApprovalRuleXp>>;
+    public Patch<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, partialApprovalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
+    public Patch<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, partialApprovalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
     public Patch(buyerID: string, approvalRuleID: string, partialApprovalRule: ApprovalRule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -392,9 +392,9 @@ export class OcApprovalRuleService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule>;
-    public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
-    public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
+    public Save<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ApprovalRule<ApprovalRuleXp>>;
+    public Save<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ApprovalRule>>;
+    public Save<ApprovalRuleXp = any>(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ApprovalRule>>;
     public Save(buyerID: string, approvalRuleID: string, approvalRule: ApprovalRule, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

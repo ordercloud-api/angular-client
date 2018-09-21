@@ -9,7 +9,7 @@ import { ApprovalRule } from './approvalRule';
 import { Meta } from './meta';
 
 
-export interface ListApprovalRule {
-    Items?: Array<ApprovalRule>;
+export interface ListApprovalRule<ApprovalRuleXp = any> {
+    Items?: Array<ApprovalRule<ApprovalRuleXp>>;
     Meta?: Meta;
 }

@@ -8,8 +8,8 @@
 import { ListFacet } from './listFacet';
 
 
-export interface MetaWithFacets {
-    Facets?: Array<ListFacet>;
+export interface MetaWithFacets<ListFacetXp = any> {
+    Facets?: Array<ListFacet<ListFacetXp>>;
     Page?: number;
     PageSize?: number;
     TotalCount?: number;
