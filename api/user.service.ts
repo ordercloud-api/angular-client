@@ -113,9 +113,9 @@ export class OcUserService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(buyerID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Create(buyerID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Create(buyerID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Create<UserXp = any>(buyerID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User<UserXp>>;
+    public Create<UserXp = any>(buyerID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Create<UserXp = any>(buyerID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
     public Create(buyerID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -174,9 +174,9 @@ export class OcUserService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(buyerID: string, userID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Get(buyerID: string, userID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Get(buyerID: string, userID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Get<UserXp = any>(buyerID: string, userID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User<UserXp>>;
+    public Get<UserXp = any>(buyerID: string, userID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Get<UserXp = any>(buyerID: string, userID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
     public Get(buyerID: string, userID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -302,9 +302,9 @@ export class OcUserService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser>;
-    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
-    public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
+    public List<UserXp = any>(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUser<UserXp>>;
+    public List<UserXp = any>(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUser>>;
+    public List<UserXp = any>(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUser>>;
     public List(buyerID: string, options?: { userGroupID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -402,9 +402,9 @@ export class OcUserService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Move<UserXp = any>(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'body', reportProgress?: boolean}): Observable<User<UserXp>>;
+    public Move<UserXp = any>(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Move<UserXp = any>(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
     public Move(buyerID: string, userID: string, newBuyerID: string, orders: string, options?: { orders?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -475,9 +475,9 @@ export class OcUserService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Patch<UserXp = any>(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User<UserXp>>;
+    public Patch<UserXp = any>(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Patch<UserXp = any>(buyerID: string, userID: string, partialUser: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
     public Patch(buyerID: string, userID: string, partialUser: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -540,9 +540,9 @@ export class OcUserService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(buyerID: string, userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User>;
-    public Save(buyerID: string, userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
-    public Save(buyerID: string, userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
+    public Save<UserXp = any>(buyerID: string, userID: string, user: User, options?: { observe?: 'body', reportProgress?: boolean}): Observable<User<UserXp>>;
+    public Save<UserXp = any>(buyerID: string, userID: string, user: User, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<User>>;
+    public Save<UserXp = any>(buyerID: string, userID: string, user: User, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<User>>;
     public Save(buyerID: string, userID: string, user: User, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

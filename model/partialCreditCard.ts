@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialCreditCard {
+export interface PartialCreditCard<CreditCardXp = any> {
     ID?: string;
     Token?: string;
     DateCreated?: string;
@@ -15,5 +15,5 @@ export interface PartialCreditCard {
     PartialAccountNumber?: string;
     CardholderName?: string;
     ExpirationDate?: string;
-    xp?: any;
+    xp?: CreditCardXp;
 }

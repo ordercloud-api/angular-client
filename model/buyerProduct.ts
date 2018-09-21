@@ -9,8 +9,8 @@ import { Inventory } from './inventory';
 import { PriceSchedule } from './priceSchedule';
 
 
-export interface BuyerProduct {
-    PriceSchedule?: PriceSchedule;
+export interface BuyerProduct<BuyerProductXp = any, PriceScheduleXp = any> {
+    PriceSchedule?: PriceSchedule<PriceScheduleXp>;
     ID?: string;
     Name?: string;
     Description?: string;
@@ -21,7 +21,7 @@ export interface BuyerProduct {
     ShipLength?: number;
     Active?: boolean;
     SpecCount?: number;
-    xp?: any;
+    xp?: BuyerProductXp;
     VariantCount?: number;
     ShipFromAddressID?: string;
     Inventory?: Inventory;

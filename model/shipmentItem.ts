@@ -9,14 +9,14 @@ import { LineItemProduct } from './lineItemProduct';
 import { LineItemSpec } from './lineItemSpec';
 
 
-export interface ShipmentItem {
+export interface ShipmentItem<ShipmentItemXp = any, ProductXp = any> {
     OrderID?: string;
     LineItemID?: string;
     QuantityShipped?: number;
     UnitPrice?: number;
     CostCenter?: string;
     DateNeeded?: string;
-    Product?: LineItemProduct;
+    Product?: LineItemProduct<ProductXp>;
     Specs?: Array<LineItemSpec>;
-    xp?: any;
+    xp?: ShipmentItemXp;
 }

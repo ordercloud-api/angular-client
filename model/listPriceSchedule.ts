@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { PriceSchedule } from './priceSchedule';
 
 
-export interface ListPriceSchedule {
-    Items?: Array<PriceSchedule>;
+export interface ListPriceSchedule<PriceScheduleXp = any> {
+    Items?: Array<PriceSchedule<PriceScheduleXp>>;
     Meta?: Meta;
 }

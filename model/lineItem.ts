@@ -10,7 +10,7 @@ import { LineItemProduct } from './lineItemProduct';
 import { LineItemSpec } from './lineItemSpec';
 
 
-export interface LineItem {
+export interface LineItem<LineItemXp = any, ProductXp = any, AddressXp = any> {
     ID?: string;
     ProductID?: string;
     Quantity?: number;
@@ -23,9 +23,9 @@ export interface LineItem {
     ShippingAccount?: string;
     ShippingAddressID?: string;
     ShipFromAddressID?: string;
-    Product?: LineItemProduct;
-    ShippingAddress?: Address;
-    ShipFromAddress?: Address;
+    Product?: LineItemProduct<ProductXp>;
+    ShippingAddress?: Address<AddressXp>;
+    ShipFromAddress?: Address<AddressXp>;
     Specs?: Array<LineItemSpec>;
-    xp?: any;
+    xp?: LineItemXp;
 }

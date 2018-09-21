@@ -7,7 +7,7 @@
  */
 
 
-export interface OrderPromotion {
+export interface OrderPromotion<OrderPromotionXp = any> {
     Amount?: number;
     ID?: string;
     Code?: string;
@@ -22,5 +22,5 @@ export interface OrderPromotion {
     EligibleExpression?: string;
     ValueExpression?: string;
     CanCombine?: boolean;
-    xp?: any;
+    xp?: OrderPromotionXp;
 }

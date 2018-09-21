@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialAddress {
+export interface PartialAddress<AddressXp = any> {
     ID?: string;
     DateCreated?: string;
     CompanyName?: string;
@@ -21,5 +21,5 @@ export interface PartialAddress {
     Country?: string;
     Phone?: string;
     AddressName?: string;
-    xp?: any;
+    xp?: AddressXp;
 }

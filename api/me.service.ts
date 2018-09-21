@@ -76,9 +76,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress>;
-    public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
-    public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
+    public CreateAddress<BuyerAddressXp = any>(buyerAddress: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress<BuyerAddressXp>>;
+    public CreateAddress<BuyerAddressXp = any>(buyerAddress: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
+    public CreateAddress<BuyerAddressXp = any>(buyerAddress: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
     public CreateAddress(buyerAddress: BuyerAddress, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -133,9 +133,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard>;
-    public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
-    public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
+    public CreateCreditCard<BuyerCreditCardXp = any>(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard<BuyerCreditCardXp>>;
+    public CreateCreditCard<BuyerCreditCardXp = any>(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
+    public CreateCreditCard<BuyerCreditCardXp = any>(buyerCreditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
     public CreateCreditCard(buyerCreditCard: BuyerCreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -293,9 +293,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser>;
-    public Get(options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
-    public Get(options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
+    public Get<MeUserXp = any>(options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser<MeUserXp>>;
+    public Get<MeUserXp = any>(options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
+    public Get<MeUserXp = any>(options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
     public Get(options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -342,9 +342,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetAddress(addressID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress>;
-    public GetAddress(addressID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
-    public GetAddress(addressID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
+    public GetAddress<BuyerAddressXp = any>(addressID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress<BuyerAddressXp>>;
+    public GetAddress<BuyerAddressXp = any>(addressID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
+    public GetAddress<BuyerAddressXp = any>(addressID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
     public GetAddress(addressID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -394,9 +394,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetCatalog(catalogID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog>;
-    public GetCatalog(catalogID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
-    public GetCatalog(catalogID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
+    public GetCatalog<CatalogXp = any>(catalogID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Catalog<CatalogXp>>;
+    public GetCatalog<CatalogXp = any>(catalogID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Catalog>>;
+    public GetCatalog<CatalogXp = any>(catalogID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Catalog>>;
     public GetCatalog(catalogID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -447,9 +447,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'body', reportProgress?: boolean}): Observable<Category>;
-    public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
-    public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public GetCategory<CategoryXp = any>(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'body', reportProgress?: boolean}): Observable<Category<CategoryXp>>;
+    public GetCategory<CategoryXp = any>(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public GetCategory<CategoryXp = any>(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
     public GetCategory(categoryID: string, catalogID: string, options?: { catalogID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -511,9 +511,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetCreditCard(creditcardID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard>;
-    public GetCreditCard(creditcardID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
-    public GetCreditCard(creditcardID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
+    public GetCreditCard<BuyerCreditCardXp = any>(creditcardID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard<BuyerCreditCardXp>>;
+    public GetCreditCard<BuyerCreditCardXp = any>(creditcardID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
+    public GetCreditCard<BuyerCreditCardXp = any>(creditcardID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
     public GetCreditCard(creditcardID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -563,9 +563,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetProduct(productID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerProduct>;
-    public GetProduct(productID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerProduct>>;
-    public GetProduct(productID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerProduct>>;
+    public GetProduct<BuyerProductXp = any, PriceScheduleXp = any>(productID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerProduct<BuyerProductXp, PriceScheduleXp>>;
+    public GetProduct<BuyerProductXp = any, PriceScheduleXp = any>(productID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerProduct>>;
+    public GetProduct<BuyerProductXp = any, PriceScheduleXp = any>(productID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerProduct>>;
     public GetProduct(productID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -615,9 +615,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetPromotion(promotionID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion>;
-    public GetPromotion(promotionID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
-    public GetPromotion(promotionID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
+    public GetPromotion<PromotionXp = any>(promotionID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Promotion<PromotionXp>>;
+    public GetPromotion<PromotionXp = any>(promotionID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Promotion>>;
+    public GetPromotion<PromotionXp = any>(promotionID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Promotion>>;
     public GetPromotion(promotionID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -667,9 +667,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetShipment(shipmentID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Shipment>;
-    public GetShipment(shipmentID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Shipment>>;
-    public GetShipment(shipmentID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Shipment>>;
+    public GetShipment<ShipmentXp = any, AddressXp = any>(shipmentID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Shipment<ShipmentXp, AddressXp>>;
+    public GetShipment<ShipmentXp = any, AddressXp = any>(shipmentID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Shipment>>;
+    public GetShipment<ShipmentXp = any, AddressXp = any>(shipmentID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Shipment>>;
     public GetShipment(shipmentID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -722,9 +722,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public GetSpec(productID: string, specID: string, options?: { catalogID?: string, observe?: 'body', reportProgress?: boolean}): Observable<BuyerSpec>;
-    public GetSpec(productID: string, specID: string, options?: { catalogID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerSpec>>;
-    public GetSpec(productID: string, specID: string, options?: { catalogID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerSpec>>;
+    public GetSpec<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'body', reportProgress?: boolean}): Observable<BuyerSpec<BuyerSpecXp, SpecOptionXp>>;
+    public GetSpec<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerSpec>>;
+    public GetSpec<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerSpec>>;
     public GetSpec(productID: string, specID: string, options?: { catalogID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -786,9 +786,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetSpendingAccount(spendingAccountID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount>;
-    public GetSpendingAccount(spendingAccountID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
-    public GetSpendingAccount(spendingAccountID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
+    public GetSpendingAccount<SpendingAccountXp = any>(spendingAccountID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount<SpendingAccountXp>>;
+    public GetSpendingAccount<SpendingAccountXp = any>(spendingAccountID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
+    public GetSpendingAccount<SpendingAccountXp = any>(spendingAccountID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
     public GetSpendingAccount(spendingAccountID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -844,9 +844,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerAddress>;
-    public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerAddress>>;
-    public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerAddress>>;
+    public ListAddresses<BuyerAddressXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerAddress<BuyerAddressXp>>;
+    public ListAddresses<BuyerAddressXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerAddress>>;
+    public ListAddresses<BuyerAddressXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerAddress>>;
     public ListAddresses(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -940,9 +940,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
-    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
-    public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
+    public ListApprovableOrders<OrderXp = any, UserXp = any, AddressXp = any>(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder<OrderXp, UserXp, AddressXp>>;
+    public ListApprovableOrders<OrderXp = any, UserXp = any, AddressXp = any>(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
+    public ListApprovableOrders<OrderXp = any, UserXp = any, AddressXp = any>(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
     public ListApprovableOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1046,9 +1046,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCatalog>;
-    public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCatalog>>;
-    public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCatalog>>;
+    public ListCatalogs<CatalogXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCatalog<CatalogXp>>;
+    public ListCatalogs<CatalogXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCatalog>>;
+    public ListCatalogs<CatalogXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCatalog>>;
     public ListCatalogs(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1143,9 +1143,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
-    public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
-    public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
+    public ListCategories<CategoryXp = any>(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory<CategoryXp>>;
+    public ListCategories<CategoryXp = any>(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
+    public ListCategories<CategoryXp = any>(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
     public ListCategories(options?: { depth?: string, catalogID?: string, productID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1255,9 +1255,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter>;
-    public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
-    public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
+    public ListCostCenters<CostCenterXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCostCenter<CostCenterXp>>;
+    public ListCostCenters<CostCenterXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCostCenter>>;
+    public ListCostCenters<CostCenterXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCostCenter>>;
     public ListCostCenters(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1349,9 +1349,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerCreditCard>;
-    public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerCreditCard>>;
-    public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerCreditCard>>;
+    public ListCreditCards<BuyerCreditCardXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerCreditCard<BuyerCreditCardXp>>;
+    public ListCreditCards<BuyerCreditCardXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerCreditCard>>;
+    public ListCreditCards<BuyerCreditCardXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerCreditCard>>;
     public ListCreditCards(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1445,9 +1445,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder>;
-    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
-    public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
+    public ListOrders<OrderXp = any, UserXp = any, AddressXp = any>(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListOrder<OrderXp, UserXp, AddressXp>>;
+    public ListOrders<OrderXp = any, UserXp = any, AddressXp = any>(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListOrder>>;
+    public ListOrders<OrderXp = any, UserXp = any, AddressXp = any>(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListOrder>>;
     public ListOrders(options?: { from?: string, to?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1554,9 +1554,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerProduct>;
-    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerProduct>>;
-    public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerProduct>>;
+    public ListProducts<BuyerProductXp = any, PriceScheduleXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerProduct<BuyerProductXp, PriceScheduleXp, ListFacetXp>>;
+    public ListProducts<BuyerProductXp = any, PriceScheduleXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerProduct>>;
+    public ListProducts<BuyerProductXp = any, PriceScheduleXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerProduct>>;
     public ListProducts(options?: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1666,9 +1666,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion>;
-    public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
-    public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
+    public ListPromotions<PromotionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListPromotion<PromotionXp>>;
+    public ListPromotions<PromotionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListPromotion>>;
+    public ListPromotions<PromotionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListPromotion>>;
     public ListPromotions(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1762,9 +1762,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem>;
-    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
-    public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
+    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem<ShipmentItemXp, ProductXp>>;
+    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
+    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
     public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1866,9 +1866,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipment>;
-    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipment>>;
-    public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipment>>;
+    public ListShipments<ShipmentXp = any, AddressXp = any>(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipment<ShipmentXp, AddressXp>>;
+    public ListShipments<ShipmentXp = any, AddressXp = any>(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipment>>;
+    public ListShipments<ShipmentXp = any, AddressXp = any>(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipment>>;
     public ListShipments(options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1968,9 +1968,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerSpec>;
-    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerSpec>>;
-    public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerSpec>>;
+    public ListSpecs<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerSpec<BuyerSpecXp, SpecOptionXp>>;
+    public ListSpecs<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerSpec>>;
+    public ListSpecs<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerSpec>>;
     public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2071,9 +2071,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpendingAccount>;
-    public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpendingAccount>>;
-    public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpendingAccount>>;
+    public ListSpendingAccounts<SpendingAccountXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpendingAccount<SpendingAccountXp>>;
+    public ListSpendingAccounts<SpendingAccountXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpendingAccount>>;
+    public ListSpendingAccounts<SpendingAccountXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpendingAccount>>;
     public ListSpendingAccounts(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2165,9 +2165,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup>;
-    public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
-    public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
+    public ListUserGroups<UserGroupXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup<UserGroupXp>>;
+    public ListUserGroups<UserGroupXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
+    public ListUserGroups<UserGroupXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
     public ListUserGroups(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2253,9 +2253,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(partialMeUser: MeUser, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser>;
-    public Patch(partialMeUser: MeUser, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
-    public Patch(partialMeUser: MeUser, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
+    public Patch<MeUserXp = any>(partialMeUser: MeUser, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser<MeUserXp>>;
+    public Patch<MeUserXp = any>(partialMeUser: MeUser, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
+    public Patch<MeUserXp = any>(partialMeUser: MeUser, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
     public Patch(partialMeUser: MeUser, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2559,9 +2559,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(meUser: MeUser, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser>;
-    public Save(meUser: MeUser, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
-    public Save(meUser: MeUser, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
+    public Save<MeUserXp = any>(meUser: MeUser, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MeUser<MeUserXp>>;
+    public Save<MeUserXp = any>(meUser: MeUser, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MeUser>>;
+    public Save<MeUserXp = any>(meUser: MeUser, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MeUser>>;
     public Save(meUser: MeUser, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2617,9 +2617,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress>;
-    public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
-    public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
+    public SaveAddress<BuyerAddressXp = any>(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerAddress<BuyerAddressXp>>;
+    public SaveAddress<BuyerAddressXp = any>(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerAddress>>;
+    public SaveAddress<BuyerAddressXp = any>(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerAddress>>;
     public SaveAddress(addressID: string, buyerAddress: BuyerAddress, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2678,9 +2678,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard>;
-    public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
-    public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
+    public SaveCreditCard<BuyerCreditCardXp = any>(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'body', reportProgress?: boolean}): Observable<BuyerCreditCard<BuyerCreditCardXp>>;
+    public SaveCreditCard<BuyerCreditCardXp = any>(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerCreditCard>>;
+    public SaveCreditCard<BuyerCreditCardXp = any>(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerCreditCard>>;
     public SaveCreditCard(creditcardID: string, buyerCreditCard: BuyerCreditCard, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

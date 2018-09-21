@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialSpec {
+export interface PartialSpec<SpecXp = any> {
     OptionCount?: number;
     ID?: string;
     ListOrder?: number;
@@ -17,5 +17,5 @@ export interface PartialSpec {
     AllowOpenText?: boolean;
     DefaultOptionID?: string;
     DefinesVariant?: boolean;
-    xp?: any;
+    xp?: SpecXp;
 }

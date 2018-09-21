@@ -7,10 +7,10 @@
  */
 
 
-export interface PartialVariant {
+export interface PartialVariant<VariantXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: VariantXp;
 }

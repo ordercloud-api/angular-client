@@ -7,9 +7,9 @@
  */
 
 
-export interface PartialCostCenter {
+export interface PartialCostCenter<CostCenterXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
-    xp?: any;
+    xp?: CostCenterXp;
 }

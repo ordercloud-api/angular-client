@@ -9,13 +9,13 @@ import { Address } from './address';
 import { User } from './user';
 
 
-export interface PartialOrder {
+export interface PartialOrder<OrderXp = any, UserXp = any, AddressXp = any> {
     ID?: string;
-    FromUser?: User;
+    FromUser?: User<UserXp>;
     FromCompanyID?: string;
     FromUserID?: string;
     BillingAddressID?: string;
-    BillingAddress?: Address;
+    BillingAddress?: Address<AddressXp>;
     ShippingAddressID?: string;
     Comments?: string;
     LineItemCount?: number;
@@ -32,5 +32,5 @@ export interface PartialOrder {
     PromotionDiscount?: number;
     Total?: number;
     IsSubmitted?: boolean;
-    xp?: any;
+    xp?: OrderXp;
 }

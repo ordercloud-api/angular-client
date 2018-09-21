@@ -7,7 +7,7 @@
  */
 
 
-export interface Address {
+export interface Address<AddressXp = any> {
     ID?: string;
     DateCreated?: string;
     CompanyName?: string;
@@ -21,5 +21,5 @@ export interface Address {
     Country?: string;
     Phone?: string;
     AddressName?: string;
-    xp?: any;
+    xp?: AddressXp;
 }

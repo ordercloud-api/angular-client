@@ -7,7 +7,7 @@
  */
 
 
-export interface PaymentTransaction {
+export interface PaymentTransaction<PaymentTransactionXp = any> {
     ID?: string;
     Type?: string;
     DateExecuted?: string;
@@ -15,5 +15,5 @@ export interface PaymentTransaction {
     Succeeded?: boolean;
     ResultCode?: string;
     ResultMessage?: string;
-    xp?: any;
+    xp?: PaymentTransactionXp;
 }

@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { OrderPromotion } from './orderPromotion';
 
 
-export interface ListOrderPromotion {
-    Items?: Array<OrderPromotion>;
+export interface ListOrderPromotion<OrderPromotionXp = any> {
+    Items?: Array<OrderPromotion<OrderPromotionXp>>;
     Meta?: Meta;
 }

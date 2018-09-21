@@ -8,9 +8,9 @@
 import { ListFacetValue } from './listFacetValue';
 
 
-export interface ListFacet {
+export interface ListFacet<ListFacetXp = any> {
     Name?: string;
     XpPath?: string;
     Values?: Array<ListFacetValue>;
-    xp?: any;
+    xp?: ListFacetXp;
 }

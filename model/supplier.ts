@@ -7,9 +7,9 @@
  */
 
 
-export interface Supplier {
+export interface Supplier<SupplierXp = any> {
     ID?: string;
     Name?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: SupplierXp;
 }

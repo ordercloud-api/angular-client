@@ -113,9 +113,9 @@ export class OcSpendingAccountService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(buyerID: string, spendingAccount: SpendingAccount, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount>;
-    public Create(buyerID: string, spendingAccount: SpendingAccount, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
-    public Create(buyerID: string, spendingAccount: SpendingAccount, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
+    public Create<SpendingAccountXp = any>(buyerID: string, spendingAccount: SpendingAccount, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount<SpendingAccountXp>>;
+    public Create<SpendingAccountXp = any>(buyerID: string, spendingAccount: SpendingAccount, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
+    public Create<SpendingAccountXp = any>(buyerID: string, spendingAccount: SpendingAccount, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
     public Create(buyerID: string, spendingAccount: SpendingAccount, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -248,9 +248,9 @@ export class OcSpendingAccountService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(buyerID: string, spendingAccountID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount>;
-    public Get(buyerID: string, spendingAccountID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
-    public Get(buyerID: string, spendingAccountID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
+    public Get<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount<SpendingAccountXp>>;
+    public Get<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
+    public Get<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
     public Get(buyerID: string, spendingAccountID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -310,9 +310,9 @@ export class OcSpendingAccountService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpendingAccount>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpendingAccount>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpendingAccount>>;
+    public List<SpendingAccountXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpendingAccount<SpendingAccountXp>>;
+    public List<SpendingAccountXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpendingAccount>>;
+    public List<SpendingAccountXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpendingAccount>>;
     public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -501,9 +501,9 @@ export class OcSpendingAccountService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, spendingAccountID: string, partialSpendingAccount: SpendingAccount, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount>;
-    public Patch(buyerID: string, spendingAccountID: string, partialSpendingAccount: SpendingAccount, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
-    public Patch(buyerID: string, spendingAccountID: string, partialSpendingAccount: SpendingAccount, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
+    public Patch<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, partialSpendingAccount: SpendingAccount, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount<SpendingAccountXp>>;
+    public Patch<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, partialSpendingAccount: SpendingAccount, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
+    public Patch<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, partialSpendingAccount: SpendingAccount, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
     public Patch(buyerID: string, spendingAccountID: string, partialSpendingAccount: SpendingAccount, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -566,9 +566,9 @@ export class OcSpendingAccountService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(buyerID: string, spendingAccountID: string, spendingAccount: SpendingAccount, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount>;
-    public Save(buyerID: string, spendingAccountID: string, spendingAccount: SpendingAccount, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
-    public Save(buyerID: string, spendingAccountID: string, spendingAccount: SpendingAccount, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
+    public Save<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, spendingAccount: SpendingAccount, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SpendingAccount<SpendingAccountXp>>;
+    public Save<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, spendingAccount: SpendingAccount, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SpendingAccount>>;
+    public Save<SpendingAccountXp = any>(buyerID: string, spendingAccountID: string, spendingAccount: SpendingAccount, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SpendingAccount>>;
     public Save(buyerID: string, spendingAccountID: string, spendingAccount: SpendingAccount, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

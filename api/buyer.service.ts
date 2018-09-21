@@ -106,9 +106,9 @@ export class OcBuyerService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(buyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
-    public Create(buyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
-    public Create(buyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
+    public Create<BuyerXp = any>(buyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer<BuyerXp>>;
+    public Create<BuyerXp = any>(buyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
+    public Create<BuyerXp = any>(buyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
     public Create(buyer: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -163,9 +163,9 @@ export class OcBuyerService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(buyerID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
-    public Get(buyerID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
-    public Get(buyerID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
+    public Get<BuyerXp = any>(buyerID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer<BuyerXp>>;
+    public Get<BuyerXp = any>(buyerID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
+    public Get<BuyerXp = any>(buyerID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
     public Get(buyerID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -221,9 +221,9 @@ export class OcBuyerService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyer>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyer>>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyer>>;
+    public List<BuyerXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyer<BuyerXp>>;
+    public List<BuyerXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyer>>;
+    public List<BuyerXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyer>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -310,9 +310,9 @@ export class OcBuyerService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
-    public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
-    public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
+    public Patch<BuyerXp = any>(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer<BuyerXp>>;
+    public Patch<BuyerXp = any>(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
+    public Patch<BuyerXp = any>(buyerID: string, partialBuyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
     public Patch(buyerID: string, partialBuyer: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -371,9 +371,9 @@ export class OcBuyerService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(buyerID: string, buyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer>;
-    public Save(buyerID: string, buyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
-    public Save(buyerID: string, buyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
+    public Save<BuyerXp = any>(buyerID: string, buyer: Buyer, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Buyer<BuyerXp>>;
+    public Save<BuyerXp = any>(buyerID: string, buyer: Buyer, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Buyer>>;
+    public Save<BuyerXp = any>(buyerID: string, buyer: Buyer, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Buyer>>;
     public Save(buyerID: string, buyer: Buyer, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

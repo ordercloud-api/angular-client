@@ -9,7 +9,7 @@ import { BuyerSpec } from './buyerSpec';
 import { Meta } from './meta';
 
 
-export interface ListBuyerSpec {
-    Items?: Array<BuyerSpec>;
+export interface ListBuyerSpec<BuyerSpecXp = any, SpecOptionXp = any> {
+    Items?: Array<BuyerSpec<BuyerSpecXp, SpecOptionXp>>;
     Meta?: Meta;
 }

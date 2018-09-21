@@ -111,9 +111,9 @@ export class OcProductService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(product: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
-    public Create(product: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
-    public Create(product: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
+    public Create<ProductXp = any>(product: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product<ProductXp>>;
+    public Create<ProductXp = any>(product: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
+    public Create<ProductXp = any>(product: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
     public Create(product: Product, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -244,9 +244,9 @@ export class OcProductService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public GenerateVariants(productID: string, options?: { overwriteExisting?: boolean, observe?: 'body', reportProgress?: boolean}): Observable<Product>;
-    public GenerateVariants(productID: string, options?: { overwriteExisting?: boolean, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
-    public GenerateVariants(productID: string, options?: { overwriteExisting?: boolean, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
+    public GenerateVariants<ProductXp = any>(productID: string, options?: { overwriteExisting?: boolean, observe?: 'body', reportProgress?: boolean}): Observable<Product<ProductXp>>;
+    public GenerateVariants<ProductXp = any>(productID: string, options?: { overwriteExisting?: boolean, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
+    public GenerateVariants<ProductXp = any>(productID: string, options?: { overwriteExisting?: boolean, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
     public GenerateVariants(productID: string, options?: { overwriteExisting?: boolean, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -306,9 +306,9 @@ export class OcProductService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(productID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
-    public Get(productID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
-    public Get(productID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
+    public Get<ProductXp = any>(productID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product<ProductXp>>;
+    public Get<ProductXp = any>(productID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
+    public Get<ProductXp = any>(productID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
     public Get(productID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -359,9 +359,9 @@ export class OcProductService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetVariant(productID: string, variantID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant>;
-    public GetVariant(productID: string, variantID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
-    public GetVariant(productID: string, variantID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
+    public GetVariant<VariantXp = any>(productID: string, variantID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant<VariantXp>>;
+    public GetVariant<VariantXp = any>(productID: string, variantID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
+    public GetVariant<VariantXp = any>(productID: string, variantID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
     public GetVariant(productID: string, variantID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -423,9 +423,9 @@ export class OcProductService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct>;
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
+    public List<ProductXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct<ProductXp>>;
+    public List<ProductXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
+    public List<ProductXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
     public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -644,9 +644,9 @@ export class OcProductService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSupplier>;
-    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSupplier>>;
-    public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSupplier>>;
+    public ListSuppliers<SupplierXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSupplier<SupplierXp>>;
+    public ListSuppliers<SupplierXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSupplier>>;
+    public ListSuppliers<SupplierXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSupplier>>;
     public ListSuppliers(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -742,9 +742,9 @@ export class OcProductService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListVariant>;
-    public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListVariant>>;
-    public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListVariant>>;
+    public ListVariants<VariantXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListVariant<VariantXp>>;
+    public ListVariants<VariantXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListVariant>>;
+    public ListVariants<VariantXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListVariant>>;
     public ListVariants(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -834,9 +834,9 @@ export class OcProductService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(productID: string, partialProduct: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
-    public Patch(productID: string, partialProduct: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
-    public Patch(productID: string, partialProduct: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
+    public Patch<ProductXp = any>(productID: string, partialProduct: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product<ProductXp>>;
+    public Patch<ProductXp = any>(productID: string, partialProduct: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
+    public Patch<ProductXp = any>(productID: string, partialProduct: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
     public Patch(productID: string, partialProduct: Product, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -896,9 +896,9 @@ export class OcProductService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant>;
-    public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
-    public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
+    public PatchVariant<VariantXp = any>(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant<VariantXp>>;
+    public PatchVariant<VariantXp = any>(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
+    public PatchVariant<VariantXp = any>(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
     public PatchVariant(productID: string, variantID: string, partialVariant: Variant, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1016,9 +1016,9 @@ export class OcProductService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(productID: string, product: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product>;
-    public Save(productID: string, product: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
-    public Save(productID: string, product: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
+    public Save<ProductXp = any>(productID: string, product: Product, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Product<ProductXp>>;
+    public Save<ProductXp = any>(productID: string, product: Product, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Product>>;
+    public Save<ProductXp = any>(productID: string, product: Product, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Product>>;
     public Save(productID: string, product: Product, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -1192,9 +1192,9 @@ export class OcProductService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant>;
-    public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
-    public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
+    public SaveVariant<VariantXp = any>(productID: string, variantID: string, variant: Variant, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Variant<VariantXp>>;
+    public SaveVariant<VariantXp = any>(productID: string, variantID: string, variant: Variant, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Variant>>;
+    public SaveVariant<VariantXp = any>(productID: string, variantID: string, variant: Variant, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Variant>>;
     public SaveVariant(productID: string, variantID: string, variant: Variant, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

@@ -9,7 +9,7 @@ import { Address } from './address';
 import { Meta } from './meta';
 
 
-export interface ListAddress {
-    Items?: Array<Address>;
+export interface ListAddress<AddressXp = any> {
+    Items?: Array<Address<AddressXp>>;
     Meta?: Meta;
 }

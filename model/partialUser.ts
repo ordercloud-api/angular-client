@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialUser {
+export interface PartialUser<UserXp = any> {
     ID?: string;
     Username?: string;
     Password?: string;
@@ -17,6 +17,6 @@ export interface PartialUser {
     Phone?: string;
     TermsAccepted?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: UserXp;
     AvailableRoles?: Array<string>;
 }

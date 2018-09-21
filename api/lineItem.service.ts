@@ -117,9 +117,9 @@ export class OcLineItemService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(direction: string, orderID: string, lineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
-    public Create(direction: string, orderID: string, lineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
-    public Create(direction: string, orderID: string, lineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
+    public Create<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem<LineItemXp, ProductXp, AddressXp>>;
+    public Create<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
+    public Create<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
     public Create(direction: string, orderID: string, lineItem: LineItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -182,9 +182,9 @@ export class OcLineItemService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(direction: string, orderID: string, lineItemID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
-    public Get(direction: string, orderID: string, lineItemID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
-    public Get(direction: string, orderID: string, lineItemID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
+    public Get<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem<LineItemXp, ProductXp, AddressXp>>;
+    public Get<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
+    public Get<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
     public Get(direction: string, orderID: string, lineItemID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -248,9 +248,9 @@ export class OcLineItemService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListLineItem>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListLineItem>>;
-    public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListLineItem>>;
+    public List<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListLineItem<LineItemXp, ProductXp, AddressXp>>;
+    public List<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListLineItem>>;
+    public List<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListLineItem>>;
     public List(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -345,9 +345,9 @@ export class OcLineItemService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(direction: string, orderID: string, lineItemID: string, partialLineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
-    public Patch(direction: string, orderID: string, lineItemID: string, partialLineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
-    public Patch(direction: string, orderID: string, lineItemID: string, partialLineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
+    public Patch<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, partialLineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem<LineItemXp, ProductXp, AddressXp>>;
+    public Patch<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, partialLineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
+    public Patch<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, partialLineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
     public Patch(direction: string, orderID: string, lineItemID: string, partialLineItem: LineItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -414,9 +414,9 @@ export class OcLineItemService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public PatchShippingAddress(direction: string, orderID: string, lineItemID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
-    public PatchShippingAddress(direction: string, orderID: string, lineItemID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
-    public PatchShippingAddress(direction: string, orderID: string, lineItemID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
+    public PatchShippingAddress<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, partialAddress: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem<LineItemXp, ProductXp, AddressXp>>;
+    public PatchShippingAddress<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, partialAddress: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
+    public PatchShippingAddress<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, partialAddress: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
     public PatchShippingAddress(direction: string, orderID: string, lineItemID: string, partialAddress: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -483,9 +483,9 @@ export class OcLineItemService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
-    public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
-    public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
+    public Save<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem<LineItemXp, ProductXp, AddressXp>>;
+    public Save<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
+    public Save<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
     public Save(direction: string, orderID: string, lineItemID: string, lineItem: LineItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -552,9 +552,9 @@ export class OcLineItemService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SetShippingAddress(direction: string, orderID: string, lineItemID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem>;
-    public SetShippingAddress(direction: string, orderID: string, lineItemID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
-    public SetShippingAddress(direction: string, orderID: string, lineItemID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
+    public SetShippingAddress<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, address: Address, options?: { observe?: 'body', reportProgress?: boolean}): Observable<LineItem<LineItemXp, ProductXp, AddressXp>>;
+    public SetShippingAddress<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, address: Address, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<LineItem>>;
+    public SetShippingAddress<LineItemXp = any, ProductXp = any, AddressXp = any>(direction: string, orderID: string, lineItemID: string, address: Address, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<LineItem>>;
     public SetShippingAddress(direction: string, orderID: string, lineItemID: string, address: Address, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

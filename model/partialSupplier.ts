@@ -7,9 +7,9 @@
  */
 
 
-export interface PartialSupplier {
+export interface PartialSupplier<SupplierXp = any> {
     ID?: string;
     Name?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: SupplierXp;
 }

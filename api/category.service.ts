@@ -115,9 +115,9 @@ export class OcCategoryService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(catalogID: string, category: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
-    public Create(catalogID: string, category: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
-    public Create(catalogID: string, category: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public Create<CategoryXp = any>(catalogID: string, category: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category<CategoryXp>>;
+    public Create<CategoryXp = any>(catalogID: string, category: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public Create<CategoryXp = any>(catalogID: string, category: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
     public Create(catalogID: string, category: Category, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -320,9 +320,9 @@ export class OcCategoryService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(catalogID: string, categoryID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
-    public Get(catalogID: string, categoryID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
-    public Get(catalogID: string, categoryID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public Get<CategoryXp = any>(catalogID: string, categoryID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category<CategoryXp>>;
+    public Get<CategoryXp = any>(catalogID: string, categoryID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public Get<CategoryXp = any>(catalogID: string, categoryID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
     public Get(catalogID: string, categoryID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -383,9 +383,9 @@ export class OcCategoryService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
-    public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
+    public List<CategoryXp = any>(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListCategory<CategoryXp>>;
+    public List<CategoryXp = any>(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListCategory>>;
+    public List<CategoryXp = any>(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListCategory>>;
     public List(catalogID: string, options?: { depth?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -671,9 +671,9 @@ export class OcCategoryService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
-    public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
-    public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public Patch<CategoryXp = any>(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category<CategoryXp>>;
+    public Patch<CategoryXp = any>(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public Patch<CategoryXp = any>(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
     public Patch(catalogID: string, categoryID: string, partialCategory: Category, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -736,9 +736,9 @@ export class OcCategoryService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category>;
-    public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
-    public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
+    public Save<CategoryXp = any>(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Category<CategoryXp>>;
+    public Save<CategoryXp = any>(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Category>>;
+    public Save<CategoryXp = any>(catalogID: string, categoryID: string, category: Category, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Category>>;
     public Save(catalogID: string, categoryID: string, category: Category, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

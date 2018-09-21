@@ -9,7 +9,7 @@ import { CostCenter } from './costCenter';
 import { Meta } from './meta';
 
 
-export interface ListCostCenter {
-    Items?: Array<CostCenter>;
+export interface ListCostCenter<CostCenterXp = any> {
+    Items?: Array<CostCenter<CostCenterXp>>;
     Meta?: Meta;
 }

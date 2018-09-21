@@ -7,7 +7,7 @@
  */
 
 
-export interface PartialPromotion {
+export interface PartialPromotion<PromotionXp = any> {
     ID?: string;
     Code?: string;
     Name?: string;
@@ -21,5 +21,5 @@ export interface PartialPromotion {
     EligibleExpression?: string;
     ValueExpression?: string;
     CanCombine?: boolean;
-    xp?: any;
+    xp?: PromotionXp;
 }

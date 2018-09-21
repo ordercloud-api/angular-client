@@ -113,9 +113,9 @@ export class OcUserGroupService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create(buyerID: string, userGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
-    public Create(buyerID: string, userGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
-    public Create(buyerID: string, userGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
+    public Create<UserGroupXp = any>(buyerID: string, userGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup<UserGroupXp>>;
+    public Create<UserGroupXp = any>(buyerID: string, userGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
+    public Create<UserGroupXp = any>(buyerID: string, userGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
     public Create(buyerID: string, userGroup: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -234,9 +234,9 @@ export class OcUserGroupService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(buyerID: string, userGroupID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
-    public Get(buyerID: string, userGroupID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
-    public Get(buyerID: string, userGroupID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
+    public Get<UserGroupXp = any>(buyerID: string, userGroupID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup<UserGroupXp>>;
+    public Get<UserGroupXp = any>(buyerID: string, userGroupID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
+    public Get<UserGroupXp = any>(buyerID: string, userGroupID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
     public Get(buyerID: string, userGroupID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -296,9 +296,9 @@ export class OcUserGroupService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
-    public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
+    public List<UserGroupXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListUserGroup<UserGroupXp>>;
+    public List<UserGroupXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListUserGroup>>;
+    public List<UserGroupXp = any>(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListUserGroup>>;
     public List(buyerID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -473,9 +473,9 @@ export class OcUserGroupService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch(buyerID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
-    public Patch(buyerID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
-    public Patch(buyerID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
+    public Patch<UserGroupXp = any>(buyerID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup<UserGroupXp>>;
+    public Patch<UserGroupXp = any>(buyerID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
+    public Patch<UserGroupXp = any>(buyerID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
     public Patch(buyerID: string, userGroupID: string, partialUserGroup: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -538,9 +538,9 @@ export class OcUserGroupService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save(buyerID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup>;
-    public Save(buyerID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
-    public Save(buyerID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
+    public Save<UserGroupXp = any>(buyerID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'body', reportProgress?: boolean}): Observable<UserGroup<UserGroupXp>>;
+    public Save<UserGroupXp = any>(buyerID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<UserGroup>>;
+    public Save<UserGroupXp = any>(buyerID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<UserGroup>>;
     public Save(buyerID: string, userGroupID: string, userGroup: UserGroup, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

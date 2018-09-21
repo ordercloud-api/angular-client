@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { UserGroup } from './userGroup';
 
 
-export interface ListUserGroup {
-    Items?: Array<UserGroup>;
+export interface ListUserGroup<UserGroupXp = any> {
+    Items?: Array<UserGroup<UserGroupXp>>;
     Meta?: Meta;
 }

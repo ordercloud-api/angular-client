@@ -7,13 +7,13 @@
  */
 
 
-export interface Category {
-    ID?: string;
+export interface Category<CategoryXp = any> {
     Name?: string;
+    ID?: string;
     Description?: string;
     ListOrder?: number;
     Active?: boolean;
     ParentID?: string;
     ChildCount?: number;
-    xp?: any;
+    xp?: CategoryXp;
 }

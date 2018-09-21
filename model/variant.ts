@@ -7,10 +7,10 @@
  */
 
 
-export interface Variant {
+export interface Variant<VariantXp = any> {
     ID?: string;
     Name?: string;
     Description?: string;
     Active?: boolean;
-    xp?: any;
+    xp?: VariantXp;
 }

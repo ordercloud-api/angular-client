@@ -8,7 +8,7 @@
 import { PriceBreak } from './priceBreak';
 
 
-export interface PartialPriceSchedule {
+export interface PartialPriceSchedule<PriceScheduleXp = any> {
     ID?: string;
     Name?: string;
     ApplyTax?: boolean;
@@ -18,5 +18,5 @@ export interface PartialPriceSchedule {
     UseCumulativeQuantity?: boolean;
     RestrictedQuantity?: boolean;
     PriceBreaks?: Array<PriceBreak>;
-    xp?: any;
+    xp?: PriceScheduleXp;
 }

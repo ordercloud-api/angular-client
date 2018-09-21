@@ -9,7 +9,7 @@ import { Meta } from './meta';
 import { Variant } from './variant';
 
 
-export interface ListVariant {
-    Items?: Array<Variant>;
+export interface ListVariant<VariantXp = any> {
+    Items?: Array<Variant<VariantXp>>;
     Meta?: Meta;
 }

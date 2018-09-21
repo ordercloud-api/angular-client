@@ -7,12 +7,12 @@
  */
 
 
-export interface PartialSpecOption {
+export interface PartialSpecOption<SpecOptionXp = any> {
     ID?: string;
     Value?: string;
     ListOrder?: number;
     IsOpenText?: boolean;
     PriceMarkupType?: string;
     PriceMarkup?: number;
-    xp?: any;
+    xp?: SpecOptionXp;
 }
