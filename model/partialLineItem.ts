@@ -26,6 +26,7 @@ export interface PartialLineItem<LineItemXp = any, ProductXp = any, AddressXp = 
     Product?: LineItemProduct<ProductXp>;
     ShippingAddress?: Address<AddressXp>;
     ShipFromAddress?: Address<AddressXp>;
+    SupplierID?: string;
     Specs?: Array<LineItemSpec>;
     xp?: LineItemXp;
 }

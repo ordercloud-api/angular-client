@@ -6,10 +6,12 @@
  * Do not edit the class manually.
  */
 import { MeBuyer } from './meBuyer';
+import { MeSupplier } from './meSupplier';
 
 
 export interface PartialMeUser<MeUserXp = any> {
     Buyer?: MeBuyer;
+    Supplier?: MeSupplier;
     ID?: string;
     Username?: string;
     Password?: string;

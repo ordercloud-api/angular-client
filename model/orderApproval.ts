@@ -12,6 +12,7 @@ export interface OrderApproval<UserXp = any> {
     ApprovalRuleID?: string;
     ApprovingGroupID?: string;
     Status?: string;
+    AllowResubmit?: boolean;
     DateCreated?: string;
     DateCompleted?: string;
     Approver?: User<UserXp>;
