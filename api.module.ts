@@ -7,6 +7,7 @@ import { OcAddressService } from './api/address.service';
 import { OcAdminAddressService } from './api/adminAddress.service';
 import { OcAdminUserService } from './api/adminUser.service';
 import { OcAdminUserGroupService } from './api/adminUserGroup.service';
+import { OcApiClientService } from './api/apiClient.service';
 import { OcApprovalRuleService } from './api/approvalRule.service';
 import { OcBuyerService } from './api/buyer.service';
 import { OcCatalogService } from './api/catalog.service';
@@ -47,6 +48,7 @@ import { OcTokenService } from './api/token.service';
     OcAdminAddressService,
     OcAdminUserService,
     OcAdminUserGroupService,
+    OcApiClientService,
     OcApprovalRuleService,
     OcBuyerService,
     OcCatalogService,

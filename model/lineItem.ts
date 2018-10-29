@@ -26,6 +26,7 @@ export interface LineItem<LineItemXp = any, ProductXp = any, AddressXp = any> {
     Product?: LineItemProduct<ProductXp>;
     ShippingAddress?: Address<AddressXp>;
     ShipFromAddress?: Address<AddressXp>;
+    SupplierID?: string;
     Specs?: Array<LineItemSpec>;
     xp?: LineItemXp;
 }

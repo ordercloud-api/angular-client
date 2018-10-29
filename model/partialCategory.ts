@@ -8,8 +8,8 @@
 
 
 export interface PartialCategory<CategoryXp = any> {
-    Name?: string;
     ID?: string;
+    Name?: string;
     Description?: string;
     ListOrder?: number;
     Active?: boolean;
