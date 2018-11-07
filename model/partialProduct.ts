@@ -24,5 +24,5 @@ export interface PartialProduct<ProductXp = any> {
     VariantCount?: number;
     ShipFromAddressID?: string;
     Inventory?: Inventory;
-    AutoForwardSupplierID?: string;
+    DefaultSupplierID?: string;
 }

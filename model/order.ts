@@ -19,7 +19,6 @@ export interface Order<OrderXp = any, UserXp = any, AddressXp = any> {
     ShippingAddressID?: string;
     Comments?: string;
     LineItemCount?: number;
-    AutoForwardedFromOrderID?: string;
     Status?: string;
     DateCreated?: string;
     DateSubmitted?: string;
