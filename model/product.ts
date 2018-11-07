@@ -24,5 +24,5 @@ export interface Product<ProductXp = any> {
     VariantCount?: number;
     ShipFromAddressID?: string;
     Inventory?: Inventory;
-    AutoForwardSupplierID?: string;
+    DefaultSupplierID?: string;
 }
