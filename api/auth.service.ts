@@ -20,7 +20,9 @@ import { AccessToken }                                       from '../model/acce
 
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class OcAuthService {
 
     protected authPath = 'https://auth.ordercloud.io/oauth/token';

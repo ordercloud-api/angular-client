@@ -10,7 +10,9 @@ import { CookieService }                                     from 'ngx-cookie';
 import { Configuration }                                     from '../configuration';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class OcTokenService {
 
     private authTokenCookieName: string;
