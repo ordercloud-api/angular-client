@@ -1,7 +1,7 @@
 {
   "name": "@ordercloud/angular-sdk",
-  "version": "0.0.1-25",
-  "description": "angular @ordercloud/angular-sdk+ typescript sdk for building on top of the ordercloud platform",
+  "version": "0.0.1-26",
+  "description": "angular 6.0.0+ typescript sdk for building on top of the ordercloud platform",
   "author": "ordercloud.io",
   "repository": {
     "type": "git",
@@ -23,21 +23,21 @@
     "postinstall": "npm run build"
   },
   "peerDependencies": {
-    "@angular/core": "^6.0.0",
-    "@angular/http": "^6.0.0",
-    "@angular/common": "^6.0.0",
-    "@angular/compiler": "^6.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0",
+    "@angular/http": "^6.0.0 || ^7.0.0",
+    "@angular/common": "^6.0.0 || ^7.0.0",
+    "@angular/compiler": "^6.0.0 || ^7.0.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
     "zone.js": "<1.0.0",
     "ngx-cookie": "^4.0.0"
   },
   "devDependencies": {
-    "@angular/core": "^6.0.0",
-    "@angular/http": "^6.0.0",
-    "@angular/common": "^6.0.0",
-    "@angular/compiler": "^6.0.0",
-    "@angular/platform-browser": "^6.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0",
+    "@angular/http": "^6.0.0 || ^7.0.0",
+    "@angular/common": "^6.0.0 || ^7.0.0",
+    "@angular/compiler": "^6.0.0 || ^7.0.0",
+    "@angular/platform-browser": "^6.0.0 || ^7.0.0",
     "rxjs": "^6.0.0",
     "zone.js": "<1",
     "typescript": "^2.1.5",
