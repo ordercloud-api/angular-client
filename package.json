@@ -1,6 +1,6 @@
 {
   "name": "@ordercloud/angular-sdk",
-  "version": "0.0.1-26",
+  "version": "0.0.1-27",
   "description": "angular 6.0.0+ typescript sdk for building on top of the ordercloud platform",
   "author": "ordercloud.io",
   "repository": {

@@ -14,6 +14,7 @@ export interface MessageCCListenerAssignment {
     MessageConfigDescription?: string;
     MessageType?: string;
     BuyerID?: string;
+    SupplierID?: string;
     UserGroupID?: string;
     UserID?: string;
 }
