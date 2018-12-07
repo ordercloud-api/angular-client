@@ -60,14 +60,15 @@ export class OcMessageSenderService {
      * @param options.buyerID ID of the buyer.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
+     * @param options.supplierID ID of the supplier.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
-    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public DeleteAssignment(messageSenderID: string, options?: { buyerID?: string, userID?: string, userGroupID?: string, supplierID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -97,6 +98,12 @@ export class OcMessageSenderService {
         }
         if (opts.userGroupID === null) {
             throw new Error('Parameter userGroupID was null when calling DeleteAssignment. Null values are not allowed');
+        }
+        if (opts.supplierID !== undefined) {
+            queryParameters = queryParameters.set('supplierID', <any>opts.supplierID);
+        }
+        if (opts.supplierID === null) {
+            throw new Error('Parameter supplierID was null when calling DeleteAssignment. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;
@@ -286,14 +293,15 @@ export class OcMessageSenderService {
      * @param options.level Level of the message sender assignment. Possible values: User, Group, Company.
      * @param options.page Page of results to return. Default: 1
      * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.supplierID ID of the supplier.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, observe?: 'body', reportProgress?: boolean}): Observable<ListMessageSenderAssignment>;
-    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListMessageSenderAssignment>>;
-    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListMessageSenderAssignment>>;
-    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, supplierID?: string, observe?: 'body', reportProgress?: boolean}): Observable<ListMessageSenderAssignment>;
+    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, supplierID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListMessageSenderAssignment>>;
+    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, supplierID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListMessageSenderAssignment>>;
+    public ListAssignments(options?: { buyerID?: string, messageSenderID?: string, userID?: string, userGroupID?: string, level?: string, page?: number, pageSize?: number, supplierID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -344,6 +352,12 @@ export class OcMessageSenderService {
         }
         if (opts.pageSize === null) {
             throw new Error('Parameter pageSize was null when calling ListAssignments. Null values are not allowed');
+        }
+        if (opts.supplierID !== undefined) {
+            queryParameters = queryParameters.set('supplierID', <any>opts.supplierID);
+        }
+        if (opts.supplierID === null) {
+            throw new Error('Parameter supplierID was null when calling ListAssignments. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;
