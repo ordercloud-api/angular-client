@@ -281,9 +281,9 @@ export class OcShipmentService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetItem<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, orderID: string, lineItemID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ShipmentItem<ShipmentItemXp, ProductXp>>;
-    public GetItem<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, orderID: string, lineItemID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ShipmentItem>>;
-    public GetItem<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, orderID: string, lineItemID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ShipmentItem>>;
+    public GetItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, orderID: string, lineItemID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ShipmentItem<ShipmentItemXp, ProductXp, LineItemVariantXp>>;
+    public GetItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, orderID: string, lineItemID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ShipmentItem>>;
+    public GetItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, orderID: string, lineItemID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ShipmentItem>>;
     public GetItem(shipmentID: string, orderID: string, lineItemID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -447,9 +447,9 @@ export class OcShipmentService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem<ShipmentItemXp, ProductXp>>;
-    public ListItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
-    public ListItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
+    public ListItems<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem<ShipmentItemXp, ProductXp, LineItemVariantXp>>;
+    public ListItems<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
+    public ListItems<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
     public ListItems(shipmentID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -661,9 +661,9 @@ export class OcShipmentService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SaveItem<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ShipmentItem<ShipmentItemXp, ProductXp>>;
-    public SaveItem<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ShipmentItem>>;
-    public SaveItem<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ShipmentItem>>;
+    public SaveItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'body', reportProgress?: boolean}): Observable<ShipmentItem<ShipmentItemXp, ProductXp, LineItemVariantXp>>;
+    public SaveItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ShipmentItem>>;
+    public SaveItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ShipmentItem>>;
     public SaveItem(shipmentID: string, shipmentItem: ShipmentItem, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

@@ -5,11 +5,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { MessageSender } from './messageSender';
-import { Meta } from './meta';
 
 
-export interface ListMessageSender<MessageSenderXp = any> {
-    Items?: Array<MessageSender<MessageSenderXp>>;
-    Meta?: Meta;
+export interface AccessTokenBasic {
+    access_token?: string;
 }

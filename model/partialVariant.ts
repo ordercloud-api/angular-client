@@ -5,6 +5,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { VariantInventory } from './variantInventory';
 
 
 export interface PartialVariant<VariantXp = any> {
@@ -12,5 +13,10 @@ export interface PartialVariant<VariantXp = any> {
     Name?: string;
     Description?: string;
     Active?: boolean;
+    ShipWeight?: number;
+    ShipHeight?: number;
+    ShipWidth?: number;
+    ShipLength?: number;
+    Inventory?: VariantInventory;
     xp?: VariantXp;
 }

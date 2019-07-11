@@ -19,4 +19,6 @@ export interface PartialUser<UserXp = any> {
     Active?: boolean;
     xp?: UserXp;
     AvailableRoles?: Array<string>;
+    DateCreated?: string;
+    PasswordLastSetDate?: string;
 }

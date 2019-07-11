@@ -9,7 +9,7 @@ import { LineItem } from './lineItem';
 import { Meta } from './meta';
 
 
-export interface ListLineItem<LineItemXp = any, ProductXp = any, AddressXp = any> {
-    Items?: Array<LineItem<LineItemXp, ProductXp, AddressXp>>;
+export interface ListLineItem<LineItemXp = any, ProductXp = any, LineItemVariantXp = any, AddressXp = any> {
+    Items?: Array<LineItem<LineItemXp, ProductXp, LineItemVariantXp, AddressXp>>;
     Meta?: Meta;
 }

@@ -7,9 +7,10 @@
  */
 import { LineItemProduct } from './lineItemProduct';
 import { LineItemSpec } from './lineItemSpec';
+import { LineItemVariant } from './lineItemVariant';
 
 
-export interface ShipmentItem<ShipmentItemXp = any, ProductXp = any> {
+export interface ShipmentItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any> {
     OrderID?: string;
     LineItemID?: string;
     QuantityShipped?: number;
@@ -17,6 +18,7 @@ export interface ShipmentItem<ShipmentItemXp = any, ProductXp = any> {
     CostCenter?: string;
     DateNeeded?: string;
     Product?: LineItemProduct<ProductXp>;
+    Variant?: LineItemVariant<LineItemVariantXp>;
     Specs?: Array<LineItemSpec>;
     xp?: ShipmentItemXp;
 }

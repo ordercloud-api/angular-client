@@ -15,6 +15,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 import { OcTokenService }                                      from './token.service';
 
+import { AccessTokenBasic } from '../model/accessTokenBasic';
 import { BuyerAddress } from '../model/buyerAddress';
 import { BuyerCreditCard } from '../model/buyerCreditCard';
 import { BuyerProduct } from '../model/buyerProduct';
@@ -1132,7 +1133,7 @@ export class OcMeService {
     /**
      * 
      * 
-     * @param options.depth Depth of the category.
+     * @param options.depth Indicates how deep down the hierarchy to return results. Valid values are a number of 1 or greater, or &#39;all&#39;. Relative to ParentID if specified. Default is 1.
      * @param options.catalogID ID of the catalog.
      * @param options.productID ID of the product.
      * @param options.search Word or phrase to search for.
@@ -1545,7 +1546,7 @@ export class OcMeService {
      * 
      * @param options.catalogID ID of the catalog.
      * @param options.categoryID ID of the category.
-     * @param options.depth Depth of the product.
+     * @param options.depth Indicates how deep down the category hierarchy to return results. Valid values are a number of 1 or greater, or &#39;all&#39;. Relative to CategoryID if specified, otherwise top level of the Catalog. Default is &#39;all&#39;.
      * @param options.search Word or phrase to search for.
      * @param options.searchOn Comma-delimited list of fields to search on.
      * @param options.sortBy Comma-delimited list of fields to sort by.
@@ -1764,9 +1765,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem<ShipmentItemXp, ProductXp>>;
-    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
-    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
+    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipmentItem<ShipmentItemXp, ProductXp, LineItemVariantXp>>;
+    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipmentItem>>;
+    public ListShipmentItems<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any>(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipmentItem>>;
     public ListShipmentItems(shipmentID: string, options?: { orderID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2435,9 +2436,9 @@ export class OcMeService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'body', reportProgress?: boolean}): Observable<any>;
-    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
-    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'body', reportProgress?: boolean}): Observable<AccessTokenBasic>;
+    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<AccessTokenBasic>>;
+    public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<AccessTokenBasic>>;
     public Register(anonUserToken: string, meUser: MeUser, options?: { anonUserToken?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2487,7 +2488,7 @@ export class OcMeService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/me/register`,
+        return this.httpClient.put<AccessTokenBasic>(`${this.basePath}/me/register`,
             meUser,
             {
                 params: queryParameters,

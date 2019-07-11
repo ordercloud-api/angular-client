@@ -55,6 +55,115 @@ export class OcSecurityProfileService {
      * 
      * 
      * @param securityProfileID ID of the security profile.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Delete(securityProfileID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public Delete(securityProfileID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public Delete(securityProfileID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public Delete(securityProfileID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (securityProfileID === null || securityProfileID === undefined) {
+            throw new Error('Required parameter securityProfileID was null or undefined when calling Delete.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.delete<any>(`${this.basePath}/securityprofiles/${encodeURIComponent(String(securityProfileID))}`,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param securityProfile 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Create(securityProfile: SecurityProfile, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SecurityProfile>;
+    public Create(securityProfile: SecurityProfile, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SecurityProfile>>;
+    public Create(securityProfile: SecurityProfile, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SecurityProfile>>;
+    public Create(securityProfile: SecurityProfile, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (securityProfile === null || securityProfile === undefined) {
+            throw new Error('Required parameter securityProfile was null or undefined when calling Create.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<SecurityProfile>(`${this.basePath}/securityprofiles`,
+            securityProfile,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param securityProfileID ID of the security profile.
      * @param options.buyerID ID of the buyer.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
@@ -390,6 +499,128 @@ export class OcSecurityProfileService {
         return this.httpClient.get<ListSecurityProfileAssignment>(`${this.basePath}/securityprofiles/assignments`,
             {
                 params: queryParameters,
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param securityProfileID ID of the security profile.
+     * @param partialSecurityProfile 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Patch(securityProfileID: string, partialSecurityProfile: SecurityProfile, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SecurityProfile>;
+    public Patch(securityProfileID: string, partialSecurityProfile: SecurityProfile, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SecurityProfile>>;
+    public Patch(securityProfileID: string, partialSecurityProfile: SecurityProfile, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SecurityProfile>>;
+    public Patch(securityProfileID: string, partialSecurityProfile: SecurityProfile, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (securityProfileID === null || securityProfileID === undefined) {
+            throw new Error('Required parameter securityProfileID was null or undefined when calling Patch.');
+        }
+        if (partialSecurityProfile === null || partialSecurityProfile === undefined) {
+            throw new Error('Required parameter partialSecurityProfile was null or undefined when calling Patch.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.patch<SecurityProfile>(`${this.basePath}/securityprofiles/${encodeURIComponent(String(securityProfileID))}`,
+            partialSecurityProfile,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param securityProfileID ID of the security profile.
+     * @param securityProfile 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save(securityProfileID: string, securityProfile: SecurityProfile, options?: { observe?: 'body', reportProgress?: boolean}): Observable<SecurityProfile>;
+    public Save(securityProfileID: string, securityProfile: SecurityProfile, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<SecurityProfile>>;
+    public Save(securityProfileID: string, securityProfile: SecurityProfile, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<SecurityProfile>>;
+    public Save(securityProfileID: string, securityProfile: SecurityProfile, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (securityProfileID === null || securityProfileID === undefined) {
+            throw new Error('Required parameter securityProfileID was null or undefined when calling Save.');
+        }
+        if (securityProfile === null || securityProfile === undefined) {
+            throw new Error('Required parameter securityProfile was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<SecurityProfile>(`${this.basePath}/securityprofiles/${encodeURIComponent(String(securityProfileID))}`,
+            securityProfile,
+            {
                 headers: headers,
                 observe: opts.observe,
                 reportProgress: opts.reportProgress
