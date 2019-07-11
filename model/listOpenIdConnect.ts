@@ -6,10 +6,10 @@
  * Do not edit the class manually.
  */
 import { Meta } from './meta';
-import { ShipmentItem } from './shipmentItem';
+import { OpenIdConnect } from './openIdConnect';
 
 
-export interface ListShipmentItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any> {
-    Items?: Array<ShipmentItem<ShipmentItemXp, ProductXp, LineItemVariantXp>>;
+export interface ListOpenIdConnect {
+    Items?: Array<OpenIdConnect>;
     Meta?: Meta;
 }

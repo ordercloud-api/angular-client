@@ -5,15 +5,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { WebhookRoute } from './webhookRoute';
 
 
-export interface MessageSender<MessageSenderXp = any> {
+export interface PartialWebhook {
     ID?: string;
     Name?: string;
-    MessageTypes?: Array<string>;
     Description?: string;
-    URL?: string;
+    Url?: string;
+    HashKey?: string;
     ElevatedRoles?: Array<string>;
-    SharedKey?: string;
-    xp?: MessageSenderXp;
+    ConfigData?: any;
+    BeforeProcessRequest?: boolean;
+    ApiClientIDs?: Array<string>;
+    WebhookRoutes?: Array<WebhookRoute>;
 }

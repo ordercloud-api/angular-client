@@ -8,7 +8,7 @@
 import { PasswordConfig } from './passwordConfig';
 
 
-export interface SecurityProfile {
+export interface PartialSecurityProfile {
     ID?: string;
     Name?: string;
     Roles?: Array<string>;

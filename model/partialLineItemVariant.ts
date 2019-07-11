@@ -5,13 +5,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { PasswordConfig } from './passwordConfig';
 
 
-export interface SecurityProfile {
+export interface PartialLineItemVariant<LineItemVariantXp = any> {
     ID?: string;
     Name?: string;
-    Roles?: Array<string>;
-    CustomRoles?: Array<string>;
-    PasswordConfig?: PasswordConfig;
+    Description?: string;
+    ShipWeight?: number;
+    ShipHeight?: number;
+    ShipWidth?: number;
+    ShipLength?: number;
+    xp?: LineItemVariantXp;
 }

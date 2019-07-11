@@ -5,13 +5,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { PasswordConfig } from './passwordConfig';
 
 
-export interface SecurityProfile {
+export interface PartialMessageSender<MessageSenderXp = any> {
     ID?: string;
     Name?: string;
-    Roles?: Array<string>;
-    CustomRoles?: Array<string>;
-    PasswordConfig?: PasswordConfig;
+    MessageTypes?: Array<string>;
+    Description?: string;
+    URL?: string;
+    ElevatedRoles?: Array<string>;
+    SharedKey?: string;
+    xp?: MessageSenderXp;
 }

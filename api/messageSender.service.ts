@@ -57,6 +57,115 @@ export class OcMessageSenderService {
      * 
      * 
      * @param messageSenderID ID of the message sender.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Delete(messageSenderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public Delete(messageSenderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public Delete(messageSenderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public Delete(messageSenderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (messageSenderID === null || messageSenderID === undefined) {
+            throw new Error('Required parameter messageSenderID was null or undefined when calling Delete.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.delete<any>(`${this.basePath}/messagesenders/${encodeURIComponent(String(messageSenderID))}`,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param messageSender 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Create<MessageSenderXp = any>(messageSender: MessageSender, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MessageSender<MessageSenderXp>>;
+    public Create<MessageSenderXp = any>(messageSender: MessageSender, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MessageSender>>;
+    public Create<MessageSenderXp = any>(messageSender: MessageSender, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MessageSender>>;
+    public Create(messageSender: MessageSender, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (messageSender === null || messageSender === undefined) {
+            throw new Error('Required parameter messageSender was null or undefined when calling Create.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<MessageSender>(`${this.basePath}/messagesenders`,
+            messageSender,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param messageSenderID ID of the message sender.
      * @param options.buyerID ID of the buyer.
      * @param options.userID ID of the user.
      * @param options.userGroupID ID of the user group.
@@ -144,9 +253,9 @@ export class OcMessageSenderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get(messageSenderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MessageSender>;
-    public Get(messageSenderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MessageSender>>;
-    public Get(messageSenderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MessageSender>>;
+    public Get<MessageSenderXp = any>(messageSenderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MessageSender<MessageSenderXp>>;
+    public Get<MessageSenderXp = any>(messageSenderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MessageSender>>;
+    public Get<MessageSenderXp = any>(messageSenderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MessageSender>>;
     public Get(messageSenderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -202,9 +311,9 @@ export class OcMessageSenderService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListMessageSender>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListMessageSender>>;
-    public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListMessageSender>>;
+    public List<MessageSenderXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListMessageSender<MessageSenderXp>>;
+    public List<MessageSenderXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListMessageSender>>;
+    public List<MessageSenderXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListMessageSender>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -479,6 +588,128 @@ export class OcMessageSenderService {
         return this.httpClient.get<ListMessageCCListenerAssignment>(`${this.basePath}/messagesenders/CCListenerAssignments`,
             {
                 params: queryParameters,
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param messageSenderID ID of the message sender.
+     * @param partialMessageSender 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Patch<MessageSenderXp = any>(messageSenderID: string, partialMessageSender: MessageSender, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MessageSender<MessageSenderXp>>;
+    public Patch<MessageSenderXp = any>(messageSenderID: string, partialMessageSender: MessageSender, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MessageSender>>;
+    public Patch<MessageSenderXp = any>(messageSenderID: string, partialMessageSender: MessageSender, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MessageSender>>;
+    public Patch(messageSenderID: string, partialMessageSender: MessageSender, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (messageSenderID === null || messageSenderID === undefined) {
+            throw new Error('Required parameter messageSenderID was null or undefined when calling Patch.');
+        }
+        if (partialMessageSender === null || partialMessageSender === undefined) {
+            throw new Error('Required parameter partialMessageSender was null or undefined when calling Patch.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.patch<MessageSender>(`${this.basePath}/messagesenders/${encodeURIComponent(String(messageSenderID))}`,
+            partialMessageSender,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param messageSenderID ID of the message sender.
+     * @param messageSender 
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Save<MessageSenderXp = any>(messageSenderID: string, messageSender: MessageSender, options?: { observe?: 'body', reportProgress?: boolean}): Observable<MessageSender<MessageSenderXp>>;
+    public Save<MessageSenderXp = any>(messageSenderID: string, messageSender: MessageSender, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<MessageSender>>;
+    public Save<MessageSenderXp = any>(messageSenderID: string, messageSender: MessageSender, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<MessageSender>>;
+    public Save(messageSenderID: string, messageSender: MessageSender, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (messageSenderID === null || messageSenderID === undefined) {
+            throw new Error('Required parameter messageSenderID was null or undefined when calling Save.');
+        }
+        if (messageSender === null || messageSender === undefined) {
+            throw new Error('Required parameter messageSender was null or undefined when calling Save.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<MessageSender>(`${this.basePath}/messagesenders/${encodeURIComponent(String(messageSenderID))}`,
+            messageSender,
+            {
                 headers: headers,
                 observe: opts.observe,
                 reportProgress: opts.reportProgress

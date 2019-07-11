@@ -8,9 +8,10 @@
 import { Address } from './address';
 import { LineItemProduct } from './lineItemProduct';
 import { LineItemSpec } from './lineItemSpec';
+import { LineItemVariant } from './lineItemVariant';
 
 
-export interface PartialLineItem<LineItemXp = any, ProductXp = any, AddressXp = any> {
+export interface PartialLineItem<LineItemXp = any, ProductXp = any, LineItemVariantXp = any, AddressXp = any> {
     ID?: string;
     ProductID?: string;
     Quantity?: number;
@@ -24,6 +25,7 @@ export interface PartialLineItem<LineItemXp = any, ProductXp = any, AddressXp = 
     ShippingAddressID?: string;
     ShipFromAddressID?: string;
     Product?: LineItemProduct<ProductXp>;
+    Variant?: LineItemVariant<LineItemVariantXp>;
     ShippingAddress?: Address<AddressXp>;
     ShipFromAddress?: Address<AddressXp>;
     SupplierID?: string;

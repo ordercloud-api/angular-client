@@ -23,4 +23,6 @@ export interface MeUser<MeUserXp = any> {
     Active?: boolean;
     xp?: MeUserXp;
     AvailableRoles?: Array<string>;
+    DateCreated?: string;
+    PasswordLastSetDate?: string;
 }

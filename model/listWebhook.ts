@@ -6,10 +6,10 @@
  * Do not edit the class manually.
  */
 import { Meta } from './meta';
-import { ShipmentItem } from './shipmentItem';
+import { Webhook } from './webhook';
 
 
-export interface ListShipmentItem<ShipmentItemXp = any, ProductXp = any, LineItemVariantXp = any> {
-    Items?: Array<ShipmentItem<ShipmentItemXp, ProductXp, LineItemVariantXp>>;
+export interface ListWebhook {
+    Items?: Array<Webhook>;
     Meta?: Meta;
 }

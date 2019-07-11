@@ -22,5 +22,6 @@ export interface OrderPromotion<OrderPromotionXp = any> {
     EligibleExpression?: string;
     ValueExpression?: string;
     CanCombine?: boolean;
+    AllowAllBuyers?: boolean;
     xp?: OrderPromotionXp;
 }
