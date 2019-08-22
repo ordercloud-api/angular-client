@@ -6,7 +6,7 @@
  * Do not edit the class manually.
  */
 import { Injectable, Optional }                              from '@angular/core';
-import CookieService                                     from '../utils/cookieService';
+import { CookieService }                                     from 'ngx-cookie';
 import { Configuration }                                     from '../configuration';
 
 
@@ -20,7 +20,7 @@ export class OcTokenService {
     private refreshTokenCookieName: string;
 
 
-    constructor( @Optional() configuration: Configuration) {
+    constructor( @Optional() configuration: Configuration, protected cookies: CookieService) {
         const cookiePrefix = configuration.cookiePrefix || 'ordercloud';
 
         this.authTokenCookieName = cookiePrefix + '.token';
@@ -29,34 +29,34 @@ export class OcTokenService {
     }
 
     public GetAccess() {
-        return CookieService.get(this.authTokenCookieName);
+        return this.cookies.get(this.authTokenCookieName);
     }
 
     public SetAccess(token: string) {
-        CookieService.set(this.authTokenCookieName, token)
+        this.cookies.put(this.authTokenCookieName, token)
     }
 
     public RemoveAccess() {
-        CookieService.remove(this.authTokenCookieName);
+        this.cookies.remove(this.authTokenCookieName);
     }
 
     public GetImpersonation() {
-        return CookieService.get(this.impersonationTokenCookieName);
+        return this.cookies.get(this.impersonationTokenCookieName);
     }
 
     public SetImpersonation(token: string) {
-        CookieService.set(this.impersonationTokenCookieName, token);
+        this.cookies.put(this.impersonationTokenCookieName, token);
     }
 
     public RemoveImpersonation() {
-        CookieService.remove(this.impersonationTokenCookieName);
+        this.cookies.remove(this.impersonationTokenCookieName);
     }
 
     public GetRefresh() {
-        return CookieService.get(this.refreshTokenCookieName);
+        return this.cookies.get(this.refreshTokenCookieName);
     }
 
     public SetRefresh(token: string) {
-        return CookieService.set(this.refreshTokenCookieName, token);
+        return this.cookies.put(this.refreshTokenCookieName, token);
     }
 }
