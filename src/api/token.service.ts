@@ -6,7 +6,7 @@
  * Do not edit the class manually.
  */
 import { Injectable, Optional }                              from '@angular/core';
-import { CookieService }                                     from 'ngx-cookie';
+import { CookieService }                                     from '@gorniv/ngx-universal';
 import { Configuration }                                     from '../configuration';
 
 
