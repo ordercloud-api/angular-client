@@ -5,10 +5,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { SpecOption } from './specOption';
 
 
-export interface PartialSpec<SpecXp = any> {
-    OptionCount?: number;
+export interface PartialSpec<SpecXp = any, SpecOptionXp = any> {
     ID?: string;
     ListOrder?: number;
     Name?: string;
@@ -18,4 +18,6 @@ export interface PartialSpec<SpecXp = any> {
     DefaultOptionID?: string;
     DefinesVariant?: boolean;
     xp?: SpecXp;
+    OptionCount?: number;
+    Options?: Array<SpecOption<SpecOptionXp>>;
 }

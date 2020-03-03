@@ -23,6 +23,7 @@ import { ListUser } from '../model/listUser';
 import { Order } from '../model/order';
 import { OrderApprovalInfo } from '../model/orderApprovalInfo';
 import { OrderPromotion } from '../model/orderPromotion';
+import { OrderSplitResult } from '../model/orderSplitResult';
 import { Shipment } from '../model/shipment';
 import { User } from '../model/user';
 
@@ -300,6 +301,63 @@ export class OcOrderService {
      * 
      * 
      * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Complete<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
+    public Complete<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
+    public Complete<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
+    public Complete(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling Complete.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling Complete.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.post<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/complete`,
+            null,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param order 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -415,6 +473,63 @@ export class OcOrderService {
 
         return this.httpClient.post<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/decline`,
             orderApprovalInfo,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Forward<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderSplitResult<OrderXp, UserXp, AddressXp>>;
+    public Forward<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderSplitResult>>;
+    public Forward<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderSplitResult>>;
+    public Forward(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling Forward.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling Forward.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.post<OrderSplitResult>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/forward`,
+            null,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -1498,6 +1613,63 @@ export class OcOrderService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
+    public Split<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderSplitResult<OrderXp, UserXp, AddressXp>>;
+    public Split<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderSplitResult>>;
+    public Split<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderSplitResult>>;
+    public Split(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling Split.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling Split.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.post<OrderSplitResult>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/split`,
+            null,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
     public Submit<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Order<OrderXp, UserXp, AddressXp>>;
     public Submit<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Order>>;
     public Submit<OrderXp = any, UserXp = any, AddressXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Order>>;
@@ -1539,6 +1711,63 @@ export class OcOrderService {
         ];
 
         return this.httpClient.post<Order>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/submit`,
+            null,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public Validate(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<any>;
+    public Validate(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<any>>;
+    public Validate(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<any>>;
+    public Validate(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling Validate.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling Validate.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/validate`,
             null,
             {
                 headers: headers,

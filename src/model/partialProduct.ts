@@ -9,7 +9,9 @@ import { Inventory } from './inventory';
 
 
 export interface PartialProduct<ProductXp = any> {
+    OwnerID?: string;
     DefaultPriceScheduleID?: string;
+    AutoForward?: boolean;
     ID?: string;
     Name?: string;
     Description?: string;
@@ -20,9 +22,9 @@ export interface PartialProduct<ProductXp = any> {
     ShipLength?: number;
     Active?: boolean;
     SpecCount?: number;
-    xp?: ProductXp;
     VariantCount?: number;
     ShipFromAddressID?: string;
     Inventory?: Inventory;
     DefaultSupplierID?: string;
+    xp?: ProductXp;
 }

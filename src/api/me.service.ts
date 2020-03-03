@@ -19,13 +19,11 @@ import { AccessTokenBasic } from '../model/accessTokenBasic';
 import { BuyerAddress } from '../model/buyerAddress';
 import { BuyerCreditCard } from '../model/buyerCreditCard';
 import { BuyerProduct } from '../model/buyerProduct';
-import { BuyerSpec } from '../model/buyerSpec';
 import { Catalog } from '../model/catalog';
 import { Category } from '../model/category';
 import { ListBuyerAddress } from '../model/listBuyerAddress';
 import { ListBuyerCreditCard } from '../model/listBuyerCreditCard';
 import { ListBuyerProduct } from '../model/listBuyerProduct';
-import { ListBuyerSpec } from '../model/listBuyerSpec';
 import { ListCatalog } from '../model/listCatalog';
 import { ListCategory } from '../model/listCategory';
 import { ListCostCenter } from '../model/listCostCenter';
@@ -33,11 +31,13 @@ import { ListOrder } from '../model/listOrder';
 import { ListPromotion } from '../model/listPromotion';
 import { ListShipment } from '../model/listShipment';
 import { ListShipmentItem } from '../model/listShipmentItem';
+import { ListSpec } from '../model/listSpec';
 import { ListSpendingAccount } from '../model/listSpendingAccount';
 import { ListUserGroup } from '../model/listUserGroup';
 import { MeUser } from '../model/meUser';
 import { Promotion } from '../model/promotion';
 import { Shipment } from '../model/shipment';
+import { Spec } from '../model/spec';
 import { SpendingAccount } from '../model/spendingAccount';
 import { TokenPasswordReset } from '../model/tokenPasswordReset';
 
@@ -725,9 +725,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public GetSpec<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'body', reportProgress?: boolean}): Observable<BuyerSpec<BuyerSpecXp, SpecOptionXp>>;
-    public GetSpec<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<BuyerSpec>>;
-    public GetSpec<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<BuyerSpec>>;
+    public GetSpec<SpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp, SpecOptionXp>>;
+    public GetSpec<SpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
+    public GetSpec<SpecXp = any, SpecOptionXp = any>(productID: string, specID: string, options?: { catalogID?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
     public GetSpec(productID: string, specID: string, options?: { catalogID?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -773,7 +773,7 @@ export class OcMeService {
             'text/plain; charset=utf-8'
         ];
 
-        return this.httpClient.get<BuyerSpec>(`${this.basePath}/me/products/${encodeURIComponent(String(productID))}/specs/${encodeURIComponent(String(specID))}`,
+        return this.httpClient.get<Spec>(`${this.basePath}/me/products/${encodeURIComponent(String(productID))}/specs/${encodeURIComponent(String(specID))}`,
             {
                 params: queryParameters,
                 headers: headers,
@@ -1971,9 +1971,9 @@ export class OcMeService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public ListSpecs<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListBuyerSpec<BuyerSpecXp, SpecOptionXp>>;
-    public ListSpecs<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListBuyerSpec>>;
-    public ListSpecs<BuyerSpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListBuyerSpec>>;
+    public ListSpecs<SpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpec<SpecXp, SpecOptionXp>>;
+    public ListSpecs<SpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpec>>;
+    public ListSpecs<SpecXp = any, SpecOptionXp = any>(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpec>>;
     public ListSpecs(productID: string, options?: { catalogID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -2052,7 +2052,7 @@ export class OcMeService {
             'text/plain; charset=utf-8'
         ];
 
-        return this.httpClient.get<ListBuyerSpec>(`${this.basePath}/me/products/${encodeURIComponent(String(productID))}/specs`,
+        return this.httpClient.get<ListSpec>(`${this.basePath}/me/products/${encodeURIComponent(String(productID))}/specs`,
             {
                 params: queryParameters,
                 headers: headers,

@@ -15,4 +15,5 @@ export interface OpenIdConnect {
     AppStartUrl?: string;
     AuthorizationEndpoint?: string;
     TokenEndpoint?: string;
+    UrlEncoded?: boolean;
 }

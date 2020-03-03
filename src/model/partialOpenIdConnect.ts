@@ -15,4 +15,5 @@ export interface PartialOpenIdConnect {
     AppStartUrl?: string;
     AuthorizationEndpoint?: string;
     TokenEndpoint?: string;
+    UrlEncoded?: boolean;
 }
