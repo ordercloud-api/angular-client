@@ -10,4 +10,5 @@
 export interface ImpersonateTokenRequest {
     ClientID?: string;
     Roles?: Array<string>;
+    CustomRoles?: Array<string>;
 }

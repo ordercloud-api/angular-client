@@ -112,9 +112,9 @@ export class OcSpecService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Create<SpecXp = any>(spec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp>>;
-    public Create<SpecXp = any>(spec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
-    public Create<SpecXp = any>(spec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
+    public Create<SpecXp = any, SpecOptionXp = any>(spec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp, SpecOptionXp>>;
+    public Create<SpecXp = any, SpecOptionXp = any>(spec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
+    public Create<SpecXp = any, SpecOptionXp = any>(spec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
     public Create(spec: Spec, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -342,9 +342,9 @@ export class OcSpecService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Get<SpecXp = any>(specID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp>>;
-    public Get<SpecXp = any>(specID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
-    public Get<SpecXp = any>(specID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
+    public Get<SpecXp = any, SpecOptionXp = any>(specID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp, SpecOptionXp>>;
+    public Get<SpecXp = any, SpecOptionXp = any>(specID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
+    public Get<SpecXp = any, SpecOptionXp = any>(specID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
     public Get(specID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -456,9 +456,9 @@ export class OcSpecService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List<SpecXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpec<SpecXp>>;
-    public List<SpecXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpec>>;
-    public List<SpecXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpec>>;
+    public List<SpecXp = any, SpecOptionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpec<SpecXp, SpecOptionXp>>;
+    public List<SpecXp = any, SpecOptionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpec>>;
+    public List<SpecXp = any, SpecOptionXp = any>(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpec>>;
     public List(options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -737,9 +737,9 @@ export class OcSpecService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Patch<SpecXp = any>(specID: string, partialSpec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp>>;
-    public Patch<SpecXp = any>(specID: string, partialSpec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
-    public Patch<SpecXp = any>(specID: string, partialSpec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
+    public Patch<SpecXp = any, SpecOptionXp = any>(specID: string, partialSpec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp, SpecOptionXp>>;
+    public Patch<SpecXp = any, SpecOptionXp = any>(specID: string, partialSpec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
+    public Patch<SpecXp = any, SpecOptionXp = any>(specID: string, partialSpec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
     public Patch(specID: string, partialSpec: Spec, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -863,9 +863,9 @@ export class OcSpecService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public Save<SpecXp = any>(specID: string, spec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp>>;
-    public Save<SpecXp = any>(specID: string, spec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
-    public Save<SpecXp = any>(specID: string, spec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
+    public Save<SpecXp = any, SpecOptionXp = any>(specID: string, spec: Spec, options?: { observe?: 'body', reportProgress?: boolean}): Observable<Spec<SpecXp, SpecOptionXp>>;
+    public Save<SpecXp = any, SpecOptionXp = any>(specID: string, spec: Spec, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<Spec>>;
+    public Save<SpecXp = any, SpecOptionXp = any>(specID: string, spec: Spec, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<Spec>>;
     public Save(specID: string, spec: Spec, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {

@@ -9,6 +9,7 @@
 
 export interface PartialCatalog<CatalogXp = any> {
     ID?: string;
+    OwnerID?: string;
     Name?: string;
     Description?: string;
     Active?: boolean;

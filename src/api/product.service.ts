@@ -17,6 +17,7 @@ import { OcTokenService }                                      from './token.ser
 
 import { ListProduct } from '../model/listProduct';
 import { ListProductAssignment } from '../model/listProductAssignment';
+import { ListSpec } from '../model/listSpec';
 import { ListSupplier } from '../model/listSupplier';
 import { ListVariant } from '../model/listVariant';
 import { Product } from '../model/product';
@@ -425,9 +426,9 @@ export class OcProductService {
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List<ProductXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct<ProductXp>>;
-    public List<ProductXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
-    public List<ProductXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
+    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct<ProductXp, ListFacetXp>>;
+    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
+    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
     public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
@@ -624,6 +625,104 @@ export class OcProductService {
         ];
 
         return this.httpClient.get<ListProductAssignment>(`${this.basePath}/products/assignments`,
+            {
+                params: queryParameters,
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param productID ID of the product.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+   
+    public ListSpecs<SpecXp = any, SpecOptionXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListSpec<SpecXp, SpecOptionXp>>;
+    public ListSpecs<SpecXp = any, SpecOptionXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListSpec>>;
+    public ListSpecs<SpecXp = any, SpecOptionXp = any>(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListSpec>>;
+    public ListSpecs(productID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (productID === null || productID === undefined) {
+            throw new Error('Required parameter productID was null or undefined when calling ListSpecs.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (opts.search !== undefined) {
+            queryParameters = queryParameters.set('search', <any>opts.search);
+        }
+        if (opts.search === null) {
+            throw new Error('Parameter search was null when calling ListSpecs. Null values are not allowed');
+        }
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
+        }
+        if (opts.searchOn === null) {
+            throw new Error('Parameter searchOn was null when calling ListSpecs. Null values are not allowed');
+        }
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
+        }
+        if (opts.sortBy === null) {
+            throw new Error('Parameter sortBy was null when calling ListSpecs. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
+            queryParameters = queryParameters.set('page', <any>opts.page);
+        }
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling ListSpecs. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
+            queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
+        }
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling ListSpecs. Null values are not allowed');
+        }
+        if (opts.filters !== undefined) {
+            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters, 'ListSpecs');
+        }
+        if (opts.filters === null) {
+            throw new Error('Parameter filters was null when calling ListSpecs. Null values are not allowed');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.get<ListSpec>(`${this.basePath}/products/${encodeURIComponent(String(productID))}/specs`,
             {
                 params: queryParameters,
                 headers: headers,

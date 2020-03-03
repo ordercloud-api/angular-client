@@ -13,6 +13,7 @@ export interface PartialOrder<OrderXp = any, UserXp = any, AddressXp = any> {
     ID?: string;
     FromUser?: User<UserXp>;
     FromCompanyID?: string;
+    ToCompanyID?: string;
     FromUserID?: string;
     BillingAddressID?: string;
     BillingAddress?: Address<AddressXp>;

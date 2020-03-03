@@ -21,9 +21,9 @@ export interface BuyerProduct<BuyerProductXp = any, PriceScheduleXp = any> {
     ShipLength?: number;
     Active?: boolean;
     SpecCount?: number;
-    xp?: BuyerProductXp;
     VariantCount?: number;
     ShipFromAddressID?: string;
     Inventory?: Inventory;
     DefaultSupplierID?: string;
+    xp?: BuyerProductXp;
 }
