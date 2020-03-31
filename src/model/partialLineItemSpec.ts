@@ -12,4 +12,6 @@ export interface PartialLineItemSpec {
     Name?: string;
     OptionID?: string;
     Value?: string;
+    PriceMarkupType?: string;
+    PriceMarkup?: number;
 }

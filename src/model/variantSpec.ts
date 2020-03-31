@@ -7,7 +7,11 @@
  */
 
 
-export interface ShipmentPreference {
-    ProposedShipmentID?: string;
-    ProposedShipmentOptionID?: string;
+export interface VariantSpec {
+    SpecID?: string;
+    Name?: string;
+    OptionID?: string;
+    Value?: string;
+    PriceMarkupType?: string;
+    PriceMarkup?: number;
 }

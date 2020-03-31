@@ -22,6 +22,4 @@ export interface ApiClient<ApiClientXp = any> {
     IsAnonBuyer?: boolean;
     AssignedBuyerCount?: number;
     AssignedSupplierCount?: number;
-    OrderCalculateIntegrationEventID?: string;
-    OrderCalculateIntegrationEventName?: string;
 }

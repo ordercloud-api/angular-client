@@ -6,6 +6,7 @@
  * Do not edit the class manually.
  */
 import { VariantInventory } from './variantInventory';
+import { VariantSpec } from './variantSpec';
 
 
 export interface PartialVariant<VariantXp = any> {
@@ -18,5 +19,6 @@ export interface PartialVariant<VariantXp = any> {
     ShipWidth?: number;
     ShipLength?: number;
     Inventory?: VariantInventory;
+    Specs?: Array<VariantSpec>;
     xp?: VariantXp;
 }

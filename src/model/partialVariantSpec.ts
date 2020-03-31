@@ -7,7 +7,11 @@
  */
 
 
-export interface LineItemOverride {
-    LineItemID?: string;
-    UnitPrice?: number;
+export interface PartialVariantSpec {
+    SpecID?: string;
+    Name?: string;
+    OptionID?: string;
+    Value?: string;
+    PriceMarkupType?: string;
+    PriceMarkup?: number;
 }
