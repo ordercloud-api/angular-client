@@ -5,13 +5,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ShipMethodSelection } from './shipMethodSelection';
 
 
-export interface PartialLineItemSpec {
-    SpecID?: string;
-    Name?: string;
-    OptionID?: string;
-    Value?: string;
-    PriceMarkupType?: string;
-    PriceMarkup?: number;
+export interface OrderShipMethodSelection {
+    ShipMethodSelections?: Array<ShipMethodSelection>;
 }

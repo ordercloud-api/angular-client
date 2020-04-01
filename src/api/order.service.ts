@@ -19,6 +19,7 @@ import { Address } from '../model/address';
 import { ListOrder } from '../model/listOrder';
 import { ListOrderApproval } from '../model/listOrderApproval';
 import { ListOrderPromotion } from '../model/listOrderPromotion';
+import { ListShipment } from '../model/listShipment';
 import { ListUser } from '../model/listUser';
 import { Order } from '../model/order';
 import { OrderApprovalInfo } from '../model/orderApprovalInfo';
@@ -1017,6 +1018,108 @@ export class OcOrderService {
         ];
 
         return this.httpClient.get<ListOrderPromotion>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/promotions`,
+            {
+                params: queryParameters,
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param options.search Word or phrase to search for.
+     * @param options.searchOn Comma-delimited list of fields to search on.
+     * @param options.sortBy Comma-delimited list of fields to sort by.
+     * @param options.page Page of results to return. Default: 1
+     * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
+     * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+   
+    public ListShipments<ShipmentXp = any, AddressXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListShipment<ShipmentXp, AddressXp>>;
+    public ListShipments<ShipmentXp = any, AddressXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListShipment>>;
+    public ListShipments<ShipmentXp = any, AddressXp = any>(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListShipment>>;
+    public ListShipments(direction: string, orderID: string, options?: { search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling ListShipments.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling ListShipments.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (opts.search !== undefined) {
+            queryParameters = queryParameters.set('search', <any>opts.search);
+        }
+        if (opts.search === null) {
+            throw new Error('Parameter search was null when calling ListShipments. Null values are not allowed');
+        }
+        if (opts.searchOn !== undefined) {
+            queryParameters = queryParameters.set('searchOn', <any>opts.searchOn);
+        }
+        if (opts.searchOn === null) {
+            throw new Error('Parameter searchOn was null when calling ListShipments. Null values are not allowed');
+        }
+        if (opts.sortBy !== undefined) {
+            queryParameters = queryParameters.set('sortBy', <any>opts.sortBy);
+        }
+        if (opts.sortBy === null) {
+            throw new Error('Parameter sortBy was null when calling ListShipments. Null values are not allowed');
+        }
+        if (opts.page !== undefined) {
+            queryParameters = queryParameters.set('page', <any>opts.page);
+        }
+        if (opts.page === null) {
+            throw new Error('Parameter page was null when calling ListShipments. Null values are not allowed');
+        }
+        if (opts.pageSize !== undefined) {
+            queryParameters = queryParameters.set('pageSize', <any>opts.pageSize);
+        }
+        if (opts.pageSize === null) {
+            throw new Error('Parameter pageSize was null when calling ListShipments. Null values are not allowed');
+        }
+        if (opts.filters !== undefined) {
+            queryParameters = this.configuration.unwrapFilters(opts.filters, queryParameters, 'ListShipments');
+        }
+        if (opts.filters === null) {
+            throw new Error('Parameter filters was null when calling ListShipments. Null values are not allowed');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.get<ListShipment>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/shipments`,
             {
                 params: queryParameters,
                 headers: headers,

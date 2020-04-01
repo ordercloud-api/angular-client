@@ -422,14 +422,15 @@ export class OcProductService {
      * @param options.page Page of results to return. Default: 1
      * @param options.pageSize Number of results to return per page. Default: 20, max: 100.
      * @param options.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or &#39;xp.???&#39;
+     * @param options.searchType Search type of the product. Possible values: AnyTerm, AllTermsAnyField, AllTermsSameField, ExactPhrase, ExactPhrasePrefix.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
    
-    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct<ProductXp, ListFacetXp>>;
-    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
-    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
-    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, observe?: any, reportProgress?: boolean}): Observable<any> {
+    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, searchType?: string, observe?: 'body', reportProgress?: boolean}): Observable<ListProduct<ProductXp, ListFacetXp>>;
+    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, searchType?: string, observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<ListProduct>>;
+    public List<ProductXp = any, ListFacetXp = any>(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, searchType?: string, observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<ListProduct>>;
+    public List(options?: { catalogID?: string, categoryID?: string, supplierID?: string, search?: string, searchOn?: string, sortBy?: string, page?: number, pageSize?: number, filters?: { [key: string]: string | Array<string>; }, searchType?: string, observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -492,6 +493,12 @@ export class OcProductService {
         }
         if (opts.filters === null) {
             throw new Error('Parameter filters was null when calling List. Null values are not allowed');
+        }
+        if (opts.searchType !== undefined) {
+            queryParameters = queryParameters.set('searchType', <any>opts.searchType);
+        }
+        if (opts.searchType === null) {
+            throw new Error('Parameter searchType was null when calling List. Null values are not allowed');
         }
 
         let headers = this.defaultHeaders;

@@ -5,14 +5,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { LineItemOverride } from './lineItemOverride';
+import { ShipEstimate } from './shipEstimate';
 
 
-export interface OrderCalculateResponse<OrderCalculateResponseXp = any> {
-    LineItemOverrides?: Array<LineItemOverride>;
-    ShippingTotal?: number;
-    TaxTotal?: number;
+export interface ShipEstimateResponse<ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any> {
+    ShipEstimates?: Array<ShipEstimate<ShipEstimateXp, ShipMethodXp>>;
     HttpStatusCode?: number;
     UnhandledErrorBody?: string;
-    xp?: OrderCalculateResponseXp;
+    xp?: ShipEstimateResponseXp;
 }

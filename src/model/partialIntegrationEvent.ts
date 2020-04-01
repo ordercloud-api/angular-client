@@ -8,6 +8,7 @@
 
 
 export interface PartialIntegrationEvent {
+    ElevatedRoles?: Array<string>;
     ID?: string;
     ConfigData?: any;
     EventType?: string;

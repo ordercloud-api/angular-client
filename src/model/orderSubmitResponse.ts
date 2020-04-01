@@ -5,9 +5,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ShipmentPreference } from './shipmentPreference';
 
 
-export interface OrderShipmentPreferences {
-    ShipmentPreferences?: Array<ShipmentPreference>;
+export interface OrderSubmitResponse<OrderSubmitResponseXp = any> {
+    HttpStatusCode?: number;
+    UnhandledErrorBody?: string;
+    xp?: OrderSubmitResponseXp;
 }

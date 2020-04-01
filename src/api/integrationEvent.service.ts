@@ -17,8 +17,8 @@ import { OcTokenService }                                      from './token.ser
 
 import { IntegrationEvent } from '../model/integrationEvent';
 import { ListIntegrationEvent } from '../model/listIntegrationEvent';
-import { OrderCalculation } from '../model/orderCalculation';
-import { OrderShipmentPreferences } from '../model/orderShipmentPreferences';
+import { OrderShipMethodSelection } from '../model/orderShipMethodSelection';
+import { OrderWorksheet } from '../model/orderWorksheet';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../utils/variables';
 import { Configuration }                                     from '../configuration';
@@ -111,10 +111,10 @@ export class OcIntegrationEventService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public CalculateOrder<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderCalculation<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ProposedShipmentXp, ProposedShipmentOptionXp, OrderCalculateResponseXp>>;
-    public CalculateOrder<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderCalculation>>;
-    public CalculateOrder<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderCalculation>>;
-    public CalculateOrder(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public Calculate<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderWorksheet<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ShipEstimateResponseXp, ShipEstimateXp, ShipMethodXp, OrderCalculateResponseXp, OrderSubmitResponseXp>>;
+    public Calculate<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderWorksheet>>;
+    public Calculate<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderWorksheet>>;
+    public Calculate(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -123,10 +123,10 @@ export class OcIntegrationEventService {
             opts.reportProgress = false;
         }
         if (direction === null || direction === undefined) {
-            throw new Error('Required parameter direction was null or undefined when calling CalculateOrder.');
+            throw new Error('Required parameter direction was null or undefined when calling Calculate.');
         }
         if (orderID === null || orderID === undefined) {
-            throw new Error('Required parameter orderID was null or undefined when calling CalculateOrder.');
+            throw new Error('Required parameter orderID was null or undefined when calling Calculate.');
         }
 
         let headers = this.defaultHeaders;
@@ -151,64 +151,7 @@ export class OcIntegrationEventService {
             'text/plain; charset=utf-8'
         ];
 
-        return this.httpClient.post<OrderCalculation>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/CalculateOrder`,
-            null,
-            {
-                headers: headers,
-                observe: opts.observe,
-                reportProgress: opts.reportProgress
-            }
-        );
-    }
-    /**
-     * 
-     * 
-     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
-     * @param orderID ID of the order.
-     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param options.reportProgress flag to report request and response progress.
-     */
-    public CalculateShippingOptions<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderCalculation<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ProposedShipmentXp, ProposedShipmentOptionXp, OrderCalculateResponseXp>>;
-    public CalculateShippingOptions<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderCalculation>>;
-    public CalculateShippingOptions<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderCalculation>>;
-    public CalculateShippingOptions(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
-        let opts = options || {};
-        if (opts.observe === null || opts.observe === undefined) {
-            opts.observe = 'body';
-        }
-        if (opts.reportProgress === null || opts.reportProgress === undefined) {
-            opts.reportProgress = false;
-        }
-        if (direction === null || direction === undefined) {
-            throw new Error('Required parameter direction was null or undefined when calling CalculateShippingOptions.');
-        }
-        if (orderID === null || orderID === undefined) {
-            throw new Error('Required parameter orderID was null or undefined when calling CalculateShippingOptions.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (oauth2) required
-        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
-        this.impersonating = false;
-        headers = headers.set('Authorization', 'Bearer ' + accessToken);
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json',
-            'text/plain; charset=utf-8'
-        ];
-
-        return this.httpClient.post<OrderCalculation>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/CalculateShippingOptions`,
+        return this.httpClient.post<OrderWorksheet>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/calculate`,
             null,
             {
                 headers: headers,
@@ -277,6 +220,63 @@ export class OcIntegrationEventService {
     /**
      * 
      * 
+     * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
+     * @param orderID ID of the order.
+     * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param options.reportProgress flag to report request and response progress.
+     */
+    public EstimateShipping<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderWorksheet<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ShipEstimateResponseXp, ShipEstimateXp, ShipMethodXp, OrderCalculateResponseXp, OrderSubmitResponseXp>>;
+    public EstimateShipping<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderWorksheet>>;
+    public EstimateShipping<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderWorksheet>>;
+    public EstimateShipping(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+        let opts = options || {};
+        if (opts.observe === null || opts.observe === undefined) {
+            opts.observe = 'body';
+        }
+        if (opts.reportProgress === null || opts.reportProgress === undefined) {
+            opts.reportProgress = false;
+        }
+        if (direction === null || direction === undefined) {
+            throw new Error('Required parameter direction was null or undefined when calling EstimateShipping.');
+        }
+        if (orderID === null || orderID === undefined) {
+            throw new Error('Required parameter orderID was null or undefined when calling EstimateShipping.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (oauth2) required
+        let accessToken = this.impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess();
+        this.impersonating = false;
+        headers = headers.set('Authorization', 'Bearer ' + accessToken);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json',
+            'text/plain; charset=utf-8'
+        ];
+
+        return this.httpClient.post<OrderWorksheet>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/estimateshipping`,
+            null,
+            {
+                headers: headers,
+                observe: opts.observe,
+                reportProgress: opts.reportProgress
+            }
+        );
+    }
+    /**
+     * 
+     * 
      * @param integrationEventID ID of the integration event.
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
@@ -334,10 +334,10 @@ export class OcIntegrationEventService {
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public GetOrderCalculate<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderCalculation<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ProposedShipmentXp, ProposedShipmentOptionXp, OrderCalculateResponseXp>>;
-    public GetOrderCalculate<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderCalculation>>;
-    public GetOrderCalculate<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderCalculation>>;
-    public GetOrderCalculate(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public GetWorksheet<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderWorksheet<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ShipEstimateResponseXp, ShipEstimateXp, ShipMethodXp, OrderCalculateResponseXp, OrderSubmitResponseXp>>;
+    public GetWorksheet<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderWorksheet>>;
+    public GetWorksheet<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderWorksheet>>;
+    public GetWorksheet(direction: string, orderID: string, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -346,10 +346,10 @@ export class OcIntegrationEventService {
             opts.reportProgress = false;
         }
         if (direction === null || direction === undefined) {
-            throw new Error('Required parameter direction was null or undefined when calling GetOrderCalculate.');
+            throw new Error('Required parameter direction was null or undefined when calling GetWorksheet.');
         }
         if (orderID === null || orderID === undefined) {
-            throw new Error('Required parameter orderID was null or undefined when calling GetOrderCalculate.');
+            throw new Error('Required parameter orderID was null or undefined when calling GetWorksheet.');
         }
 
         let headers = this.defaultHeaders;
@@ -374,7 +374,7 @@ export class OcIntegrationEventService {
             'text/plain; charset=utf-8'
         ];
 
-        return this.httpClient.get<OrderCalculation>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/CalculateOrder`,
+        return this.httpClient.get<OrderWorksheet>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/worksheet`,
             {
                 headers: headers,
                 observe: opts.observe,
@@ -603,14 +603,14 @@ export class OcIntegrationEventService {
      * 
      * @param direction Direction of the order, from the current user&#39;s perspective. Possible values: incoming, outgoing.
      * @param orderID ID of the order.
-     * @param orderShipmentPreferences 
+     * @param orderShipMethodSelection 
      * @param options.observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param options.reportProgress flag to report request and response progress.
      */
-    public SetShippingPreferences<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, orderShipmentPreferences: OrderShipmentPreferences, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderCalculation<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ProposedShipmentXp, ProposedShipmentOptionXp, OrderCalculateResponseXp>>;
-    public SetShippingPreferences<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, orderShipmentPreferences: OrderShipmentPreferences, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderCalculation>>;
-    public SetShippingPreferences<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ProposedShipmentXp = any, ProposedShipmentOptionXp = any, OrderCalculateResponseXp = any>(direction: string, orderID: string, orderShipmentPreferences: OrderShipmentPreferences, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderCalculation>>;
-    public SetShippingPreferences(direction: string, orderID: string, orderShipmentPreferences: OrderShipmentPreferences, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
+    public SelectShipmethods<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, orderShipMethodSelection: OrderShipMethodSelection, options?: { observe?: 'body', reportProgress?: boolean}): Observable<OrderWorksheet<OrderXp, UserXp, AddressXp, LineItemXp, ProductXp, LineItemVariantXp, ShipEstimateResponseXp, ShipEstimateXp, ShipMethodXp, OrderCalculateResponseXp, OrderSubmitResponseXp>>;
+    public SelectShipmethods<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, orderShipMethodSelection: OrderShipMethodSelection, options?: { observe?: 'response', reportProgress?: boolean}): Observable<HttpResponse<OrderWorksheet>>;
+    public SelectShipmethods<OrderXp = any, UserXp = any, AddressXp = any, LineItemXp = any, ProductXp = any, LineItemVariantXp = any, ShipEstimateResponseXp = any, ShipEstimateXp = any, ShipMethodXp = any, OrderCalculateResponseXp = any, OrderSubmitResponseXp = any>(direction: string, orderID: string, orderShipMethodSelection: OrderShipMethodSelection, options?: { observe?: 'events', reportProgress?: boolean}): Observable<HttpEvent<OrderWorksheet>>;
+    public SelectShipmethods(direction: string, orderID: string, orderShipMethodSelection: OrderShipMethodSelection, options?: { observe?: any, reportProgress?: boolean}): Observable<any> {
         let opts = options || {};
         if (opts.observe === null || opts.observe === undefined) {
             opts.observe = 'body';
@@ -619,13 +619,13 @@ export class OcIntegrationEventService {
             opts.reportProgress = false;
         }
         if (direction === null || direction === undefined) {
-            throw new Error('Required parameter direction was null or undefined when calling SetShippingPreferences.');
+            throw new Error('Required parameter direction was null or undefined when calling SelectShipmethods.');
         }
         if (orderID === null || orderID === undefined) {
-            throw new Error('Required parameter orderID was null or undefined when calling SetShippingPreferences.');
+            throw new Error('Required parameter orderID was null or undefined when calling SelectShipmethods.');
         }
-        if (orderShipmentPreferences === null || orderShipmentPreferences === undefined) {
-            throw new Error('Required parameter orderShipmentPreferences was null or undefined when calling SetShippingPreferences.');
+        if (orderShipMethodSelection === null || orderShipMethodSelection === undefined) {
+            throw new Error('Required parameter orderShipMethodSelection was null or undefined when calling SelectShipmethods.');
         }
 
         let headers = this.defaultHeaders;
@@ -654,8 +654,8 @@ export class OcIntegrationEventService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<OrderCalculation>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/SetShippingPreferences`,
-            orderShipmentPreferences,
+        return this.httpClient.post<OrderWorksheet>(`${this.basePath}/orders/${encodeURIComponent(String(direction))}/${encodeURIComponent(String(orderID))}/shipmethods`,
+            orderShipMethodSelection,
             {
                 headers: headers,
                 observe: opts.observe,

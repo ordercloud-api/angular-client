@@ -7,11 +7,7 @@
  */
 
 
-export interface PartialLineItemSpec {
-    SpecID?: string;
-    Name?: string;
-    OptionID?: string;
-    Value?: string;
-    PriceMarkupType?: string;
-    PriceMarkup?: number;
+export interface ShipMethodSelection {
+    ShipEstimateID?: string;
+    ShipMethodID?: string;
 }

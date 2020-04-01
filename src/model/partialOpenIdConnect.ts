@@ -16,4 +16,7 @@ export interface PartialOpenIdConnect {
     AuthorizationEndpoint?: string;
     TokenEndpoint?: string;
     UrlEncoded?: boolean;
+    IntegrationEventID?: string;
+    IntegrationEventName?: string;
+    AdditionalIdpScopes?: Array<string>;
 }

@@ -7,10 +7,10 @@
  */
 
 
-export interface ProposedShipmentOption<ProposedShipmentOptionXp = any> {
+export interface ShipMethod<ShipMethodXp = any> {
     ID?: string;
     Name?: string;
     Cost?: number;
-    EstimatedDeliveryDays?: number;
-    xp?: ProposedShipmentOptionXp;
+    EstimatedTransitDays?: number;
+    xp?: ShipMethodXp;
 }

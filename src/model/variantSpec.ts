@@ -7,12 +7,11 @@
  */
 
 
-export interface IntegrationEvent {
-    ElevatedRoles?: Array<string>;
-    ID?: string;
-    ConfigData?: any;
-    EventType?: string;
-    CustomImplementationUrl?: string;
+export interface VariantSpec {
+    SpecID?: string;
     Name?: string;
-    HashKey?: string;
+    OptionID?: string;
+    Value?: string;
+    PriceMarkupType?: string;
+    PriceMarkup?: number;
 }

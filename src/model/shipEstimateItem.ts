@@ -7,7 +7,7 @@
  */
 
 
-export interface ProposedShipmentItem {
+export interface ShipEstimateItem {
     LineItemID?: string;
     Quantity?: number;
 }
