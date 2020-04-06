@@ -1,0 +1,72 @@
+{{#resource.fileImports}}
+import { {{this}} } from '../models/{{this}}';
+{{/resource.fileImports}}
+import { Optional, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { OcTokenService } from './Tokens';
+import { Observable } from 'rxjs';
+import { PartialDeep } from '../models/PartialDeep';
+import { RequiredDeep } from '../models/RequiredDeep';
+import { RequestOptions } from '../models/RequestOptions';
+import { Configuration } from '../Configuration';
+import utils from '../utils';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class Oc{{singularize resource.id}}Service {
+    protected basePath = 'https://api.ordercloud.io/v1';
+    private impersonating = false;
+
+    /**
+    * @ignore
+    * not part of public api, don't include in generated docs
+    */
+    constructor(protected httpClient: HttpClient, protected ocTokenService: OcTokenService,  @Optional() configuration: Configuration) {
+        if (configuration) {
+            this.basePath = configuration.basePath || this.basePath;
+        }
+    }
+
+    {{#resource.operations}}
+   /**
+    * {{summary}}{{#if hasSummary}} {{/if}}{{description}}
+    * Check out the {@link https://ordercloud.io/api-reference/{{kebabCase @root.resource.sectionID}}/{{kebabCase @root.resource.id}}/{{kebabCase name}}|api docs} for more info 
+    * {{#allParams}}
+    * @param {{#if isQueryParam}}listOptions.{{name}} {{description}}{{else}}{{name}} {{description}}{{#if isBodyParam}}{{#if hasRequiredFields}}Required fields: {{commaSeparate requiredFields}}{{/if}}{{/if}}{{/if}}{{/allParams}}
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public {{name}}{{#if hasReturnType}}{{#if isList}}<T{{returnType}} extends {{returnType}} = {{returnType}}>{{else}}<T{{returnType}} extends {{returnType}}>{{/if}}{{/if}}({{#allParams}}{{#unless isQueryParam}}{{#if isBodyParam}}{{#if ../isPatch}}{{name}}: PartialDeep<{{typescriptType}}>, {{else}}{{name}}: {{typescriptType}},{{/if}}{{else}}{{name}}: {{typescriptType}}, {{/if}}{{/unless}}{{/allParams}}{{#if hasQueryParams}}listOptions: { {{#queryParams}}{{name}}?: {{typescriptType}}{{#unless @last}}, {{/unless}}{{/queryParams}} } = {}, {{/if}}requestOptions: RequestOptions = {} ): Observable<{{#if hasReturnType}}RequiredDeep<{{#if isList}}{{#if isFacetList}}ListPageWithFacets<T{{returnType}}>{{else}}ListPage<T{{returnType}}>{{/if}}{{else}}T{{returnType}}{{/if}}>{{else}}void{{/if}}>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        {{#pathParams}}
+        if(!{{name}}) throw new Error('Required parameter {{name}} was null or undefined when calling {{../id}}')
+        {{/pathParams}}
+        {{#if hasQueryParams}}const queryParams = utils.buildQueryParams(listOptions, '{{id}}'){{/if}}
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.{{verb}}<any>(`${this.basePath}{{parameterizePath path}}`, {{#unless isGet}}{{#unless isDelete}}{{#if hasBodyParam}}{{bodyParam.name}}, {{else}}null, {{/if}}{{/unless}}{{/unless}}{
+            headers{{#if hasQueryParams}},
+            params: queryParams{{/if}}
+        })
+    }
+
+    {{/resource.operations}}
+    /**
+     * @description 
+     * enables impersonation by calling the subsequent method with the stored impersonation token
+     * 
+     * @example
+     * {{resource.id}}.As().List() // lists {{resource.id}} using the impersonated users' token
+     */
+    public As(): this {
+        this.impersonating = true;
+        return this;
+    }
+}

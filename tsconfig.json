@@ -1,25 +1,38 @@
 {
-    "compilerOptions": {
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "noImplicitAny": false,
-        "suppressImplicitAnyIndexErrors": true,
-        "target": "es5",
-        "module": "es6",
-        "moduleResolution": "node",
-        "removeComments": true,
-        "sourceMap": true,
-        "outDir": "./dist",
-        "noLib": false,
-        "declaration": true,
-        "lib": [ "es6", "dom" ]
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
     ],
-    "filesGlob": [
-        "./model/*.ts",
-        "./api/*.ts"
-    ]
+    "paths": {
+      "sdk": [
+        "dist/sdk/sdk",
+        "dist/sdk"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
+  "typedocOptions": {
+    "mode": "file",
+    "out": "docs",
+    "name": "@ordercloud/angular-sdk",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "theme": "projects/sdk/docs-templates"
+  }
 }

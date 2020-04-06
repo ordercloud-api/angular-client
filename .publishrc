@@ -1,0 +1,15 @@
+{
+  "validations": {
+    "branch": "beta",
+    "uncommittedChanges": true,
+    "untrackedFiles": true,
+    "gitTag": true,
+    "vulnerableDependencies": false,
+    "sensitiveData": false
+  },
+  "confirm": true,
+  "publishCommand": "cd projects/sdk && npm publish",
+  "publishTag": "beta",
+  "prePublishScript": "npm run build",
+  "postPublishScript": false
+}

@@ -1,0 +1,11 @@
+{{#resources}}
+import { Oc{{singularize this.id}}Service } from './{{this.id}}';
+{{/resources}}
+import { OcAuthService } from './Auth';
+import { OcTokenService } from './Tokens';
+
+{{#resources}}
+export * from './{{this.id}}'
+export * from './Auth';
+export * from './Tokens';
+{{/resources}}

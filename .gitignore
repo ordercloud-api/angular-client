@@ -1,2 +1,6 @@
 node_modules
 dist
+templateData.json
+projects/sdk/codegen/handlebars-extensions.js
+projects/sdk/codegen/hooks.js
+openapi.json
