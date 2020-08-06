@@ -8,7 +8,7 @@
     "sensitiveData": false
   },
   "confirm": true,
-  "publishCommand": "cd projects/sdk && npm publish",
+  "publishCommand": "npm run publish-lib",
   "publishTag": "beta",
   "prePublishScript": "npm run build",
   "postPublishScript": false

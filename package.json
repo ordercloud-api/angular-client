@@ -15,6 +15,7 @@
     "build:docs": "typedoc projects/sdk/src/",
     "postbuild:docs": "shx rm docs/index.html && shx mv docs/globals.html docs/index.html",
     "publish-please": "publish-please --ci",
+    "publish-lib": "cd dist/sdk && npm publish",
     "prepublishOnly": "publish-please guard",
     "debug-template-data": "npm run buildCodegen && oc-codegen -d -k projects/sdk/codegen/hooks.js > templateData.json"
   },
