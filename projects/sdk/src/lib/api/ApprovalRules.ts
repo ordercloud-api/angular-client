@@ -16,7 +16,7 @@ import utils from '../utils';
 @Injectable({
     providedIn: 'root'
 })
-export class OcApprovalRulService {
+export class OcApprovalRuleService {
     protected basePath = 'https://api.ordercloud.io/v1';
     private impersonating = false;
 

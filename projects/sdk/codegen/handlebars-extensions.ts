@@ -26,8 +26,8 @@ function handlebarsExt(Handlebars) {
       singular = 'XpIndex';
     } else if(text.endsWith('ies')) {
       singular = text.slice(0, -3) + 'y';
-    }else if(text.endsWith('es')) {
-      singular = text.slice(0, -2);
+    } else if(text.endsWith('sses')) {
+        singular = text.slice(0, -2);
     } else if(text.endsWith('s')){
       singular = text.slice(0, -1);
     } else {

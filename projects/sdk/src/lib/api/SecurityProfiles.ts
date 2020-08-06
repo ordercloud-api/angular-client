@@ -19,7 +19,7 @@ import utils from '../utils';
 @Injectable({
     providedIn: 'root'
 })
-export class OcSecurityProfilService {
+export class OcSecurityProfileService {
     protected basePath = 'https://api.ordercloud.io/v1';
     private impersonating = false;
 
