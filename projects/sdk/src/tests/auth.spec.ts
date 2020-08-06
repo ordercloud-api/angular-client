@@ -39,7 +39,6 @@ const testdata: TestData = {
   },
 };
 
-const urlencode = encodeURIComponent;
 describe("OcAuthService", () => {
   let injector: TestBed;
   let service: OcAuthService;
@@ -72,11 +71,7 @@ describe("OcAuthService", () => {
         const matchesMethod = request.method === "POST";
         const matchesBody =
           request.body ===
-          `grant_type=password&scope=${urlencode(
-            testdata.scope.join(" ")
-          )}&client_id=${testdata.clientID}&username=${urlencode(
-            testdata.username
-          )}&password=${urlencode(testdata.password)}`;
+          `grant_type=password&scope=${testdata.scope.join(" ")}&client_id=${testdata.clientID}&username=${testdata.username}&password=${testdata.password}`;
 
         return matchesUrl && matchesMethod && matchesBody;
       })
@@ -103,11 +98,7 @@ describe("OcAuthService", () => {
         const matchesMethod = request.method === "POST";
         const matchesBody =
           request.body ===
-          `grant_type=client_credentials&scope=${urlencode(
-            testdata.scope.join(" ")
-          )}&client_id=${testdata.clientID}&username=${urlencode(
-            testdata.username
-          )}&password=${urlencode(testdata.password)}&client_secret=${testdata.clientSecret}`;
+          `grant_type=client_credentials&scope=${testdata.scope.join(" ")}&client_id=${testdata.clientID}&username=${testdata.username}&password=${testdata.password}&client_secret=${testdata.clientSecret}`;
 
         return matchesUrl && matchesMethod && matchesBody;
       })
@@ -132,9 +123,7 @@ describe("OcAuthService", () => {
         const matchesMethod = request.method === "POST";
         const matchesBody =
           request.body ===
-          `grant_type=password&scope=${urlencode(
-            testdata.scope.join(" ")
-          )}&client_id=${testdata.clientID}&client_secret=${testdata.clientSecret}`;
+          `grant_type=password&scope=${testdata.scope.join(" ")}&client_id=${testdata.clientID}&client_secret=${testdata.clientSecret}`;
 
         return matchesUrl && matchesMethod && matchesBody;
       })
@@ -184,7 +173,7 @@ describe("OcAuthService", () => {
         const matchesMethod = request.method === "POST";
         const matchesBody =
           request.body ===
-          `grant_type=client_credentials&client_id=${testdata.clientID}&scope=${urlencode(testdata.scope.join(' '))}`;
+          `grant_type=client_credentials&client_id=${testdata.clientID}&scope=${testdata.scope.join(' ')}`;
 
         return matchesUrl && matchesMethod && matchesBody;
       })

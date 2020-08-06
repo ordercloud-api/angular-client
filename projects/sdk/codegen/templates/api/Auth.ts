@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { Configuration } from "../Configuration";
 import { AccessToken } from "../models/AccessToken";
 import { ApiRole } from "../models/ApiRole";
-const encode = encodeURIComponent;
 
 @Injectable({
   providedIn: "root",
@@ -54,11 +53,7 @@ export class OcAuthService {
       );
     }
 
-    const authRequest = `grant_type=password&scope=${encode(
-      scope.join(" ")
-    )}&client_id=${clientID}&username=${encode(username)}&password=${encode(
-      password
-    )}`;
+    const authRequest = `grant_type=password&scope=${scope.join(" ")}&client_id=${clientID}&username=${username}&password=${password}`;
     return this.httpClient.post<Required<AccessToken>>(
       this.authPath,
       authRequest
@@ -107,11 +102,7 @@ export class OcAuthService {
       );
     }
 
-    const authRequest = `grant_type=client_credentials&scope=${encode(
-      scope.join(" ")
-    )}&client_id=${clientID}&username=${encode(username)}&password=${encode(
-      password
-    )}&client_secret=${encode(clientSecret)}`;
+    const authRequest = `grant_type=client_credentials&scope=${scope.join(" ")}&client_id=${clientID}&username=${username}&password=${password}&client_secret=${clientSecret}`;
     return this.httpClient.post<Required<AccessToken>>(
       this.authPath,
       authRequest
@@ -146,9 +137,7 @@ export class OcAuthService {
       );
     }
 
-    const authRequest = `grant_type=password&scope=${encode(
-      scope.join(" ")
-    )}&client_id=${clientID}&client_secret=${encode(clientSecret)}`;
+    const authRequest = `grant_type=password&scope=${scope.join(" ")}&client_id=${clientID}&client_secret=${clientSecret}`;
     return this.httpClient.post<Required<AccessToken>>(
       this.authPath,
       authRequest
@@ -203,9 +192,7 @@ export class OcAuthService {
       );
     }
 
-    const authRequest = `grant_type=client_credentials&client_id=${clientID}&scope=${encode(
-      scope.join(" ")
-    )}`;
+    const authRequest = `grant_type=client_credentials&client_id=${clientID}&scope=${scope.join(" ")}`;
     return this.httpClient.post<AccessToken>(this.authPath, authRequest);
   }
 }
