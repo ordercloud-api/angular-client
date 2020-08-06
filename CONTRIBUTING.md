@@ -34,7 +34,10 @@ npm run codegen
 6. Verify your changes work as expected. Run `npm install /path/to/this/folder` in a different project to install locally and test
 7. Update the [changelog](./CHANGELOG.md)
 8. Commit your changes. We adhere to the [gitmoji](https://github.com/carloscuesta/gitmoji/) standard
-9. Update the sdk version in the [package.json](./package.json) and make a separate version commit in the format `:bookmark: {newVersionHere}`
+9. Verify the version has been bumped and adheres to [semantic versioning](https://semver.org/).
+    - Version should be updated in both package.json and projects/sdk/package.json.
+    - Version update should be its own commit
+    - Use following format for the commmit: `:bookmark: {VERSION}`
 10. Create a pull request
 11. Have a beer! 🍺
 
@@ -42,7 +45,10 @@ npm run codegen
 
 Assuming you or a contributor followed the instructions for [submitting a pull request](#✨-submitting-a-pull-request) and are a maintainer you can follow these instructions to release a new version of the sdk.
 
-1. Verify the version has been bumped and adheres to [semantic versioning](https://semver.org/)
+1. Verify the version has been bumped and adheres to [semantic versioning](https://semver.org/).
+    - Version should be updated in both package.json and projects/sdk/package.json.
+    - Version update should be its own commit
+    - Use following format for the commmit: `:bookmark: {VERSION}`
 2. Verify the [changelog](./CHANGELOG.md) has been updated
 3. Create and publish a new release on github
 4. Publish on npm by running `npm run publish-please`
