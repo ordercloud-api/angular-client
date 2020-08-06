@@ -3,8 +3,6 @@ import { Searchable } from '../models/Searchable';
 import { Sortable } from '../models/Sortable';
 import { Filters } from '../models/Filters';
 import { User } from '../models/User';
-import { ImpersonateTokenRequest } from '../models/ImpersonateTokenRequest';
-import { AccessToken } from '../models/AccessToken';
 import { Optional, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OcTokenService } from './Tokens';
@@ -197,34 +195,6 @@ export class OcSupplierUserService {
             'Bearer ' + token
         );
         return this.httpClient.patch<any>(`${this.basePath}/suppliers/${supplierID}/users/${userID}`, user, {
-            headers
-        })
-    }
-
-   /**
-    * Get a single supplier user access token. 
-    * Check out the {@link https://ordercloud.io/api-reference/suppliers/supplier-users/get-access-token|api docs} for more info 
-    * 
-    * @param supplierID ID of the supplier.
-    * @param userID ID of the user.
-    * @param impersonateTokenRequest Required fields: ClientID, Roles
-    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
-    */
-    public GetAccessToken<TAccessToken extends AccessToken>(supplierID: string, userID: string, impersonateTokenRequest: ImpersonateTokenRequest,requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TAccessToken>>{
-        const impersonating = this.impersonating;
-        this.impersonating = false;
-
-        if(!supplierID) throw new Error('Required parameter supplierID was null or undefined when calling SupplierUsers.GetAccessToken')
-        if(!userID) throw new Error('Required parameter userID was null or undefined when calling SupplierUsers.GetAccessToken')
-        
-
-        let headers = new HttpHeaders();
-        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
-        headers = headers.set(
-            'Authorization', 
-            'Bearer ' + token
-        );
-        return this.httpClient.post<any>(`${this.basePath}/suppliers/${supplierID}/users/${userID}/accesstoken`, impersonateTokenRequest, {
             headers
         })
     }
