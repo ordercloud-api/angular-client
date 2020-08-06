@@ -1,6 +1,6 @@
 {
   "name": "@ordercloud/angular-sdk-project",
-  "version": "0.0.1",
+  "version": "1.0.0-9",
   "scripts": {
     "start": "ng serve",
     "build": "npm run build:sdk && npm run build:test && npm run build:docs",
