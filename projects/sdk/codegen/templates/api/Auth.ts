@@ -1,4 +1,4 @@
-import { Injectable, Optional } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Configuration } from "../Configuration";
@@ -10,16 +10,13 @@ const encode = encodeURIComponent;
   providedIn: "root",
 })
 export class OcAuthService {
-  protected authPath = "https://api.ordercloud.io/oauth/token";
-  public configuration = new Configuration();
+  private authPath: string;
 
   constructor(
-    protected httpClient: HttpClient,
-    @Optional() configuration: Configuration
+    private httpClient: HttpClient,
+    private configuration: Configuration
   ) {
-    if (configuration && configuration.authPath) {
-      this.authPath = configuration.authPath;
-    }
+    this.authPath = this.configuration.authPath;
   }
 
   /**

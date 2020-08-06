@@ -4,10 +4,8 @@ import {
   HttpTestingController,
 } from "@angular/common/http/testing";
 
-import { OcTokenService } from "../lib/api/Tokens";
-import { OcOrderService } from "../lib/api/Orders";
-
 import * as utils from "./utils";
+import { Configuration, OrderCloudModule, OcTokenService, OcOrderService } from '../public-api';
 const apiUrl = "https://api.ordercloud.io/v1";
 
 describe("Appending correct token to requests", () => {
@@ -23,7 +21,7 @@ describe("Appending correct token to requests", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, OrderCloudModule.forRoot(() => new Configuration({}))],
       providers: [
         OcOrderService,
         { provide: OcTokenService, useValue: tokenService },

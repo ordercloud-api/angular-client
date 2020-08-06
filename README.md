@@ -51,7 +51,11 @@ import { OrderCloudModule, Configuration } from '@ordercloud/angular-sdk';
 @NgModule({
   declarations: [...],
   imports: [
-    OrderCloudModule.forRoot(() => new Configuration({})),
+    OrderCloudModule.forRoot(() => new Configuration({
+      baseApiUrl: 'https://api.ordercloud.io', // useful to change when interacting with other environments
+      apiVersion: 'v1', // currently only one version of api
+      cookiePrefix: null // added to the name of any tokens created in the sdk check out the token service for all methods
+    })),
      ...
   ],
   providers: [...]

@@ -10,7 +10,7 @@ import { Supplier } from '../models/Supplier';
 import { Variant } from '../models/Variant';
 import { ProductAssignment } from '../models/ProductAssignment';
 import { PartyType } from '../models/PartyType';
-import { Optional, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OcTokenService } from './Tokens';
 import { Observable } from 'rxjs';
@@ -24,17 +24,19 @@ import utils from '../utils';
     providedIn: 'root'
 })
 export class OcProductService {
-    protected basePath = 'https://api.ordercloud.io/v1';
+    private basePath: string;
     private impersonating = false;
 
     /**
     * @ignore
     * not part of public api, don't include in generated docs
     */
-    constructor(protected httpClient: HttpClient, protected ocTokenService: OcTokenService,  @Optional() configuration: Configuration) {
-        if (configuration) {
-            this.basePath = configuration.basePath || this.basePath;
-        }
+    constructor(
+        private httpClient: HttpClient,
+        private ocTokenService: OcTokenService,
+        private configuration: Configuration
+    ) {
+        this.basePath = this.configuration.basePath;
     }
 
    /**

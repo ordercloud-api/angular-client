@@ -4,9 +4,7 @@ import {
   HttpTestingController,
 } from "@angular/common/http/testing";
 
-import { OcTokenService } from "../lib/api/Tokens";
-import { OcProductService } from "../lib/api/Products";
-import { Product } from 'dist/sdk/lib/models';
+import { OrderCloudModule, Configuration, Product, OcProductService, OcTokenService } from '../public-api';
 
 const apiUrl = "https://api.ordercloud.io/v1";
 
@@ -21,7 +19,7 @@ describe("OcProductService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, OrderCloudModule.forRoot(() => new Configuration({}))],
       providers: [OcProductService, { provide: OcTokenService, useValue: tokenService}],
     });
     injector = getTestBed();

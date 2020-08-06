@@ -4,9 +4,7 @@ import {
   HttpTestingController,
 } from "@angular/common/http/testing";
 
-import { OcAuthService } from "../lib/api/Auth";
-import { ApiRole } from "../lib/models/ApiRole";
-import { AccessToken } from "../lib/models/AccessToken";
+import { OrderCloudModule, Configuration, ApiRole, AccessToken, OcAuthService } from '../public-api';
 
 interface TestData {
   authUrl: string;
@@ -49,7 +47,7 @@ describe("OcAuthService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, OrderCloudModule.forRoot(() => new Configuration({}))],
       providers: [OcAuthService],
     });
     injector = getTestBed();

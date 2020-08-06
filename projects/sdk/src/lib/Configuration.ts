@@ -27,8 +27,8 @@ export class Configuration {
     cookiePrefix?: string;
 
     constructor(configurationParameters: ConfigurationParameters = {}) {
-        this.basePath = `${configurationParameters.baseApiUrl}/${configurationParameters.apiVersion}`;
-        this.authPath = `${configurationParameters.baseApiUrl}/oauth/token`;
+        this.basePath = `${configurationParameters.baseApiUrl || 'https://api.ordercloud.io'}/${configurationParameters.apiVersion || 'v1'}`;
+        this.authPath = `${configurationParameters.baseApiUrl || 'https://api.ordercloud.io'}/oauth/token`;
         this.cookiePrefix = configurationParameters.cookiePrefix;
     }
 }

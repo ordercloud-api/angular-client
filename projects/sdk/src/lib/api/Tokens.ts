@@ -1,4 +1,4 @@
-import { Injectable, Optional } from '@angular/core'
+import { Injectable } from '@angular/core'
 import { CookieService } from 'ngx-cookie'
 import { Configuration } from '../Configuration'
 
@@ -11,10 +11,10 @@ export class OcTokenService {
   private refreshTokenCookieName: string
 
   constructor(
-    @Optional() configuration: Configuration,
-    protected cookies: CookieService
+    private configuration: Configuration,
+    private cookies: CookieService
   ) {
-    const cookiePrefix = configuration.cookiePrefix || 'ordercloud'
+    const cookiePrefix = this.configuration.cookiePrefix || 'ordercloud'
 
     this.authTokenCookieName = cookiePrefix + '.token'
     this.impersonationTokenCookieName = cookiePrefix + '.impersonation.token'

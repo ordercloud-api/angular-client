@@ -4,10 +4,7 @@ import {
   HttpTestingController,
 } from "@angular/common/http/testing";
 
-import { OcTokenService } from "../lib/api/Tokens";
-import { OcMeService } from "../lib/api/Me";
-import { OcUserService } from "../lib/api/Users";
-import { OcProductService } from "../lib/api/Products";
+import { OrderCloudModule, Configuration, OcTokenService, OcMeService, OcUserService, OcProductService } from '../public-api';
 
 const urlencode = encodeURIComponent;
 const apiUrl = "https://api.ordercloud.io/v1";
@@ -20,7 +17,7 @@ describe("OcAuthService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, OrderCloudModule.forRoot(() => new Configuration({}))],
       providers: [
         OcMeService,
         {
@@ -139,7 +136,7 @@ describe("OcAuthService", () => {
 
   it("can searchOn one field", () => {
     let response;
-    ocProductService.List({searchOn: ['ID']})
+    ocProductService.List({ searchOn: ['ID'] })
       .subscribe((r) => (response = r));
 
     http
@@ -158,7 +155,7 @@ describe("OcAuthService", () => {
 
   it("can searchOn many fields", () => {
     let response;
-    ocProductService.List({searchOn: ['ID', 'Name', 'xp.Color']})
+    ocProductService.List({ searchOn: ['ID', 'Name', 'xp.Color'] })
       .subscribe((r) => (response = r));
 
     http
@@ -177,7 +174,7 @@ describe("OcAuthService", () => {
 
   it("can sortBy one field", () => {
     let response;
-    ocProductService.List({sortBy: ['ID']})
+    ocProductService.List({ sortBy: ['ID'] })
       .subscribe((r) => (response = r));
 
     http
@@ -196,7 +193,7 @@ describe("OcAuthService", () => {
 
   it("can sortBy many fields", () => {
     let response;
-    ocProductService.List({sortBy: ['ID', 'Name', 'xp.Color']})
+    ocProductService.List({ sortBy: ['ID', 'Name', 'xp.Color'] })
       .subscribe((r) => (response = r));
 
     http
