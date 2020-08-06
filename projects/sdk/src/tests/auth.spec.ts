@@ -22,7 +22,7 @@ interface TestData {
   mockResponse: Required<AccessToken>;
 }
 const testdata: TestData = {
-  authUrl: "https://auth.ordercloud.io/oauth/token",
+  authUrl: "https://api.ordercloud.io/oauth/token",
   username: "$crhistian", // handles special chars
   password: "87awesomesauce#$%^&", // handles special chars
   clientSecret: "my-mock-secret",

@@ -9,7 +9,7 @@ export default function makeToken(
       'u': '1920563',
       'usrtype': 'buyer',
       'role': ['FullAccess'],
-      'iss': 'https://auth.ordercloud.io',
+      'iss': 'https://api.ordercloud.io',
       'aud': 'https://api.ordercloud.io',
       'exp': Date.now() - expiresInMilliSeconds,
       'nbf': 1565364989,

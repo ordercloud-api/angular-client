@@ -17,7 +17,7 @@
     "publish-please": "publish-please --ci",
     "publish-lib": "cd dist/sdk && npm publish",
     "prepublishOnly": "publish-please guard",
-    "debug-template-data": "npm run buildCodegen && oc-codegen -d -k projects/sdk/codegen/hooks.js > templateData.json"
+    "debug-template-data": "npm run precodegen && oc-codegen -d -k projects/sdk/codegen/hooks.js > templateData.json"
   },
   "private": true,
   "dependencies": {

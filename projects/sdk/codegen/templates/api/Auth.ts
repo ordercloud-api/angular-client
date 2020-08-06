@@ -10,7 +10,7 @@ const encode = encodeURIComponent;
   providedIn: "root",
 })
 export class OcAuthService {
-  protected authPath = "https://auth.ordercloud.io/oauth/token";
+  protected authPath = "https://api.ordercloud.io/oauth/token";
   public configuration = new Configuration();
 
   constructor(

@@ -50,8 +50,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configurationparameters.html#authpath" class="tsd-kind-icon">auth<wbr>Path</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configurationparameters.html#basepath" class="tsd-kind-icon">base<wbr>Path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configurationparameters.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configurationparameters.html#baseapiurl" class="tsd-kind-icon">base<wbr>Api<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configurationparameters.html#cookieprefix" class="tsd-kind-icon">cookie<wbr>Prefix</a></li>
 							</ul>
 						</section>
@@ -61,34 +61,30 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="authpath" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> auth<wbr>Path</h3>
-					<div class="tsd-signature tsd-kind-icon">auth<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="apiversion" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> api<wbr>Version</h3>
+					<div class="tsd-signature tsd-kind-icon">api<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>the path that will be used to authenticate to the ordercloud api
-							this defaults to <a href="https://auth.ordercloud.io/oauth/token">https://auth.ordercloud.io/oauth/token</a></p>
+							<p>At the time of writing there is only one version of the API</p>
 						</div>
-						<p>if may be useful to change this to interact with different
-						environments</p>
+						<p>Defaults to: v1</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="basepath" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> base<wbr>Path</h3>
-					<div class="tsd-signature tsd-kind-icon">base<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="baseapiurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> base<wbr>Api<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">base<wbr>Api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>the path that will be used to talk to the ordercloud api
-							this defaults to <a href="https://api.ordercloud.io/v1">https://api.ordercloud.io/v1</a></p>
+							<p>The apiurl that will be used to talk to the ordercloud API.
+							It may be useful to change this to interact with different environments</p>
 						</div>
-						<p>it may be useful to change this to interact with different
-						environments or different versions of the api</p>
-						<p>at the time of writing there is only one version of the api</p>
+						<p>Defaults to: <a href="https://api.ordercloud.io">https://api.ordercloud.io</a></p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -119,10 +115,10 @@
 						<a href="configurationparameters.html" class="tsd-kind-icon">Configuration<wbr>Parameters</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="configurationparameters.html#authpath" class="tsd-kind-icon">auth<wbr>Path</a>
+								<a href="configurationparameters.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="configurationparameters.html#basepath" class="tsd-kind-icon">base<wbr>Path</a>
+								<a href="configurationparameters.html#baseapiurl" class="tsd-kind-icon">base<wbr>Api<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="configurationparameters.html#cookieprefix" class="tsd-kind-icon">cookie<wbr>Prefix</a>

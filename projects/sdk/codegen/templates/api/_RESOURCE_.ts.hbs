@@ -15,7 +15,7 @@ import utils from '../utils';
     providedIn: 'root'
 })
 export class Oc{{singularize resource.id}}Service {
-    protected basePath = 'https://api.ordercloud.io/v1';
+    protected basePath = '{{info.apiUrl}}';
     private impersonating = false;
 
     /**

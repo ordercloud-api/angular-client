@@ -25,7 +25,7 @@ export interface DecodedToken {
   role: Array<SecurityProfile['Roles']>
 
   /**
-   * the issuer of the token - should always be https://auth.ordercloud.io
+   * the issuer of the token - should always be https://api.ordercloud.io
    */
   iss: string
 

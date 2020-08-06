@@ -1,25 +1,18 @@
 export interface ConfigurationParameters {
     /**
-     * the path that will be used to talk to the ordercloud api
-     * this defaults to https://api.ordercloud.io/v1 
-     * 
-     * it may be useful to change this to interact with different
-     * environments or different versions of the api
-     * 
-     * at the time of writing there is only one version of the api
-     * 
+     * The apiurl that will be used to talk to the ordercloud API.
+     * It may be useful to change this to interact with different environments
+     *
+     * Defaults to: https://api.ordercloud.io
      */
-    basePath?: string;
+    baseApiUrl?: string;
 
     /**
-     * the path that will be used to authenticate to the ordercloud api
-     * this defaults to https://auth.ordercloud.io/oauth/token
-     * 
-     * if may be useful to change this to interact with different
-     * environments
-     * 
+     * At the time of writing there is only one version of the API
+     *
+     * Defaults to: v1
      */
-    authPath?: string;
+    apiVersion?: string;
 
     /**
      * this cookie prefix will be added to the name of any tokens created
@@ -34,8 +27,8 @@ export class Configuration {
     cookiePrefix?: string;
 
     constructor(configurationParameters: ConfigurationParameters = {}) {
-        this.basePath = configurationParameters.basePath;
-        this.authPath = configurationParameters.authPath;
+        this.basePath = `${configurationParameters.baseApiUrl}/${configurationParameters.apiVersion}`;
+        this.authPath = `${configurationParameters.baseApiUrl}/oauth/token`;
         this.cookiePrefix = configurationParameters.cookiePrefix;
     }
 }
