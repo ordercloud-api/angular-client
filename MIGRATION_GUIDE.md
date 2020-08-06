@@ -89,7 +89,7 @@ The objective of this guide is to document the breaking changes and updates requ
     this.OcOrders.List('Incoming', {searchOn: ['ID', 'FromCompanyID'], sortBy: ['ID', 'ToCompanyID']})
     ```
 
-* List models have been replaced with a generic `ListPage` model that takes a type parameter for the item.
+* List models have been replaced with a generic `ListPage` model that takes a type parameter for the item. Any premium search list that has facets should use `ListPageWithFacets`
 
     Before:
 
