@@ -104,3 +104,21 @@ The objective of this guide is to document the breaking changes and updates requ
     const orderList: ListPage<Order>
     const ccList: ListPage<CreditCard>
     ```
+
+* Configuration used to take `basePath` and `baseAuthPath`. These were two separate values because our auth server had a different url (https://auth.ordercloud.io) than our main api server (https://api.ordercloud.io). That is no longer true, they are now both served from https://api.ordercloud.io
+
+    Before:
+
+    ```typescript
+    OrderCloudModule.forRoot(() => new Configuration({
+        basePath: 'https://api.ordercloud.io/v1',
+        authPath: 'https://auth.ordercloud.io/oauth/token'
+    })),
+    ```
+
+    After:
+    ```typescript
+    OrderCloudModule.forRoot(() => new Configuration({
+        baseApiUrl: 'https://api.ordercloud.io'
+    })),
+    ```
