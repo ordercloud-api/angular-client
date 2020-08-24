@@ -1,6 +1,6 @@
 # OrderCloud Angular SDK
 
-> The official client library for building Angular (6.0.0+) solutions on [OrderCloud's](https://ordercloud.io/) ecommerce platform
+> The official client library for building Angular (10.0.0+) solutions on [OrderCloud's](https://ordercloud.io/) ecommerce platform
 
 This SDK aims to greatly improve developer productivity and reduce errors by providing discoverable, strongly-typed wrappers for all public endpoints and request/response models.
 
@@ -21,9 +21,9 @@ Coming from an older version? Check out the [migration guide](./MIGRATION_GUIDE.
 
 ## Requirements
 
-* angular 6.0.0+
-* [ngx-cookie](https://github.com/salemdar/ngx-cookie) 4.0.0+
-* typescript 3.5+
+* angular 10.0.0+
+* [ngx-cookie](https://github.com/salemdar/ngx-cookie) 5.0.0+
+* typescript >=3.9.2 and <4.0.0
 
 ## ⚙️ Installation
 

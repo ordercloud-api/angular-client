@@ -7,7 +7,7 @@ import { Configuration } from './Configuration';
   imports:      [ CommonModule, HttpClientModule ]
 })
 export class OrderCloudModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {
+    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<OrderCloudModule> {
         return {
             ngModule: OrderCloudModule,
             providers: [ 
