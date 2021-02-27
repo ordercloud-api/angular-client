@@ -1,6 +1,7 @@
 import { OcSecurityProfileService } from './SecurityProfiles';
 import { OcForgottenPasswordService } from './ForgottenPassword';
 import { OcImpersonationConfigService } from './ImpersonationConfigs';
+import { OcCertService } from './Certs';
 import { OcOpenIdConnectService } from './OpenIdConnects';
 import { OcAdminUserService } from './AdminUsers';
 import { OcAdminUserGroupService } from './AdminUserGroups';
@@ -45,6 +46,9 @@ export * from './ForgottenPassword'
 export * from './Auth';
 export * from './Tokens';
 export * from './ImpersonationConfigs'
+export * from './Auth';
+export * from './Tokens';
+export * from './Certs'
 export * from './Auth';
 export * from './Tokens';
 export * from './OpenIdConnects'

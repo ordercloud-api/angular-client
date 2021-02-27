@@ -14,6 +14,7 @@ import { ListPageWithFacets } from '../models/ListPageWithFacets';
 import { BuyerProduct } from '../models/BuyerProduct';
 import { SearchType } from '../models/SearchType';
 import { Spec } from '../models/Spec';
+import { Variant } from '../models/Variant';
 import { Promotion } from '../models/Promotion';
 import { AccessTokenBasic } from '../models/AccessTokenBasic';
 import { Shipment } from '../models/Shipment';
@@ -808,6 +809,65 @@ export class OcMeService {
         return this.httpClient.get<any>(`${this.basePath}/me/products/${productID}/specs/${specID}`, {
             headers,
             params: queryParams
+        })
+    }
+
+   /**
+    * Get a list of variants visible to this user. Only available to Buyer Users.
+    * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/list-variants|api docs} for more info 
+    * 
+    * @param productID ID of the product.
+    * @param listOptions.search Word or phrase to search for.
+    * @param listOptions.searchOn Comma-delimited list of fields to search on.
+    * @param listOptions.sortBy Comma-delimited list of fields to sort by.
+    * @param listOptions.page Page of results to return. Default: 1
+    * @param listOptions.pageSize Number of results to return per page. Default: 20, max: 100.
+    * @param listOptions.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or 'xp.???'
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public ListVariants<TVariant extends Variant = Variant>(productID: string, listOptions: { search?: string, searchOn?: Searchable<'Me.ListVariants'>, sortBy?: Sortable<'Me.ListVariants'>, page?: number, pageSize?: number, filters?: Filters } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPage<TVariant>>>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        if(!productID) throw new Error('Required parameter productID was null or undefined when calling Me.ListVariants')
+        const queryParams = utils.buildQueryParams(listOptions, 'Me.ListVariants')
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.get<any>(`${this.basePath}/me/products/${productID}/variants`, {
+            headers,
+            params: queryParams
+        })
+    }
+
+   /**
+    * Get a single variant. Only available to Buyer Users.
+    * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/get-variant|api docs} for more info 
+    * 
+    * @param productID ID of the product.
+    * @param variantID ID of the variant.
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public GetVariant<TVariant extends Variant>(productID: string, variantID: string, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TVariant>>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        if(!productID) throw new Error('Required parameter productID was null or undefined when calling Me.GetVariant')
+        if(!variantID) throw new Error('Required parameter variantID was null or undefined when calling Me.GetVariant')
+        
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.get<any>(`${this.basePath}/me/products/${productID}/variants/${variantID}`, {
+            headers
         })
     }
 

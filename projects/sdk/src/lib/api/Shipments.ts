@@ -4,6 +4,7 @@ import { Sortable } from '../models/Sortable';
 import { Filters } from '../models/Filters';
 import { Shipment } from '../models/Shipment';
 import { ShipmentItem } from '../models/ShipmentItem';
+import { Address } from '../models/Address';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OcTokenService } from './Tokens';
@@ -302,6 +303,58 @@ export class OcShipmentService {
             'Bearer ' + token
         );
         return this.httpClient.delete<any>(`${this.basePath}/shipments/${shipmentID}/items/${orderID}/${lineItemID}`, {
+            headers
+        })
+    }
+
+   /**
+    * Set a ship from address. Use only when the address is not to be saved/reused. To use a saved address (i.e. from the Addresses resource), PATCH the shipment's FromAddressID property instead.
+    * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/shipments/set-ship-from-address|api docs} for more info 
+    * 
+    * @param shipmentID ID of the shipment.
+    * @param address Required fields: Street1, City, State, Zip, Country
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public SetShipFromAddress<TShipment extends Shipment>(shipmentID: string, address: Address,requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TShipment>>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        if(!shipmentID) throw new Error('Required parameter shipmentID was null or undefined when calling Shipments.SetShipFromAddress')
+        
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.put<any>(`${this.basePath}/shipments/${shipmentID}/shipfrom`, address, {
+            headers
+        })
+    }
+
+   /**
+    * Set a ship to address. Use only when the address is not to be saved/reused. To use a saved address (i.e. from the Addresses resource), PATCH the shipment's ToAddressID property instead.
+    * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/shipments/set-ship-to-address|api docs} for more info 
+    * 
+    * @param shipmentID ID of the shipment.
+    * @param address Required fields: Street1, City, State, Zip, Country
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public SetShipToAddress<TShipment extends Shipment>(shipmentID: string, address: Address,requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TShipment>>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        if(!shipmentID) throw new Error('Required parameter shipmentID was null or undefined when calling Shipments.SetShipToAddress')
+        
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.put<any>(`${this.basePath}/shipments/${shipmentID}/shipto`, address, {
             headers
         })
     }
