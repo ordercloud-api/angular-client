@@ -52,6 +52,4 @@ Assuming you or a contributor followed the instructions for [submitting a pull r
 2. Verify the [changelog](./CHANGELOG.md) has been updated
 3. Create and publish a new release on github
 4. Publish on npm by running `npm run publish-please`
-   - Defaults to pre-release. It is recommended to do a pre-release first to vet changes
-   - For normal releases update the `publishTag` in `.publishrc` to `latest` and then run `npm run publish-please`
 5. Have a beer! 🍻
