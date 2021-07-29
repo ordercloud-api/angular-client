@@ -38,7 +38,7 @@ export class OcLineItemService {
     * Get a list of line items. 
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/list|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param listOptions.search Word or phrase to search for.
     * @param listOptions.searchOn Comma-delimited list of fields to search on.
@@ -72,7 +72,7 @@ export class OcLineItemService {
     * Create a new line item. If ID is provided and an object with that ID already exists, a 409 (conflict) error is returned.
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/create|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param lineItem Required fields: ProductID, Quantity
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
@@ -100,7 +100,7 @@ export class OcLineItemService {
     * Get a single line item. 
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/get|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param lineItemID ID of the line item.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
@@ -129,7 +129,7 @@ export class OcLineItemService {
     * Create or update a line item. If an object with the same ID already exists, it will be overwritten.
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/save|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param lineItemID ID of the line item.
     * @param lineItem Required fields: ProductID, Quantity
@@ -159,7 +159,7 @@ export class OcLineItemService {
     * Delete a line item. 
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/delete|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param lineItemID ID of the line item.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
@@ -188,7 +188,7 @@ export class OcLineItemService {
     * Partially update a line item. 
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/patch|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param lineItemID ID of the line item.
     * @param lineItem 
@@ -218,7 +218,7 @@ export class OcLineItemService {
     * Set a shipping address. Set the Shipping Address of the Line Item. Appropriate only when the Address is not to be saved/reused. To use a Saved Address (i.e. from the Addresses resource), PATCH the Line Item's ShippingAddressID property instead.
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/set-shipping-address|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param lineItemID ID of the line item.
     * @param address Required fields: Street1, City, State, Zip, Country
@@ -248,7 +248,7 @@ export class OcLineItemService {
     * Partially update a line item shipping address. Partially update the Shipping Address of the Line Item. Not allowed on unsubmitted Line Items where ShippingAddressID has been set. In that case, use the Addresses resource to update the Saved Address.
     * Check out the {@link https://ordercloud.io/api-reference/orders-and-fulfillment/line-items/patch-shipping-address|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param lineItemID ID of the line item.
     * @param address 

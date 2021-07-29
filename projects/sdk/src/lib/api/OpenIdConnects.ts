@@ -33,7 +33,7 @@ export class OcOpenIdConnectService {
     }
 
    /**
-    * Get a list of open id connects. 
+    * Get a list of OpenID Connects. 
     * Check out the {@link https://ordercloud.io/api-reference/authentication-and-authorization/open-id-connects/list|api docs} for more info 
     * 
     * @param listOptions.search Word or phrase to search for.
@@ -63,7 +63,7 @@ export class OcOpenIdConnectService {
     }
 
    /**
-    * Create a new open id connect. If ID is provided and an object with that ID already exists, a 409 (conflict) error is returned.
+    * Create a new OpenID Connect. If ID is provided and an object with that ID already exists, a 409 (conflict) error is returned.
     * Check out the {@link https://ordercloud.io/api-reference/authentication-and-authorization/open-id-connects/create|api docs} for more info 
     * 
     * @param openIdConnect Required fields: OrderCloudApiClientID, ConnectClientID, ConnectClientSecret, AppStartUrl, AuthorizationEndpoint, TokenEndpoint
@@ -87,7 +87,7 @@ export class OcOpenIdConnectService {
     }
 
    /**
-    * Get a single open id connect. 
+    * Get a single OpenID Connect. 
     * Check out the {@link https://ordercloud.io/api-reference/authentication-and-authorization/open-id-connects/get|api docs} for more info 
     * 
     * @param openidconnectID ID of the openidconnect.
@@ -112,7 +112,7 @@ export class OcOpenIdConnectService {
     }
 
    /**
-    * Create or update an open id connect. If an object with the same ID already exists, it will be overwritten.
+    * Create or update a OpenID Connect. If an object with the same ID already exists, it will be overwritten.
     * Check out the {@link https://ordercloud.io/api-reference/authentication-and-authorization/open-id-connects/save|api docs} for more info 
     * 
     * @param openidconnectID ID of the openidconnect.
@@ -138,7 +138,7 @@ export class OcOpenIdConnectService {
     }
 
    /**
-    * Delete an open id connect. 
+    * Delete a OpenID Connect. 
     * Check out the {@link https://ordercloud.io/api-reference/authentication-and-authorization/open-id-connects/delete|api docs} for more info 
     * 
     * @param openidconnectID ID of the openidconnect.
@@ -163,7 +163,7 @@ export class OcOpenIdConnectService {
     }
 
    /**
-    * Partially update an open id connect. 
+    * Partially update a OpenID Connect. 
     * Check out the {@link https://ordercloud.io/api-reference/authentication-and-authorization/open-id-connects/patch|api docs} for more info 
     * 
     * @param openidconnectID ID of the openidconnect.

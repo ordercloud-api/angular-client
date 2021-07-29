@@ -17,6 +17,7 @@ import { Spec } from '../models/Spec';
 import { Variant } from '../models/Variant';
 import { Promotion } from '../models/Promotion';
 import { AccessTokenBasic } from '../models/AccessTokenBasic';
+import { BuyerSupplier } from '../models/BuyerSupplier';
 import { Shipment } from '../models/Shipment';
 import { ShipmentItem } from '../models/ShipmentItem';
 import { SpendingAccount } from '../models/SpendingAccount';
@@ -152,7 +153,7 @@ export class OcMeService {
     }
 
    /**
-    * Create a new address. Only available to Buyer Users.
+    * Create a new address. Only available to Buyer Users. Addresses created using this endpoint are considered private, and only accessible to the user who created them.
     * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/create-address|api docs} for more info 
     * 
     * @param buyerAddress Required fields: Street1, City, State, Zip, Country
@@ -201,7 +202,7 @@ export class OcMeService {
     }
 
    /**
-    * Create or update an address. Only available to Buyer Users.
+    * Update an address. Only available to Buyer Users.
     * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/save-address|api docs} for more info 
     * 
     * @param addressID ID of the address.
@@ -287,9 +288,10 @@ export class OcMeService {
     * @param listOptions.page Page of results to return. Default: 1
     * @param listOptions.pageSize Number of results to return per page. Default: 20, max: 100.
     * @param listOptions.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or 'xp.???'
+    * @param listOptions.sellerID ID of the seller.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
-    public ListCatalogs<TCatalog extends Catalog = Catalog>(listOptions: { search?: string, searchOn?: Searchable<'Me.ListCatalogs'>, sortBy?: Sortable<'Me.ListCatalogs'>, page?: number, pageSize?: number, filters?: Filters } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPage<TCatalog>>>{
+    public ListCatalogs<TCatalog extends Catalog = Catalog>(listOptions: { search?: string, searchOn?: Searchable<'Me.ListCatalogs'>, sortBy?: Sortable<'Me.ListCatalogs'>, page?: number, pageSize?: number, filters?: Filters, sellerID?: string } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPage<TCatalog>>>{
         const impersonating = this.impersonating;
         this.impersonating = false;
 
@@ -453,7 +455,7 @@ export class OcMeService {
     }
 
    /**
-    * Create a new credit card. Only available to Buyer Users.
+    * Create a new credit card. Only available to Buyer Users. Credit Cards created using this endpoint are considered private, and only accessible to the user who created them.
     * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/create-credit-card|api docs} for more info 
     * 
     * @param buyerCreditCard 
@@ -502,7 +504,7 @@ export class OcMeService {
     }
 
    /**
-    * Create or update a credit card. Only available to Buyer Users.
+    * Update a credit card. Only available to Buyer Users.
     * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/save-credit-card|api docs} for more info 
     * 
     * @param creditcardID ID of the creditcard.
@@ -611,7 +613,7 @@ export class OcMeService {
     }
 
    /**
-    * Transfer an anon user order. 
+    * Transfer an order. If a user begins an order as the anonymous shopper and later logs in, use this endpoint to transfer that order to them.
     * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/transfer-anon-user-order|api docs} for more info 
     * 
     * @param listOptions.anonUserToken Anon user token of the me.
@@ -705,9 +707,10 @@ export class OcMeService {
     * @param listOptions.page Page of results to return. Default: 1
     * @param listOptions.pageSize Number of results to return per page. Default: 20, max: 100.
     * @param listOptions.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or 'xp.???'
+    * @param listOptions.sellerID ID of the seller.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
-    public ListProducts<TBuyerProduct extends BuyerProduct = BuyerProduct>(listOptions: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: Searchable<'Me.ListProducts'>, searchType?: SearchType, sortBy?: Sortable<'Me.ListProducts'>, page?: number, pageSize?: number, filters?: Filters } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPageWithFacets<TBuyerProduct>>>{
+    public ListProducts<TBuyerProduct extends BuyerProduct = BuyerProduct>(listOptions: { catalogID?: string, categoryID?: string, depth?: string, search?: string, searchOn?: Searchable<'Me.ListProducts'>, searchType?: SearchType, sortBy?: Sortable<'Me.ListProducts'>, page?: number, pageSize?: number, filters?: Filters, sellerID?: string } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPageWithFacets<TBuyerProduct>>>{
         const impersonating = this.impersonating;
         this.impersonating = false;
 
@@ -730,14 +733,15 @@ export class OcMeService {
     * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/get-product|api docs} for more info 
     * 
     * @param productID ID of the product.
+    * @param listOptions.sellerID ID of the seller.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
-    public GetProduct<TBuyerProduct extends BuyerProduct>(productID: string, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TBuyerProduct>>{
+    public GetProduct<TBuyerProduct extends BuyerProduct>(productID: string, listOptions: { sellerID?: string } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TBuyerProduct>>{
         const impersonating = this.impersonating;
         this.impersonating = false;
 
         if(!productID) throw new Error('Required parameter productID was null or undefined when calling Me.GetProduct')
-        
+        const queryParams = utils.buildQueryParams(listOptions, 'Me.GetProduct')
 
         let headers = new HttpHeaders();
         const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
@@ -746,7 +750,8 @@ export class OcMeService {
             'Bearer ' + token
         );
         return this.httpClient.get<any>(`${this.basePath}/me/products/${productID}`, {
-            headers
+            headers,
+            params: queryParams
         })
     }
 
@@ -947,6 +952,36 @@ export class OcMeService {
             'Bearer ' + token
         );
         return this.httpClient.put<any>(`${this.basePath}/me/register`, meUser, {
+            headers,
+            params: queryParams
+        })
+    }
+
+   /**
+    * Get a list of buyer sellers visible to this user. Organizations you can place orders directly to.
+    * Check out the {@link https://ordercloud.io/api-reference/me-and-my-stuff/me/list-buyer-sellers|api docs} for more info 
+    * 
+    * @param listOptions.search Word or phrase to search for.
+    * @param listOptions.searchOn Comma-delimited list of fields to search on.
+    * @param listOptions.sortBy Comma-delimited list of fields to sort by.
+    * @param listOptions.page Page of results to return. Default: 1
+    * @param listOptions.pageSize Number of results to return per page. Default: 20, max: 100.
+    * @param listOptions.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or 'xp.???'
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public ListBuyerSellers<TBuyerSupplier extends BuyerSupplier = BuyerSupplier>(listOptions: { search?: string, searchOn?: Searchable<'Me.ListBuyerSellers'>, sortBy?: Sortable<'Me.ListBuyerSellers'>, page?: number, pageSize?: number, filters?: Filters } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPage<TBuyerSupplier>>>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        const queryParams = utils.buildQueryParams(listOptions, 'Me.ListBuyerSellers')
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.get<any>(`${this.basePath}/me/sellers`, {
             headers,
             params: queryParams
         })

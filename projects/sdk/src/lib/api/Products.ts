@@ -6,7 +6,7 @@ import { Product } from '../models/Product';
 import { SearchType } from '../models/SearchType';
 import { ListPage } from '../models/ListPage';
 import { Spec } from '../models/Spec';
-import { Supplier } from '../models/Supplier';
+import { ProductSupplier } from '../models/ProductSupplier';
 import { Variant } from '../models/Variant';
 import { ProductAssignment } from '../models/ProductAssignment';
 import { PartyType } from '../models/PartyType';
@@ -77,7 +77,7 @@ export class OcProductService {
     * Create a new product. If ID is provided and an object with that ID already exists, a 409 (conflict) error is returned.
     * Check out the {@link https://ordercloud.io/api-reference/product-catalogs/products/create|api docs} for more info 
     * 
-    * @param product Required fields: Name, QuantityMultiplier
+    * @param product Required fields: Name
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
     public Create<TProduct extends Product>(product: Product,requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TProduct>>{
@@ -127,7 +127,7 @@ export class OcProductService {
     * Check out the {@link https://ordercloud.io/api-reference/product-catalogs/products/save|api docs} for more info 
     * 
     * @param productID ID of the product.
-    * @param product Required fields: Name, QuantityMultiplier
+    * @param product Required fields: Name
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
     public Save<TProduct extends Product>(productID: string, product: Product,requestOptions: RequestOptions = {} ): Observable<RequiredDeep<TProduct>>{
@@ -207,9 +207,10 @@ export class OcProductService {
     * @param buyerID ID of the buyer.
     * @param listOptions.userID ID of the user.
     * @param listOptions.userGroupID ID of the user group.
+    * @param listOptions.sellerID ID of the seller.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
-    public DeleteAssignment(productID: string, buyerID: string, listOptions: { userID?: string, userGroupID?: string } = {}, requestOptions: RequestOptions = {} ): Observable<void>{
+    public DeleteAssignment(productID: string, buyerID: string, listOptions: { userID?: string, userGroupID?: string, sellerID?: string } = {}, requestOptions: RequestOptions = {} ): Observable<void>{
         const impersonating = this.impersonating;
         this.impersonating = false;
 
@@ -274,7 +275,7 @@ export class OcProductService {
     * @param listOptions.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or 'xp.???'
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
-    public ListSuppliers<TSupplier extends Supplier = Supplier>(productID: string, listOptions: { search?: string, searchOn?: Searchable<'Products.ListSuppliers'>, sortBy?: Sortable<'Products.ListSuppliers'>, page?: number, pageSize?: number, filters?: Filters } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPage<TSupplier>>>{
+    public ListSuppliers<TProductSupplier extends ProductSupplier = ProductSupplier>(productID: string, listOptions: { search?: string, searchOn?: Searchable<'Products.ListSuppliers'>, sortBy?: Sortable<'Products.ListSuppliers'>, page?: number, pageSize?: number, filters?: Filters } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPage<TProductSupplier>>>{
         const impersonating = this.impersonating;
         this.impersonating = false;
 
@@ -299,15 +300,16 @@ export class OcProductService {
     * 
     * @param productID ID of the product.
     * @param supplierID ID of the supplier.
+    * @param listOptions.defaultPriceScheduleID ID of the default price schedule.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
-    public SaveSupplier(productID: string, supplierID: string, requestOptions: RequestOptions = {} ): Observable<void>{
+    public SaveSupplier(productID: string, supplierID: string, listOptions: { defaultPriceScheduleID?: string } = {}, requestOptions: RequestOptions = {} ): Observable<void>{
         const impersonating = this.impersonating;
         this.impersonating = false;
 
         if(!productID) throw new Error('Required parameter productID was null or undefined when calling Products.SaveSupplier')
         if(!supplierID) throw new Error('Required parameter supplierID was null or undefined when calling Products.SaveSupplier')
-        
+        const queryParams = utils.buildQueryParams(listOptions, 'Products.SaveSupplier')
 
         let headers = new HttpHeaders();
         const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
@@ -316,12 +318,13 @@ export class OcProductService {
             'Bearer ' + token
         );
         return this.httpClient.put<any>(`${this.basePath}/products/${productID}/suppliers/${supplierID}`, null, {
-            headers
+            headers,
+            params: queryParams
         })
     }
 
    /**
-    * Remove a supplier. 
+    * Remove a product supplier. 
     * Check out the {@link https://ordercloud.io/api-reference/product-catalogs/products/remove-supplier|api docs} for more info 
     * 
     * @param productID ID of the product.
@@ -407,7 +410,7 @@ export class OcProductService {
     }
 
    /**
-    * Create or update a product variant. 
+    * Create or update a product variant. Update a product variant.
     * Check out the {@link https://ordercloud.io/api-reference/product-catalogs/products/save-variant|api docs} for more info 
     * 
     * @param productID ID of the product.

@@ -233,7 +233,7 @@ export class OcUserService {
     }
 
    /**
-    * Move a user to a different buyer 
+    * Move a user to a different buyer. 
     * Check out the {@link https://ordercloud.io/api-reference/buyers/users/move|api docs} for more info 
     * 
     * @param buyerID ID of the buyer.

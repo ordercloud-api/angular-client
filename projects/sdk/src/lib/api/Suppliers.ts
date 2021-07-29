@@ -3,6 +3,7 @@ import { Searchable } from '../models/Searchable';
 import { Sortable } from '../models/Sortable';
 import { Filters } from '../models/Filters';
 import { Supplier } from '../models/Supplier';
+import { SupplierBuyer } from '../models/SupplierBuyer';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OcTokenService } from './Tokens';
@@ -184,6 +185,92 @@ export class OcSupplierService {
             'Bearer ' + token
         );
         return this.httpClient.patch<any>(`${this.basePath}/suppliers/${supplierID}`, supplier, {
+            headers
+        })
+    }
+
+   /**
+    * Get a list of supplier buyers. 
+    * Check out the {@link https://ordercloud.io/api-reference/suppliers/suppliers/list-buyers|api docs} for more info 
+    * 
+    * @param supplierID ID of the supplier.
+    * @param listOptions.search Word or phrase to search for.
+    * @param listOptions.searchOn Comma-delimited list of fields to search on.
+    * @param listOptions.sortBy Comma-delimited list of fields to sort by.
+    * @param listOptions.page Page of results to return. Default: 1
+    * @param listOptions.pageSize Number of results to return per page. Default: 20, max: 100.
+    * @param listOptions.filters Any additional key/value pairs passed in the query string are interpretted as filters. Valid keys are top-level properties of the returned model or 'xp.???'
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public ListBuyers<TSupplierBuyer extends SupplierBuyer = SupplierBuyer>(supplierID: string, listOptions: { search?: string, searchOn?: Searchable<'Suppliers.ListBuyers'>, sortBy?: Sortable<'Suppliers.ListBuyers'>, page?: number, pageSize?: number, filters?: Filters } = {}, requestOptions: RequestOptions = {} ): Observable<RequiredDeep<ListPage<TSupplierBuyer>>>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        if(!supplierID) throw new Error('Required parameter supplierID was null or undefined when calling Suppliers.ListBuyers')
+        const queryParams = utils.buildQueryParams(listOptions, 'Suppliers.ListBuyers')
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.get<any>(`${this.basePath}/suppliers/${supplierID}/buyers`, {
+            headers,
+            params: queryParams
+        })
+    }
+
+   /**
+    * Create or update a supplier buyer. 
+    * Check out the {@link https://ordercloud.io/api-reference/suppliers/suppliers/save-buyer|api docs} for more info 
+    * 
+    * @param supplierID ID of the supplier.
+    * @param buyerID ID of the buyer.
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public SaveBuyer(supplierID: string, buyerID: string, requestOptions: RequestOptions = {} ): Observable<void>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        if(!supplierID) throw new Error('Required parameter supplierID was null or undefined when calling Suppliers.SaveBuyer')
+        if(!buyerID) throw new Error('Required parameter buyerID was null or undefined when calling Suppliers.SaveBuyer')
+        
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.put<any>(`${this.basePath}/suppliers/${supplierID}/buyers/${buyerID}`, null, {
+            headers
+        })
+    }
+
+   /**
+    * Delete a supplier buyer. 
+    * Check out the {@link https://ordercloud.io/api-reference/suppliers/suppliers/delete-buyer|api docs} for more info 
+    * 
+    * @param supplierID ID of the supplier.
+    * @param buyerID ID of the buyer.
+    * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
+    */
+    public DeleteBuyer(supplierID: string, buyerID: string, requestOptions: RequestOptions = {} ): Observable<void>{
+        const impersonating = this.impersonating;
+        this.impersonating = false;
+
+        if(!supplierID) throw new Error('Required parameter supplierID was null or undefined when calling Suppliers.DeleteBuyer')
+        if(!buyerID) throw new Error('Required parameter buyerID was null or undefined when calling Suppliers.DeleteBuyer')
+        
+
+        let headers = new HttpHeaders();
+        const token = requestOptions.accessToken || (impersonating ? this.ocTokenService.GetImpersonation() : this.ocTokenService.GetAccess())
+        headers = headers.set(
+            'Authorization', 
+            'Bearer ' + token
+        );
+        return this.httpClient.delete<any>(`${this.basePath}/suppliers/${supplierID}/buyers/${buyerID}`, {
             headers
         })
     }

@@ -192,10 +192,10 @@ export class OcIntegrationEventService {
     }
 
    /**
-    * Calculate an integration event calculate. 
+    * Calculate an order. 
     * Check out the {@link https://ordercloud.io/api-reference/seller/integration-events/calculate|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
@@ -219,10 +219,10 @@ export class OcIntegrationEventService {
     }
 
    /**
-    * Estimate a shipping. 
+    * Estimate shipping cost. 
     * Check out the {@link https://ordercloud.io/api-reference/seller/integration-events/estimate-shipping|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
@@ -246,10 +246,10 @@ export class OcIntegrationEventService {
     }
 
    /**
-    * Select a shipmethods. 
+    * Select a ship method. 
     * Check out the {@link https://ordercloud.io/api-reference/seller/integration-events/select-shipmethods|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param orderShipMethodSelection 
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
@@ -274,10 +274,10 @@ export class OcIntegrationEventService {
     }
 
    /**
-    * Get a single integration event worksheet. 
+    * Get a single order worksheet. 
     * Check out the {@link https://ordercloud.io/api-reference/seller/integration-events/get-worksheet|api docs} for more info 
     * 
-    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing.
+    * @param direction Direction of the order, from the current user's perspective. Possible values: incoming, outgoing, all.
     * @param orderID ID of the order.
     * @param requestOptions.accessToken Provide an alternative token to the one stored in the sdk instance (useful for impersonation).
     */
