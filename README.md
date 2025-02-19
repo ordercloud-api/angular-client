@@ -1,3 +1,6 @@
+# DEPRECATED AND ARCHIVED!
+> The OrderCloud team is re-focusing efforts on improving the [OrderCloud Javascript SDK](https://github.com/ordercloud-api/ordercloud-javascript-sdk) and moving away from a framework-specific SDK approach for Angular implementations. Application developers are urged to migrate their production Angular applications to the OrderCloud Javascript SDK during their next phase of new development, as this repository and corresponding [npm package `@ordercloud/angular-sdk`](https://www.npmjs.com/package/@ordercloud/angular-sdk) will no longer be maintained with the [latest OrderCloud API releases](https://ordercloud.io/release-notes).
+
 # OrderCloud Angular SDK
 
 > The official client library for building Angular (10.0.0+) solutions on [OrderCloud's](https://ordercloud.io/) ecommerce platform
